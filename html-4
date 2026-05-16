@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Readi4Bizness OS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B0E14; --surface: #141922; --card: #1A2030; --border: #252D3A;
+  --fg: #E2E8F0; --muted: #7A8599; --accent: #00E676; --accent2: #FF6D00;
+  --danger: #FF4757; --info: #18DCFF;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--fg); overflow-x: hidden; min-height: 100vh; }
+h1,h2,h3,h4,h5 { font-family: 'Space Grotesk', sans-serif; }
+
+/* Background orbs */
+.bg-orb { position: fixed; border-radius: 50%; filter: blur(120px); opacity: .12; pointer-events: none; z-index: 0; }
+.bg-orb-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -100px; animation: orbFloat 20s ease-in-out infinite; }
+.bg-orb-2 { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -100px; animation: orbFloat 25s ease-in-out infinite reverse; }
+.bg-orb-3 { width: 400px; height: 400px; background: var(--info); top: 50%; left: 50%; animation: orbFloat 18s ease-in-out infinite 5s; }
+@keyframes orbFloat {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(60px,-40px) scale(1.1); }
+  66% { transform: translate(-40px,60px) scale(.9); }
+}
+
+/* Login overlay */
+#login-overlay {
+  position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center;
+  background: var(--bg); transition: opacity .5s, visibility .5s;
+}
+#login-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.login-card {
+  background: rgba(26,32,48,.7); backdrop-filter: blur(24px); border: 1px solid var(--border);
+  border-radius: 20px; padding: 48px 40px; width: 420px; max-width: 92vw;
+  animation: loginIn .6s cubic-bezier(.22,1,.36,1);
+}
+@keyframes loginIn { from { opacity:0; transform: translateY(30px) scale(.96); } }
+.login-card.shake { animation: shake .4s; }
+@keyframes shake { 10%,90%{transform:translateX(-2px)} 20%,80%{transform:translateX(4px)} 30%,50%,70%{transform:translateX(-6px)} 40%,60%{transform:translateX(6px)} }
+
+/* Input styles */
+.r4b-input {
+  width: 100%; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--fg); font-family: 'DM Sans'; font-size: 14px;
+  transition: border-color .2s, box-shadow .2s; outline: none;
+}
+.r4b-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,230,118,.15); }
+.r4b-input::placeholder { color: var(--muted); }
+textarea.r4b-input { resize: vertical; min-height: 80px; }
+select.r4b-input { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237A8599' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+
+/* Buttons */
+.btn-primary {
+  padding: 12px 24px; background: var(--accent); color: #0B0E14; border: none; border-radius: 10px;
+  font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; cursor: pointer;
+  transition: transform .15s, box-shadow .2s, background .2s;
+}
+.btn-primary:hover { background: #00c966; box-shadow: 0 0 20px rgba(0,230,118,.3); }
+.btn-primary:active { transform: scale(.97); }
+.btn-secondary {
+  padding: 10px 20px; background: transparent; color: var(--accent); border: 1px solid var(--accent);
+  border-radius: 10px; font-family: 'Space Grotesk'; font-weight: 500; font-size: 14px;
+  cursor: pointer; transition: background .2s, color .2s;
+}
+.btn-secondary:hover { background: rgba(0,230,118,.1); }
+.btn-danger { padding: 8px 16px; background: var(--danger); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; transition: opacity .2s; }
+.btn-danger:hover { opacity: .85; }
+.btn-sm { padding: 6px 14px; font-size: 13px; border-radius: 8px; }
+
+/* Sidebar */
+#sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0; width: 240px; background: rgba(20,25,34,.95);
+  backdrop-filter: blur(12px); border-right: 1px solid var(--border); z-index: 100;
+  display: flex; flex-direction: column; transition: transform .3s;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 20px; cursor: pointer;
+  color: var(--muted); transition: color .2s, background .2s; border-left: 3px solid transparent;
+  font-size: 14px; font-weight: 500;
+}
+.nav-item:hover { color: var(--fg); background: rgba(255,255,255,.03); }
+.nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(0,230,118,.06); }
+.nav-item i { width: 20px; text-align: center; font-size: 15px; }
+
+/* Main */
+#main { margin-left: 240px; min-height: 100vh; position: relative; z-index: 1; }
+#topbar {
+  position: sticky; top: 0; z-index: 50; padding: 16px 32px;
+  background: rgba(11,14,20,.8); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;
+}
+#content { padding: 32px; }
+.section { display: none; animation: fadeSection .35s ease; }
+.section.active { display: block; }
+@keyframes fadeSection { from { opacity: 0; transform: translateY(12px); } }
+
+/* Cards */
+.stat-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+  transition: transform .2s, box-shadow .2s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+/* Gauge */
+.gauge-ring { transition: stroke-dashoffset 1s cubic-bezier(.22,1,.36,1); }
+
+/* Toast */
+#toast-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; }
+.toast {
+  padding: 14px 20px; border-radius: 12px; font-size: 14px; font-weight: 500;
+  animation: toastIn .3s ease; min-width: 260px; display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.toast.success { background: rgba(0,230,118,.15); border: 1px solid rgba(0,230,118,.3); color: var(--accent); }
+.toast.error { background: rgba(255,71,87,.15); border: 1px solid rgba(255,71,87,.3); color: var(--danger); }
+.toast.info { background: rgba(24,220,255,.12); border: 1px solid rgba(24,220,255,.3); color: var(--info); }
+@keyframes toastIn { from { opacity:0; transform:translateX(40px); } }
+
+/* Activity */
+.activity-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; display: flex; gap: 10px; align-items: flex-start; }
+.activity-item:last-child { border-bottom: none; }
+
+/* Badge */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+.badge-green { background: rgba(0,230,118,.15); color: var(--accent); }
+.badge-orange { background: rgba(255,109,0,.15); color: var(--accent2); }
+.badge-blue { background: rgba(24,220,255,.12); color: var(--info); }
+.badge-red { background: rgba(255,71,87,.15); color: var(--danger); }
+.badge-gray { background: rgba(122,133,153,.15); color: var(--muted); }
+
+/* Content item card */
+.item-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 10px; }
+
+/* Sub-tabs */
+.sub-tab { padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--muted); transition: all .2s; }
+.sub-tab.active { background: rgba(0,230,118,.1); color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--fg); }
+
+/* Mobile hamburger */
+#hamburger { display: none; background: none; border: none; color: var(--fg); font-size: 22px; cursor: pointer; }
+@media (max-width: 768px) {
+  #sidebar { transform: translateX(-100%); }
+  #sidebar.open { transform: translateX(0); }
+  #main { margin-left: 0; }
+  #hamburger { display: block; }
+  #content { padding: 20px 16px; }
+  .stat-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Slider */
+input[type=range] {
+  -webkit-appearance: none; width: 100%; height: 6px; border-radius: 3px;
+  background: var(--border); outline: none; cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--bg); cursor: pointer;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background orbs -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<!-- Toast container -->
+<div id="toast-container" aria-live="polite"></div>
+
+<!-- Login overlay -->
+<div id="login-overlay">
+  <div class="login-card" id="login-card">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="font-size:36px;font-weight:700;font-family:'Space Grotesk';color:var(--accent);letter-spacing:-1px;">Readi4Bizness</div>
+      <div style="color:var(--muted);font-size:14px;margin-top:6px;">Digital Product Business OS</div>
+    </div>
+    <form id="login-form" onsubmit="return false;" autocomplete="off">
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Email</label>
+        <input type="email" id="login-email" class="r4b-input" placeholder="demo@readi4bizness.com" aria-label="Email">
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Password</label>
+        <input type="password" id="login-pass" class="r4b-input" placeholder="Enter password" aria-label="Password">
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:14px;" onclick="handleLogin()">
+        <i class="fas fa-arrow-right-to-bracket" style="margin-right:8px;"></i>Sign In
+      </button>
+      <p id="login-error" style="color:var(--danger);font-size:13px;text-align:center;margin-top:12px;display:none;">Invalid credentials. Try the demo account.</p>
+    </form>
+  </div>
+</div>
+
+<!-- Main App -->
+<div id="app" style="display:none;">
+
+  <!-- Sidebar -->
+  <nav id="sidebar" role="navigation" aria-label="Main navigation">
+    <div style="padding:24px 20px 32px;border-bottom:1px solid var(--border);">
+      <div style="font-size:20px;font-weight:700;font-family:'Space Grotesk';color:var(--accent);letter-spacing:-0.5px;">R4B<span style="color:var(--fg);"> OS</span></div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px;text-transform:uppercase;letter-spacing:1px;">Operating System</div>
+    </div>
+    <div style="flex:1;padding:12px 0;overflow-y:auto;">
+      <div class="nav-item active" data-section="dashboard" onclick="navigateTo('dashboard')" tabindex="0" role="button">
+        <i class="fas fa-gauge-high"></i><span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-section="blueprint" onclick="navigateTo('blueprint')" tabindex="0" role="button">
+        <i class="fas fa-drafting-compass"></i><span>Blueprint</span>
+      </div>
+      <div class="nav-item" data-section="research" onclick="navigateTo('research')" tabindex="0" role="button">
+        <i class="fas fa-microscope"></i><span>Research</span>
+      </div>
+      <div class="nav-item" data-section="product" onclick="navigateTo('product')" tabindex="0" role="button">
+        <i class="fas fa-box-open"></i><span>Product Maker</span>
+      </div>
+      <div class="nav-item" data-section="content" onclick="navigateTo('content')" tabindex="0" role="button">
+        <i class="fas fa-pen-nib"></i><span>Content</span>
+      </div>
+      <div class="nav-item" data-section="promotions" onclick="navigateTo('promotions')" tabindex="0" role="button">
+        <i class="fas fa-bullhorn"></i><span>Promotions</span>
+      </div>
+      <div class="nav-item" data-section="canvas" onclick="navigateTo('canvas')" tabindex="0" role="button">
+        <i class="fas fa-file-export"></i><span>Canvas</span>
+      </div>
+    </div>
+    <div style="padding:12px 0;border-top:1px solid var(--border);">
+      <div class="nav-item" onclick="handleLogout()" tabindex="0" role="button" style="color:var(--danger);">
+        <i class="fas fa-right-from-bracket"></i><span>Sign Out</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div id="main">
+    <!-- Top bar -->
+    <header id="topbar">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <button id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+        <div>
+          <h2 id="topbar-title" style="font-size:18px;font-weight:600;">Dashboard</h2>
+          <div id="topbar-date" style="font-size:12px;color:var(--muted);"></div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:var(--bg);font-weight:700;font-size:13px;">D</div>
+      </div>
+    </header>
+
+    <main id="content">
+
+      <!-- ==================== DASHBOARD ==================== -->
+      <section id="section-dashboard" class="section active">
+        <div class="stat-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;">
+          <div class="stat-card">
+            <div style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;">Blueprint</div>
+            <div id="stat-blueprint" style="font-size:28px;font-weight:700;color:var(--accent);margin-top:8px;">0%</div>
+            <div style="margin-top:8px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div id="bar-blueprint" style="height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width .8s ease;"></div></div>
+          </div>
+          <div class="stat-card">
+            <div style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;">Products</div>
+            <div id="stat-products" style="font-size:28px;font-weight:700;color:var(--accent2);margin-top:8px;">0</div>
+            <div style="margin-top:8px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div id="bar-products" style="height:100%;background:var(--accent2);border-radius:2px;width:0%;transition:width .8s ease;"></div></div>
+          </div>
+          <div class="stat-card">
+            <div style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;">Content</div>
+            <div id="stat-content" style="font-size:28px;font-weight:700;color:var(--info);margin-top:8px;">0</div>
+            <div style="margin-top:8px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div id="bar-content" style="height:100%;background:var(--info);border-radius:2px;width:0%;transition:width .8s ease;"></div></div>
+          </div>
+          <div class="stat-card">
+            <div style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;">Campaigns</div>
+            <div id="stat-campaigns" style="font-size:28px;font-weight:700;color:var(--danger);margin-top:8px;">0</div>
+            <div style="margin-top:8px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div id="bar-campaigns" style="height:100%;background:var(--danger);border-radius:2px;width:0%;transition:width .8s ease;"></div></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:24px;">
+          <div class="stat-card">
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:16px;"><i class="fas fa-clock-rotate-left" style="color:var(--accent);margin-right:8px;"></i>Recent Activity</h3>
+            <div id="activity-feed" style="max-height:320px;overflow-y:auto;">
+              <div style="color:var(--muted);font-size:13px;padding:20px 0;text-align:center;">No activity yet. Start building your business.</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:16px;"><i class="fas fa-bolt" style="color:var(--accent2);margin-right:8px;"></i>Quick Actions</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <button class="btn-secondary" style="width:100%;text-align:left;" onclick="navigateTo('blueprint')"><i class="fas fa-plus" style="margin-right:8px;width:16px;"></i>Create Business Blueprint</button>
+              <button class="btn-secondary" style="width:100%;text-align:left;" onclick="navigateTo('research')"><i class="fas fa-search" style="margin-right:8px;width:16px;"></i>Run Viability Scan</button>
+              <button class="btn-secondary" style="width:100%;text-align:left;" onclick="navigateTo('product')"><i class="fas fa-cube" style="margin-right:8px;width:16px;"></i>Package a Product</button>
+              <button class="btn-secondary" style="width:100%;text-align:left;" onclick="navigateTo('canvas')"><i class="fas fa-download" style="margin-right:8px;width:16px;"></i>Export Business Canvas</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== BLUEPRINT ==================== -->
+      <section id="section-blueprint" class="section">
+        <div style="margin-bottom:24px;">
+          <h2 style="font-size:24px;font-weight:700;">Business Blueprint</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:4px;">Define your business foundation — mission, audience, model, and goals.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div class="stat-card">
+            <h3 style="font-size:15px;font-weight:600;margin-bottom:20px;color:var(--accent);">Core Identity</h3>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Business Name</label><input id="bp-name" class="r4b-input" placeholder="Your business name"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Tagline</label><input id="bp-tagline" class="r4b-input" placeholder="One-line value proposition"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Mission Statement</label><textarea id="bp-mission" class="r4b-input" placeholder="Why does this business exist?"></textarea></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Vision</label><textarea id="bp-vision" class="r4b-input" placeholder="Where is this business heading?"></textarea></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Core Values</label><input id="bp-values" class="r4b-input" placeholder="Innovation, Integrity, Impact..."></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3 style="font-size:15px;font-weight:600;margin-bottom:20px;color:var(--accent2);">Strategy</h3>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Target Audience</label><textarea id="bp-audience" class="r4b-input" placeholder="Who are you serving?"></textarea></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Revenue Model</label><select id="bp-revenue" class="r4b-input"><option value="">Select model</option><option value="one-time">One-time Purchase</option><option value="subscription">Subscription / SaaS</option><option value="freemium">Freemium + Upsell</option><option value="marketplace">Marketplace / Commission</option><option value="services">Service-Based</option><option value="hybrid">Hybrid</option></select></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Key Differentiator</label><textarea id="bp-differentiator" class="r4b-input" placeholder="What makes you stand out?"></textarea></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">90-Day Goals</label><textarea id="bp-goals" class="r4b-input" placeholder="List 3-5 measurable goals"></textarea></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:20px;text-align:right;">
+          <button class="btn-primary" onclick="saveBlueprint()"><i class="fas fa-save" style="margin-right:8px;"></i>Save Blueprint</button>
+        </div>
+      </section>
+
+      <!-- ==================== RESEARCH ==================== -->
+      <section id="section-research" class="section">
+        <div style="margin-bottom:24px;">
+          <h2 style="font-size:24px;font-weight:700;">Product Research</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:4px;">Run a viability scan on your digital product idea.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div class="stat-card">
+            <h3 style="font-size:15px;font-weight:600;margin-bottom:20px;color:var(--info);">Product Idea</h3>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Product Name</label><input id="rs-name" class="r4b-input" placeholder="Your product concept"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Niche / Category</label><input id="rs-niche" class="r4b-input" placeholder="e.g. Productivity, Health, Finance"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Brief Description</label><textarea id="rs-desc" class="r4b-input" placeholder="What problem does it solve?"></textarea></div>
+            </div>
+            <h3 style="font-size:15px;font-weight:600;margin:24px 0 16px;color:var(--accent);">Viability Criteria</h3>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:flex;justify-content:space-between;"><span>Market Demand</span><span id="rs-demand-val" style="color:var(--accent);">5</span></label><input type="range" id="rs-demand" min="1" max="10" value="5" oninput="document.getElementById('rs-demand-val').textContent=this.value"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:flex;justify-content:space-between;"><span>Competition Level</span><span id="rs-competition-val" style="color:var(--accent);">5</span></label><input type="range" id="rs-competition" min="1" max="10" value="5" oninput="document.getElementById('rs-competition-val').textContent=this.value"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:flex;justify-content:space-between;"><span>Problem Severity</span><span id="rs-severity-val" style="color:var(--accent);">5</span></label><input type="range" id="rs-severity" min="1" max="10" value="5" oninput="document.getElementById('rs-severity-val').textContent=this.value"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:flex;justify-content:space-between;"><span>Your Expertise</span><span id="rs-expertise-val" style="color:var(--accent);">5</span></label><input type="range" id="rs-expertise" min="1" max="10" value="5" oninput="document.getElementById('rs-expertise-val').textContent=this.value"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:flex;justify-content:space-between;"><span>Monetization Potential</span><span id="rs-monetize-val" style="color:var(--accent);">5</span></label><input type="range" id="rs-monetize" min="1" max="10" value="5" oninput="document.getElementById('rs-monetize-val').textContent=this.value"></div>
+            </div>
+            <button class="btn-primary" style="width:100%;margin-top:20px;" onclick="runViabilityScan()"><i class="fas fa-bolt" style="margin-right:8px;"></i>Run Viability Scan</button>
+          </div>
+          <div>
+            <div class="stat-card" id="scan-result-card" style="text-align:center;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <div style="color:var(--muted);font-size:14px;">Run a scan to see your viability score</div>
+            </div>
+            <div id="scan-history" style="margin-top:16px;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== PRODUCT MAKER ==================== -->
+      <section id="section-product" class="section">
+        <div style="margin-bottom:24px;">
+          <h2 style="font-size:24px;font-weight:700;">Product Maker</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:4px;">Package and structure your digital products for launch.</p>
+        </div>
+        <div class="stat-card" style="margin-bottom:20px;">
+          <h3 style="font-size:15px;font-weight:600;margin-bottom:20px;color:var(--accent);">New Product</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Product Name</label><input id="pm-name" class="r4b-input" placeholder="e.g. Productivity Playbook"></div>
+            <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Type</label><select id="pm-type" class="r4b-input"><option value="ebook">eBook / Guide</option><option value="course">Online Course</option><option value="template">Template Pack</option><option value="tool">Software Tool</option><option value="coaching">Coaching Program</option><option value="bundle">Bundle</option></select></div>
+            <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Price ($)</label><input id="pm-price" class="r4b-input" type="number" min="0" step="1" placeholder="49"></div>
+            <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Delivery</label><select id="pm-delivery" class="r4b-input"><option value="download">Digital Download</option><option value="membership">Membership Access</option><option value="cohort">Cohort-Based</option><option value="drip">Drip Content</option></select></div>
+          </div>
+          <div style="margin-top:14px;"><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Description</label><textarea id="pm-desc" class="r4b-input" placeholder="What's included and who is it for?"></textarea></div>
+          <div style="margin-top:14px;"><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Modules / Chapters (one per line)</label><textarea id="pm-modules" class="r4b-input" style="min-height:100px;" placeholder="Module 1: Getting Started&#10;Module 2: Core Framework&#10;Module 3: Advanced Tactics"></textarea></div>
+          <div style="margin-top:16px;text-align:right;">
+            <button class="btn-primary" onclick="addProduct()"><i class="fas fa-plus" style="margin-right:8px;"></i>Add Product</button>
+          </div>
+        </div>
+        <div id="product-list"></div>
+      </section>
+
+      <!-- ==================== CONTENT PLANNER ==================== -->
+      <section id="section-content" class="section">
+        <div style="margin-bottom:24px;">
+          <h2 style="font-size:24px;font-weight:700;">Content Planner</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:4px;">Plan blog posts, course content, and social media.</p>
+        </div>
+        <div class="stat-card" style="margin-bottom:20px;">
+          <h3 style="font-size:15px;font-weight:600;margin-bottom:20px;color:var(--info);">New Content Item</h3>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px;align-items:end;">
+            <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Title</label><input id="ct-title" class="r4b-input" placeholder="Content title"></div>
+            <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Type</label><select id="ct-type" class="r4b-input"><option value="blog">Blog Post</option><option value="course">Course Lesson</option><option value="video">Video</option><option value="social">Social Post</option><option value="email">Email</option></select></div>
+            <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Status</label><select id="ct-status" class="r4b-input"><option value="idea">Idea</option><option value="draft">Draft</option><option value="scheduled">Scheduled</option><option value="published">Published</option></select></div>
+            <div><button class="btn-primary" style="width:100%;" onclick="addContent()"><i class="fas fa-plus" style="margin-right:6px;"></i>Add</button></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;" id="content-filters">
+          <button class="sub-tab active" onclick="filterContent('all',this)">All</button>
+          <button class="sub-tab" onclick="filterContent('blog',this)">Blog</button>
+          <button class="sub-tab" onclick="filterContent('course',this)">Course</button>
+          <button class="sub-tab" onclick="filterContent('video',this)">Video</button>
+          <button class="sub-tab" onclick="filterContent('social',this)">Social</button>
+          <button class="sub-tab" onclick="filterContent('email',this)">Email</button>
+        </div>
+        <div id="content-list"></div>
+      </section>
+
+      <!-- ==================== PROMOTIONS ==================== -->
+      <section id="section-promotions" class="section">
+        <div style="margin-bottom:24px;">
+          <h2 style="font-size:24px;font-weight:700;">Promotions</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:4px;">Plan ad campaigns and affiliate partnerships.</p>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:20px;">
+          <button class="sub-tab active" id="promo-tab-ads" onclick="switchPromoTab('ads')">Ad Campaigns</button>
+          <button class="sub-tab" id="promo-tab-affiliates" onclick="switchPromoTab('affiliates')">Affiliate Partners</button>
+        </div>
+        <!-- Ads sub-section -->
+        <div id="promo-ads">
+          <div class="stat-card" style="margin-bottom:20px;">
+            <h3 style="font-size:15px;font-weight:600;margin-bottom:20px;color:var(--accent2);">New Ad Campaign</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;align-items:end;">
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Platform</label><select id="ad-platform" class="r4b-input"><option value="meta">Meta (FB/IG)</option><option value="google">Google Ads</option><option value="tiktok">TikTok</option><option value="youtube">YouTube</option><option value="linkedin">LinkedIn</option><option value="twitter">X / Twitter</option></select></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Budget ($)</label><input id="ad-budget" class="r4b-input" type="number" min="0" placeholder="500"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Duration</label><select id="ad-duration" class="r4b-input"><option value="7">7 Days</option><option value="14">14 Days</option><option value="30">30 Days</option><option value="90">90 Days</option></select></div>
+              <div><button class="btn-primary" style="width:100%;" onclick="addAd()"><i class="fas fa-plus" style="margin-right:6px;"></i>Add Campaign</button></div>
+            </div>
+            <div style="margin-top:14px;"><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Target Audience / Objective</label><input id="ad-target" class="r4b-input" placeholder="e.g. Entrepreneurs 25-45 / Conversions"></div>
+          </div>
+          <div id="ads-list"></div>
+        </div>
+        <!-- Affiliates sub-section -->
+        <div id="promo-affiliates" style="display:none;">
+          <div class="stat-card" style="margin-bottom:20px;">
+            <h3 style="font-size:15px;font-weight:600;margin-bottom:20px;color:var(--accent);">New Affiliate Partner</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:end;">
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Partner Name</label><input id="aff-name" class="r4b-input" placeholder="Affiliate partner"></div>
+              <div><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Commission (%)</label><input id="aff-commission" class="r4b-input" type="number" min="0" max="100" placeholder="30"></div>
+              <div><button class="btn-primary" style="width:100%;" onclick="addAffiliate()"><i class="fas fa-plus" style="margin-right:6px;"></i>Add Partner</button></div>
+            </div>
+            <div style="margin-top:14px;"><label style="font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Product / Offer</label><input id="aff-product" class="r4b-input" placeholder="Which product are they promoting?"></div>
+          </div>
+          <div id="affiliates-list"></div>
+        </div>
+      </section>
+
+      <!-- ==================== CANVAS ==================== -->
+      <section id="section-canvas" class="section">
+        <div style="margin-bottom:24px;">
+          <h2 style="font-size:24px;font-weight:700;">Business Canvas</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:4px;">Compile all your work into a single exportable document.</p>
+        </div>
+        <div style="display:flex;gap:12px;margin-bottom:20px;">
+          <button class="btn-primary" onclick="generateCanvas()"><i class="fas fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Canvas</button>
+          <button class="btn-secondary" id="btn-export" onclick="exportCanvas()" style="display:none;"><i class="fas fa-download" style="margin-right:8px;"></i>Export .txt</button>
+          <button class="btn-secondary" id="btn-copy" onclick="copyCanvas()" style="display:none;"><i class="fas fa-copy" style="margin-right:8px;"></i>Copy to Clipboard</button>
+        </div>
+        <div class="stat-card" id="canvas-output" style="min-height:200px;">
+          <div style="color:var(--muted);font-size:14px;text-align:center;padding:40px 0;">Click "Generate Canvas" to compile your business document.</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+// ==========================================
+// State Management
+// ==========================================
+const DEFAULT_STATE = {
+  loggedIn: false,
+  currentSection: 'dashboard',
+  blueprint: { name:'', tagline:'', mission:'', vision:'', values:'', audience:'', revenue:'', differentiator:'', goals:'' },
+  scans: [],
+  products: [],
+  content: [],
+  ads: [],
+  affiliates: [],
+  activity: []
+};
+
+let S = {};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('r4b_state');
+    if (saved) { S = JSON.parse(saved); }
+    else { S = JSON.parse(JSON.stringify(DEFAULT_STATE)); }
+  } catch(e) { S = JSON.parse(JSON.stringify(DEFAULT_STATE)); }
+  // Ensure all keys exist
+  for (const k in DEFAULT_STATE) { if (!(k in S)) S[k] = DEFAULT_STATE[k]; }
+  if (!Array.isArray(S.scans)) S.scans = [];
+  if (!Array.isArray(S.products)) S.products = [];
+  if (!Array.isArray(S.content)) S.content = [];
+  if (!Array.isArray(S.ads)) S.ads = [];
+  if (!Array.isArray(S.affiliates)) S.affiliates = [];
+  if (!Array.isArray(S.activity)) S.activity = [];
+}
+
+function saveState() {
+  try { localStorage.setItem('r4b_state', JSON.stringify(S)); } catch(e) {}
+}
+
+function addActivity(text, icon) {
+  S.activity.unshift({ text, icon, time: new Date().toISOString() });
+  if (S.activity.length > 50) S.activity = S.activity.slice(0, 50);
+  saveState();
+}
+
+// ==========================================
+// Toast Notifications
+// ==========================================
+function showToast(message, type='success') {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + type;
+  const icons = { success:'fa-check-circle', error:'fa-exclamation-circle', info:'fa-info-circle' };
+  toast.innerHTML = `<i class="fas ${icons[type] || icons.info}"></i><span>${message}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity='0'; toast.style.transform='translateX(40px)'; toast.style.transition='all .3s'; setTimeout(() => toast.remove(), 300); }, 3000);
+}
+
+// ==========================================
+// Navigation
+// ==========================================
+const sectionTitles = {
+  dashboard:'Dashboard', blueprint:'Business Blueprint', research:'Product Research',
+  product:'Product Maker', content:'Content Planner', promotions:'Promotions', canvas:'Business Canvas'
+};
+
+function navigateTo(section) {
+  S.currentSection = section;
+  saveState();
+  // Update nav
+  document.querySelectorAll('.nav-item[data-section]').forEach(n => {
+    n.classList.toggle('active', n.dataset.section === section);
+  });
+  // Update sections
+  document.querySelectorAll('.section').forEach(s => {
+    s.classList.toggle('active', s.id === 'section-' + section);
+  });
+  // Update topbar
+  document.getElementById('topbar-title').textContent = sectionTitles[section] || section;
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  // Refresh section data
+  refreshSection(section);
+}
+
+function refreshSection(section) {
+  if (section === 'dashboard') renderDashboard();
+  if (section === 'blueprint') loadBlueprint();
+  if (section === 'research') renderScanHistory();
+  if (section === 'product') renderProducts();
+  if (section === 'content') renderContent();
+  if (section === 'promotions') { renderAds(); renderAffiliates(); }
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// ==========================================
+// Auth
+// ==========================================
+function handleLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  const errEl = document.getElementById('login-error');
+  if (email === 'demo@readi4bizness.com' && pass === 'readi-demo-2026') {
+    S.loggedIn = true;
+    saveState();
+    errEl.style.display = 'none';
+    document.getElementById('login-overlay').classList.add('hidden');
+    document.getElementById('app').style.display = 'block';
+    navigateTo(S.currentSection || 'dashboard');
+    addActivity('Signed in to Readi4Bizness OS', 'fa-right-to-bracket');
+    showToast('Welcome to Readi4Bizness OS');
+  } else {
+    errEl.style.display = 'block';
+    document.getElementById('login-card').classList.add('shake');
+    setTimeout(() => document.getElementById('login-card').classList.remove('shake'), 400);
+  }
+}
+
+function handleLogout() {
+  S.loggedIn = false;
+  saveState();
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-overlay').classList.remove('hidden');
+  document.getElementById('login-email').value = '';
+  document.getElementById('login-pass').value = '';
+  showToast('Signed out successfully', 'info');
+}
+
+function checkAuth() {
+  loadState();
+  if (S.loggedIn) {
+    document.getElementById('login-overlay').classList.add('hidden');
+    document.getElementById('app').style.display = 'block';
+    navigateTo(S.currentSection || 'dashboard');
+  }
+}
+
+// Enter key for login
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !S.loggedIn) handleLogin();
+});
+
+// ==========================================
+// Date display
+// ==========================================
+function updateDate() {
+  const now = new Date();
+  const opts = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+  document.getElementById('topbar-date').textContent = now.toLocaleDateString('en-US', opts);
+}
+
+// ==========================================
+// Dashboard
+// ==========================================
+function renderDashboard() {
+  // Blueprint progress
+  const bpFields = Object.values(S.blueprint).filter(v => v.trim && v.trim() !== '');
+  const bpTotal = Object.keys(S.blueprint).length;
+  const bpPct = bpTotal > 0 ? Math.round((bpFields.length / bpTotal) * 100) : 0;
+  document.getElementById('stat-blueprint').textContent = bpPct + '%';
+  document.getElementById('bar-blueprint').style.width = bpPct + '%';
+
+  // Products
+  document.getElementById('stat-products').textContent = S.products.length;
+  document.getElementById('bar-products').style.width = Math.min(S.products.length * 25, 100) + '%';
+
+  // Content
+  document.getElementById('stat-content').textContent = S.content.length;
+  document.getElementById('bar-content').style.width = Math.min(S.content.length * 10, 100) + '%';
+
+  // Campaigns
+  const totalCampaigns = S.ads.length + S.affiliates.length;
+  document.getElementById('stat-campaigns').textContent = totalCampaigns;
+  document.getElementById('bar-campaigns').style.width = Math.min(totalCampaigns * 20, 100) + '%';
+
+  // Activity feed
+  const feed = document.getElementById('activity-feed');
+  if (S.activity.length === 0) {
+    feed.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:20px 0;text-align:center;">No activity yet. Start building your business.</div>';
+  } else {
+    feed.innerHTML = S.activity.slice(0, 20).map(a => {
+      const d = new Date(a.time);
+      const timeStr = d.toLocaleDateString('en-US', {month:'short',day:'numeric'}) + ' ' + d.toLocaleTimeString('en-US', {hour:'2-digit',minute:'2-digit'});
+      return `<div class="activity-item"><i class="fas ${a.icon}" style="color:var(--accent);margin-top:2px;width:16px;text-align:center;"></i><div><div style="color:var(--fg);">${a.text}</div><div style="color:var(--muted);font-size:11px;margin-top:2px;">${timeStr}</div></div></div>`;
+    }).join('');
+  }
+}
+
+// ==========================================
+// Blueprint
+// ==========================================
+function loadBlueprint() {
+  const fields = ['name','tagline','mission','vision','values','audience','revenue','differentiator','goals'];
+  fields.forEach(f => {
+    const el = document.getElementById('bp-' + f);
+    if (el && S.blueprint[f] !== undefined) el.value = S.blueprint[f];
+  });
+}
+
+function saveBlueprint() {
+  const fields = ['name','tagline','mission','vision','values','audience','revenue','differentiator','goals'];
+  fields.forEach(f => {
+    const el = document.getElementById('bp-' + f);
+    if (el) S.blueprint[f] = el.value;
+  });
+  saveState();
+  addActivity('Updated Business Blueprint', 'fa-drafting-compass');
+  showToast('Blueprint saved successfully');
+}
+
+// ==========================================
+// Research / Viability Scan
+// ==========================================
+function runViabilityScan() {
+  const name = document.getElementById('rs-name').value.trim();
+  const niche = document.getElementById('rs-niche').value.trim();
+  const desc = document.getElementById('rs-desc').value.trim();
+  if (!name) { showToast('Enter a product name first', 'error'); return; }
+
+  const demand = parseInt(document.getElementById('rs-demand').value);
+  const competition = parseInt(document.getElementById('rs-competition').value);
+  const severity = parseInt(document.getElementById('rs-severity').value);
+  const expertise = parseInt(document.getElementById('rs-expertise').value);
+  const monetize = parseInt(document.getElementById('rs-monetize').value);
+
+  // Weighted score (competition is inverse)
+  const score = Math.round(
+    (demand * 0.25) +
+    ((10 - competition) * 0.15) +
+    (severity * 0.20) +
+    (expertise * 0.15) +
+    (monetize * 0.25)
+  );
+
+  let verdict, verdictColor, verdictBadge;
+  if (score >= 75) { verdict = 'Highly Viable'; verdictColor = '#00E676'; verdictBadge = 'badge-green'; }
+  else if (score >= 55) { verdict = 'Promising'; verdictColor = '#FFD600'; verdictBadge = 'badge-orange'; }
+  else if (score >= 35) { verdict = 'Needs Refinement'; verdictColor = '#FF9100'; verdictBadge = 'badge-orange'; }
+  else { verdict = 'Low Viability'; verdictColor = '#FF4757'; verdictBadge = 'badge-red'; }
+
+  const scan = { name, niche, desc, demand, competition, severity, expertise, monetize, score, verdict, time: new Date().toISOString() };
+  S.scans.unshift(scan);
+  if (S.scans.length > 20) S.scans = S.scans.slice(0, 20);
+  saveState();
+  addActivity(`Ran viability scan for "${name}" — Score: ${score}/100`, 'fa-microscope');
+
+  // Render result
+  const card = document.getElementById('scan-result-card');
+  const circumference = 2 * Math.PI * 70;
+  const offset = circumference - (score / 100) * circumference;
+  card.innerHTML = `
+    <svg width="160" height="160" viewBox="0 0 160 160" style="margin-bottom:16px;">
+      <circle cx="80" cy="80" r="70" stroke="var(--border)" stroke-width="8" fill="none"/>
+      <circle cx="80" cy="80" r="70" stroke="${verdictColor}" stroke-width="8" fill="none"
+        stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}" stroke-linecap="round"
+        transform="rotate(-90 80 80)" class="gauge-ring" id="gauge-circle" style="transition:stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1);"/>
+      <text x="80" y="74" text-anchor="middle" fill="${verdictColor}" font-size="32" font-weight="700" font-family="Space Grotesk">${score}</text>
+      <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-size="12" font-family="DM Sans">/ 100</text>
+    </svg>
+    <div style="font-size:18px;font-weight:700;color:${verdictColor};margin-bottom:4px;">${verdict}</div>
+    <div style="color:var(--muted);font-size:13px;margin-bottom:16px;">${name}${niche ? ' — ' + niche : ''}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;width:100%;">
+      <div style="font-size:12px;"><span style="color:var(--muted);">Demand:</span> <span style="color:var(--fg);font-weight:600;">${demand}/10</span></div>
+      <div style="font-size:12px;"><span style="color:var(--muted);">Competition:</span> <span style="color:var(--fg);font-weight:600;">${competition}/10</span></div>
+      <div style="font-size:12px;"><span style="color:var(--muted);">Severity:</span> <span style="color:var(--fg);font-weight:600;">${severity}/10</span></div>
+      <div style="font-size:12px;"><span style="color:var(--muted);">Expertise:</span> <span style="color:var(--fg);font-weight:600;">${expertise}/10</span></div>
+      <div style="font-size:12px;grid-column:span 2;"><span style="color:var(--muted);">Monetization:</span> <span style="color:var(--fg);font-weight:600;">${monetize}/10</span></div>
+    </div>
+  `;
+  // Animate gauge
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.getElementById('gauge-circle').style.strokeDashoffset = offset;
+    });
+  });
+  renderScanHistory();
+  showToast(`Viability score: ${score}/100 — ${verdict}`, score >= 55 ? 'success' : 'error');
+}
+
+function renderScanHistory() {
+  const el = document.getElementById('scan-history');
+  if (S.scans.length === 0) { el.innerHTML = ''; return; }
+  let html = '<h3 style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--muted);">Scan History</h3>';
+  html += S.scans.slice(0, 8).map((s, i) => {
+    const d = new Date(s.time);
+    const ds = d.toLocaleDateString('en-US', {month:'short',day:'numeric'});
+    let badge = s.score >= 75 ? 'badge-green' : s.score >= 55 ? 'badge-orange' : s.score >= 35 ? 'badge-orange' : 'badge-red';
+    return `<div class="item-card" style="display:flex;justify-content:space-between;align-items:center;"><div><span style="font-weight:600;font-size:14px;">${s.name}</span><span style="color:var(--muted);font-size:12px;margin-left:8px;">${ds}</span></div><span class="badge ${badge}">${s.score}/100</span></div>`;
+  }).join('');
+  el.innerHTML = html;
+}
+
+// ==========================================
+// Product Maker
+// ==========================================
+function addProduct() {
+  const name = document.getElementById('pm-name').value.trim();
+  const type = document.getElementById('pm-type').value;
+  const price = parseFloat(document.getElementById('pm-price').value) || 0;
+  const delivery = document.getElementById('pm-delivery').value;
+  const desc = document.getElementById('pm-desc').value.trim();
+  const modulesRaw = document.getElementById('pm-modules').value.trim();
+  const modules = modulesRaw ? modulesRaw.split('\n').map(m => m.trim()).filter(m => m) : [];
+
+  if (!name) { showToast('Product name is required', 'error'); return; }
+
+  S.products.push({ id: Date.now(), name, type, price, delivery, desc, modules });
+  saveState();
+  addActivity(`Created product: "${name}" (${type})`, 'fa-box-open');
+
+  // Clear form
+  document.getElementById('pm-name').value = '';
+  document.getElementById('pm-price').value = '';
+  document.getElementById('pm-desc').value = '';
+  document.getElementById('pm-modules').value = '';
+
+  renderProducts();
+  showToast('Product added successfully');
+}
+
+function renderProducts() {
+  const el = document.getElementById('product-list');
+  if (S.products.length === 0) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:14px;text-align:center;padding:30px 0;">No products yet. Create your first one above.</div>';
+    return;
+  }
+  const typeIcons = { ebook:'fa-book', course:'fa-graduation-cap', template:'fa-layer-group', tool:'fa-wrench', coaching:'fa-comments', bundle:'fa-boxes-stacked' };
+  const deliveryLabels = { download:'Digital Download', membership:'Membership', cohort:'Cohort-Based', drip:'Drip Content' };
+  el.innerHTML = S.products.map(p => `
+    <div class="item-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div>
+          <span style="font-weight:600;font-size:16px;"><i class="fas ${typeIcons[p.type]||'fa-cube'}" style="color:var(--accent2);margin-right:8px;"></i>${p.name}</span>
+          <span class="badge badge-orange" style="margin-left:8px;">${p.type}</span>
+          <span class="badge badge-blue" style="margin-left:4px;">${deliveryLabels[p.delivery]||p.delivery}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-weight:700;font-size:18px;color:var(--accent);">$${p.price.toFixed(0)}</span>
+          <button class="btn-danger btn-sm" onclick="deleteProduct(${p.id})"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+      ${p.desc ? `<div style="color:var(--muted);font-size:13px;margin-bottom:8px;">${p.desc}</div>` : ''}
+      ${p.modules.length > 0 ? `<div style="display:flex;flex-wrap:wrap;gap:6px;">${p.modules.map((m,i) => `<span style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;"><span style="color:var(--accent);font-weight:600;">${i+1}.</span> ${m}</span>`).join('')}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+function deleteProduct(id) {
+  S.products = S.products.filter(p => p.id !== id);
+  saveState();
+  addActivity('Deleted a product', 'fa-trash');
+  renderProducts();
+  showToast('Product removed', 'info');
+}
+
+// ==========================================
+// Content Planner
+// ==========================================
+let contentFilter = 'all';
+
+function addContent() {
+  const title = document.getElementById('ct-title').value.trim();
+  const type = document.getElementById('ct-type').value;
+  const status = document.getElementById('ct-status').value;
+  if (!title) { showToast('Content title is required', 'error'); return; }
+
+  S.content.push({ id: Date.now(), title, type, status });
+  saveState();
+  addActivity(`Added content: "${title}" [${type}]`, 'fa-pen-nib');
+  document.getElementById('ct-title').value = '';
+  renderContent();
+  showToast('Content item added');
+}
+
+function renderContent() {
+  const el = document.getElementById('content-list');
+  let items = S.content;
+  if (contentFilter !== 'all') items = items.filter(c => c.type === contentFilter);
+
+  if (items.length === 0) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:14px;text-align:center;padding:30px 0;">No content items yet.</div>';
+    return;
+  }
+
+  const statusBadges = { idea:'badge-gray', draft:'badge-orange', scheduled:'badge-blue', published:'badge-green' };
+  const typeIcons = { blog:'fa-newspaper', course:'fa-graduation-cap', video:'fa-video', social:'fa-hashtag', email:'fa-envelope' };
+
+  el.innerHTML = items.map(c => `
+    <div class="item-card" style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;">
+        <i class="fas ${typeIcons[c.type]||'fa-file'}" style="color:var(--info);width:18px;text-align:center;flex-shrink:0;"></i>
+        <span style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.title}</span>
+        <span class="badge badge-blue" style="flex-shrink:0;">${c.type}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <select class="r4b-input" style="width:auto;padding:4px 28px 4px 10px;font-size:12px;" onchange="updateContentStatus(${c.id},this.value)">
+          <option value="idea" ${c.status==='idea'?'selected':''}>Idea</option>
+          <option value="draft" ${c.status==='draft'?'selected':''}>Draft</option>
+          <option value="scheduled" ${c.status==='scheduled'?'selected':''}>Scheduled</option>
+          <option value="published" ${c.status==='published'?'selected':''}>Published</option>
+        </select>
+        <span class="badge ${statusBadges[c.status]}">${c.status}</span>
+        <button class="btn-danger btn-sm" onclick="deleteContent(${c.id})" style="padding:4px 10px;"><i class="fas fa-trash" style="font-size:11px;"></i></button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function updateContentStatus(id, status) {
+  const item = S.content.find(c => c.id === id);
+  if (item) { item.status = status; saveState(); renderContent(); }
+}
+
+function deleteContent(id) {
+  S.content = S.content.filter(c => c.id !== id);
+  saveState();
+  renderContent();
+  showToast('Content item removed', 'info');
+}
+
+function filterContent(type, btn) {
+  contentFilter = type;
+  document.querySelectorAll('#content-filters .sub-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderContent();
+}
+
+// ==========================================
+// Promotions
+// ==========================================
+function switchPromoTab(tab) {
+  document.getElementById('promo-ads').style.display = tab === 'ads' ? 'block' : 'none';
+  document.getElementById('promo-affiliates').style.display = tab === 'affiliates' ? 'block' : 'none';
+  document.getElementById('promo-tab-ads').classList.toggle('active', tab === 'ads');
+  document.getElementById('promo-tab-affiliates').classList.toggle('active', tab === 'affiliates');
+}
+
+function addAd() {
+  const platform = document.getElementById('ad-platform').value;
+  const budget = parseFloat(document.getElementById('ad-budget').value) || 0;
+  const duration = parseInt(document.getElementById('ad-duration').value);
+  const target = document.getElementById('ad-target').value.trim();
+  if (budget <= 0) { showToast('Enter a valid budget', 'error'); return; }
+
+  S.ads.push({ id: Date.now(), platform, budget, duration, target });
+  saveState();
+  addActivity(`Created ad campaign: ${platform} — $${budget}/${duration}d`, 'fa-bullhorn');
+  document.getElementById('ad-budget').value = '';
+  document.getElementById('ad-target').value = '';
+  renderAds();
+  showToast('Ad campaign created');
+}
+
+function renderAds() {
+  const el = document.getElementById('ads-list');
+  if (S.ads.length === 0) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:14px;text-align:center;padding:20px 0;">No ad campaigns yet.</div>';
+    return;
+  }
+  const platformIcons = { meta:'fa-meta', google:'fa-google', tiktok:'fa-tiktok', youtube:'fa-youtube', linkedin:'fa-linkedin', twitter:'fa-x-twitter' };
+  el.innerHTML = S.ads.map(a => `
+    <div class="item-card" style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <i class="fab ${platformIcons[a.platform]||'fa-ad'}" style="color:var(--accent2);font-size:18px;width:24px;text-align:center;"></i>
+        <div>
+          <span style="font-weight:600;text-transform:capitalize;">${a.platform}</span>
+          <span style="color:var(--muted);font-size:12px;margin-left:8px;">${a.duration}d</span>
+          ${a.target ? `<div style="color:var(--muted);font-size:12px;">${a.target}</div>` : ''}
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-weight:700;color:var(--accent);">$${a.budget.toLocaleString()}</span>
+        <span style="color:var(--muted);font-size:12px;">$${(a.budget/a.duration).toFixed(0)}/d</span>
+        <button class="btn-danger btn-sm" onclick="deleteAd(${a.id})"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteAd(id) {
+  S.ads = S.ads.filter(a => a.id !== id);
+  saveState(); renderAds(); showToast('Campaign removed', 'info');
+}
+
+function addAffiliate() {
+  const name = document.getElementById('aff-name').value.trim();
+  const commission = parseInt(document.getElementById('aff-commission').value) || 0;
+  const product = document.getElementById('aff-product').value.trim();
+  if (!name) { showToast('Partner name is required', 'error'); return; }
+
+  S.affiliates.push({ id: Date.now(), name, commission, product });
+  saveState();
+  addActivity(`Added affiliate partner: ${name} (${commission}%)`, 'fa-handshake');
+  document.getElementById('aff-name').value = '';
+  document.getElementById('aff-commission').value = '';
+  document.getElementById('aff-product').value = '';
+  renderAffiliates();
+  showToast('Affiliate partner added');
+}
+
+function renderAffiliates() {
+  const el = document.getElementById('affiliates-list');
+  if (S.affiliates.length === 0) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:14px;text-align:center;padding:20px 0;">No affiliate partners yet.</div>';
+    return;
+  }
+  el.innerHTML = S.affiliates.map(a => `
+    <div class="item-card" style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <i class="fas fa-handshake" style="color:var(--accent);font-size:18px;"></i>
+        <div>
+          <span style="font-weight:600;">${a.name}</span>
+          ${a.product ? `<div style="color:var(--muted);font-size:12px;">${a.product}</div>` : ''}
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="badge badge-green">${a.commission}% commission</span>
+        <button class="btn-danger btn-sm" onclick="deleteAffiliate(${a.id})"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteAffiliate(id) {
+  S.affiliates = S.affiliates.filter(a => a.id !== id);
+  saveState(); renderAffiliates(); showToast('Affiliate removed', 'info');
+}
+
+// ==========================================
+// Canvas / Export
+// ==========================================
+let canvasText = '';
+
+function generateCanvas() {
+  let doc = '';
+  const sep = '\u2550'.repeat(52);
+  const thinSep = '\u2500'.repeat(52);
+
+  doc += '\u2564' + sep + '\u2557\n';
+  doc += '\u2551   READI4BIZNESS \u2014 BUSINESS CANVAS' + ' '.repeat(18) + '\u2551\n';
+  doc += '\u255A' + sep + '\u255D\n\n';
+  doc += `Generated: ${new Date().toLocaleString()}\n\n`;
+
+  // Blueprint
+  doc += '\u25B6 BUSINESS BLUEPRINT\n' + thinSep + '\n';
+  const bp = S.blueprint;
+  if (bp.name) doc += `Business Name:    ${bp.name}\n`;
+  if (bp.tagline) doc += `Tagline:          ${bp.tagline}\n`;
+  if (bp.mission) doc += `Mission:          ${bp.mission}\n`;
+  if (bp.vision) doc += `Vision:           ${bp.vision}\n`;
+  if (bp.values) doc += `Core Values:      ${bp.values}\n`;
+  if (bp.audience) doc += `Target Audience:  ${bp.audience}\n`;
+  if (bp.revenue) doc += `Revenue Model:    ${bp.revenue}\n`;
+  if (bp.differentiator) doc += `Differentiator:   ${bp.differentiator}\n`;
+  if (bp.goals) doc += `90-Day Goals:     ${bp.goals}\n`;
+  if (Object.values(bp).every(v => !v || (v.trim && v.trim()===''))) doc += '(No blueprint data yet)\n';
+  doc += '\n';
+
+  // Research
+  doc += '\u25B6 PRODUCT RESEARCH\n' + thinSep + '\n';
+  if (S.scans.length > 0) {
+    S.scans.slice(0, 5).forEach((s, i) => {
+      doc += `${i+1}. ${s.name} (${s.niche || 'No niche'}) \u2014 Score: ${s.score}/100 [${s.verdict}]\n`;
+      doc += `   Demand:${s.demand} Competition:${s.competition} Severity:${s.severity} Expertise:${s.expertise} Monetization:${s.monetize}\n`;
+    });
+  } else {
+    doc += '(No viability scans yet)\n';
+  }
+  doc += '\n';
+
+  // Products
+  doc += '\u25B6 DIGITAL PRODUCTS\n' + thinSep + '\n';
+  if (S.products.length > 0) {
+    S.products.forEach((p, i) => {
+      doc += `${i+1}. ${p.name} [${p.type}] \u2014 $${p.price}\n`;
+      if (p.delivery) doc += `   Delivery: ${p.delivery}\n`;
+      if (p.desc) doc += `   ${p.desc}\n`;
+      if (p.modules.length) doc += `   Modules: ${p.modules.join(', ')}\n`;
+    });
+  } else {
+    doc += '(No products yet)\n';
+  }
+  doc += '\n';
+
+  // Content
+  doc += '\u25B6 CONTENT PLAN\n' + thinSep + '\n';
+  if (S.content.length > 0) {
+    S.content.forEach((c, i) => {
+      doc += `${i+1}. ${c.title} [${c.type}] \u2014 ${c.status.toUpperCase()}\n`;
+    });
+  } else {
+    doc += '(No content items yet)\n';
+  }
+  doc += '\n';
+
+  // Promotions
+  doc += '\u25B6 AD CAMPAIGNS\n' + thinSep + '\n';
+  if (S.ads.length > 0) {
+    S.ads.forEach((a, i) => {
+      doc += `${i+1}. ${a.platform.toUpperCase()} \u2014 $${a.budget} / ${a.duration}d${a.target ? ' \u2014 ' + a.target : ''}\n`;
+    });
+  } else {
+    doc += '(No ad campaigns yet)\n';
+  }
+  doc += '\n';
+
+  doc += '\u25B6 AFFILIATE PARTNERS\n' + thinSep + '\n';
+  if (S.affiliates.length > 0) {
+    S.affiliates.forEach((a, i) => {
+      doc += `${i+1}. ${a.name} \u2014 ${a.commission}%${a.product ? ' \u2014 ' + a.product : ''}\n`;
+    });
+  } else {
+    doc += '(No affiliates yet)\n';
+  }
+  doc += '\n' + thinSep + '\nEnd of Business Canvas\n';
+
+  canvasText = doc;
+
+  // Render preview
+  const el = document.getElementById('canvas-output');
+  el.innerHTML = `<pre style="white-space:pre-wrap;word-break:break-word;font-family:'Space Grotesk',monospace;font-size:13px;line-height:1.7;color:var(--fg);padding:4px;">${escapeHtml(doc)}</pre>`;
+  document.getElementById('btn-export').style.display = 'inline-flex';
+  document.getElementById('btn-copy').style.display = 'inline-flex';
+  addActivity('Generated Business Canvas document', 'fa-file-export');
+  showToast('Canvas generated successfully');
+}
+
+function exportCanvas() {
+  if (!canvasText) return;
+  const blob = new Blob([canvasText], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `readi4bizness-canvas-${Date.now()}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('Canvas exported as .txt file');
+}
+
+function copyCanvas() {
+  if (!canvasText) return;
+  navigator.clipboard.writeText(canvasText).then(() => {
+    showToast('Canvas copied to clipboard');
+  }).catch(() => {
+    showToast('Failed to copy', 'error');
+  });
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// ==========================================
+// Init
+// ==========================================
+function init() {
+  loadState();
+  updateDate();
+  setInterval(updateDate, 60000);
+  checkAuth();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
+// Close sidebar on outside click (mobile)
+document.addEventListener('click', e => {
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('hamburger');
+  if (window.innerWidth <= 768 && sidebar.classList.contains('open') && !sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+    sidebar.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - Readi4Bizness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Manrope:wght@500;600;700;800&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#131b2e",
+                      "on-error": "#ffffff",
+                      "on-background": "#0b1c30",
+                      "tertiary-fixed": "#6ffbbe",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "surface-container-low": "#eff4ff",
+                      "governance-gold": "#F59E0B",
+                      "outline": "#76777d",
+                      "on-secondary-fixed-variant": "#004395",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "surface-tint": "#565e74",
+                      "error-container": "#ffdad6",
+                      "surface": "#f8f9ff",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-secondary-container": "#fefcff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "status-blocked": "#EF4444",
+                      "inverse-primary": "#bec6e0",
+                      "on-tertiary-container": "#009668",
+                      "surface-variant": "#d3e4fe",
+                      "error": "#ba1a1a",
+                      "tertiary": "#000000",
+                      "primary-container": "#131b2e",
+                      "surface-container-highest": "#d3e4fe",
+                      "inverse-surface": "#213145",
+                      "status-planned": "#94A3B8",
+                      "surface-container-high": "#dce9ff",
+                      "background": "#f8f9ff",
+                      "outline-variant": "#c6c6cd",
+                      "secondary-container": "#2170e4",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "secondary": "#0058be",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed": "#dae2fd",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-tertiary-fixed": "#002113",
+                      "surface-container": "#e5eeff",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-secondary-fixed": "#001a42",
+                      "border-subtle": "#E2E8F0",
+                      "on-secondary": "#ffffff",
+                      "canvas-bg": "#F8FAFC",
+                      "on-primary-container": "#7c839b",
+                      "primary": "#000000",
+                      "tertiary-container": "#002113",
+                      "status-in-progress": "#3B82F6",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#f8f9ff",
+                      "on-surface": "#0b1c30",
+                      "on-surface-variant": "#45464d",
+                      "status-shipped": "#10B981"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xxl": "80px",
+                      "lg": "24px",
+                      "container-max": "1280px",
+                      "canvas-sidebar-right": "320px",
+                      "canvas-sidebar-left": "260px",
+                      "sm": "8px",
+                      "unit": "4px",
+                      "md": "16px",
+                      "xl": "40px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Manrope"],
+                      "headline-lg": ["Manrope"],
+                      "label-mono": ["Space Grotesk"],
+                      "body-md": ["Inter"],
+                      "caption": ["Inter"],
+                      "display-xl": ["Manrope"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "display-xl": ["60px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col z-50 overflow-y-auto">
+<!-- Header -->
+<div class="px-6 py-6 border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">widgets</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">Readi4Bizness</h1>
+<p class="font-caption text-caption text-slate-500">Operational Center</p>
+</div>
+</div>
+</div>
+<!-- Main Nav -->
+<nav class="flex-1 py-4 flex flex-col gap-1 font-manrope text-[13px] tracking-wide">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white font-semibold border-r-4 border-slate-900 dark:border-slate-100 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+                Business Blueprint
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Product Registry
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">campaign</span>
+                Campaign Management
+            </a>
+</nav>
+<!-- Footer Nav -->
+<div class="border-t border-slate-200 dark:border-slate-800 py-4 flex flex-col gap-1 font-manrope text-[13px] tracking-wide mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+                System Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Area Wrapper -->
+<div class="flex-1 flex flex-col ml-64 bg-surface h-screen">
+<!-- TopAppBar (Shared Component) -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-6 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 font-manrope text-sm font-medium">
+<!-- Left Side: Search Bar -->
+<div class="flex items-center w-96 relative">
+<span class="material-symbols-outlined absolute left-3 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-border-subtle rounded-md focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-colors text-slate-900" placeholder="Search operations, products..." type="text"/>
+</div>
+<!-- Right Side: Actions -->
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+<span class="material-symbols-outlined">account_tree</span>
+</button>
+<div class="h-6 w-px bg-slate-200 mx-2"></div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-md font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Create New
+                </button>
+<img alt="User avatar" class="w-8 h-8 rounded-full border border-slate-200 object-cover ml-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvEP4_AF1g78cYHDy4R5HwissueqW4UD8QxZT0YdHcpYzRBQtn3s7xpelwox1JkliMaOS9Io5bSNMSV2iOXV7bwLp_V1TjeV53aGnsG_7J0FGGbrMzk2HAt5kEwXkcLGVD4oRklKEYKEHWz_ojEDbGsxp39UPs58ad8FJyYWg-xG7RNwT6RTboUMneMWFUpad7MNY_72J9cFNULKrNSVx_n6i3JWlELdVspm9RzcJyn7bSmEQL86EyKsG74KU2ly_eJgr12KOR-1c"/>
+</div>
+</header>
+<!-- Canvas Content -->
+<main class="flex-1 overflow-y-auto pt-16 p-lg">
+<div class="max-w-[1440px] mx-auto h-full flex flex-col gap-lg">
+<!-- Welcome Banner -->
+<section class="bg-white border border-border-subtle rounded-xl p-6 flex items-center justify-between shadow-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-slate-900 mb-1">Operational Command Center</h2>
+<p class="text-slate-500 font-body-md text-body-md">Overview of current business activities and campaign performance.</p>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-label-mono text-slate-400">SYSTEM STATUS</p>
+<div class="flex items-center gap-2 mt-1 justify-end">
+<span class="w-2 h-2 rounded-full bg-status-shipped"></span>
+<span class="font-medium text-slate-900">All Systems Operational</span>
+</div>
+</div>
+</section>
+<!-- 12-Column Grid Area -->
+<div class="grid grid-cols-12 gap-md flex-1">
+<!-- Left Column (8 cols): Metrics & Active Operations -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-md">
+<!-- Top Metrics Bento -->
+<div class="grid grid-cols-3 gap-md">
+<!-- Metric 1 -->
+<div class="bg-white border border-border-subtle rounded-xl p-5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary-container">trending_up</span>
+<span class="font-label-mono text-label-mono text-status-shipped bg-status-shipped/10 px-2 py-0.5 rounded text-xs">+12.5%</span>
+</div>
+<div>
+<p class="text-slate-500 font-caption text-caption mb-1">Total Revenue (Q3)</p>
+<p class="font-headline-md text-headline-md text-slate-900">$2.4M</p>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-white border border-border-subtle rounded-xl p-5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-governance-gold">inventory_2</span>
+<span class="font-label-mono text-label-mono text-status-shipped bg-status-shipped/10 px-2 py-0.5 rounded text-xs">+3 New</span>
+</div>
+<div>
+<p class="text-slate-500 font-caption text-caption mb-1">Active Products</p>
+<p class="font-headline-md text-headline-md text-slate-900">148</p>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-white border border-border-subtle rounded-xl p-5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary">campaign</span>
+<span class="font-label-mono text-label-mono text-status-in-progress bg-status-in-progress/10 px-2 py-0.5 rounded text-xs">2 Active</span>
+</div>
+<div>
+<p class="text-slate-500 font-caption text-caption mb-1">Campaign Reach</p>
+<p class="font-headline-md text-headline-md text-slate-900">84.2K</p>
+</div>
+</div>
+</div>
+<!-- Active Campaigns Block -->
+<div class="bg-white border border-border-subtle rounded-xl flex-1 flex flex-col">
+<div class="px-6 py-4 border-b border-border-subtle flex justify-between items-center">
+<h3 class="font-headline-md text-body-lg font-semibold text-slate-900">Campaign Status</h3>
+<button class="text-secondary-container text-sm font-medium hover:underline">View All</button>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<!-- Campaign Row 1 -->
+<div class="flex items-center justify-between p-4 border border-border-subtle rounded-lg hover:border-slate-300 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-status-in-progress/10 flex items-center justify-center text-status-in-progress">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<div>
+<h4 class="font-medium text-slate-900">Q4 Market Expansion</h4>
+<p class="text-sm text-slate-500">Enterprise SaaS Sector</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-32">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500">Progress</span>
+<span class="font-medium">65%</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5">
+<div class="bg-status-in-progress h-1.5 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded text-xs font-medium bg-status-in-progress/10 text-status-in-progress border border-status-in-progress/20">In Progress</span>
+</div>
+</div>
+<!-- Campaign Row 2 -->
+<div class="flex items-center justify-between p-4 border border-border-subtle rounded-lg hover:border-slate-300 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-status-planned/10 flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined">event_note</span>
+</div>
+<div>
+<h4 class="font-medium text-slate-900">Holiday Promo 2024</h4>
+<p class="text-sm text-slate-500">Consumer Electronics</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-32">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500">Progress</span>
+<span class="font-medium">0%</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5">
+<div class="bg-status-planned h-1.5 rounded-full" style="width: 0%"></div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">Planned</span>
+</div>
+</div>
+<!-- Campaign Row 3 -->
+<div class="flex items-center justify-between p-4 border border-border-subtle rounded-lg hover:border-slate-300 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-status-shipped/10 flex items-center justify-center text-status-shipped">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<h4 class="font-medium text-slate-900">V2.0 Launch</h4>
+<p class="text-sm text-slate-500">Core Platform Update</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-32">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500">Progress</span>
+<span class="font-medium">100%</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5">
+<div class="bg-status-shipped h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded text-xs font-medium bg-status-shipped/10 text-status-shipped border border-status-shipped/20">Shipped</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (4 cols): AI Reasoning & Notifications -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-md">
+<!-- AI Reasoning Panel -->
+<div class="bg-slate-900 rounded-xl border border-slate-800 text-slate-300 p-5 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-governance-gold/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-governance-gold text-sm">auto_awesome</span>
+<span class="font-label-mono text-label-mono text-governance-gold text-xs">AI INSIGHT</span>
+</div>
+<p class="text-sm leading-relaxed mb-4">
+                                Based on current trajectory, the <strong>Q4 Market Expansion</strong> campaign may face budget constraints by mid-November. Consider reallocating resources from the planned Holiday Promo.
+                            </p>
+<button class="text-xs font-medium text-white border border-slate-700 px-3 py-1.5 rounded hover:bg-slate-800 transition-colors">
+                                Review Allocation Draft
+                            </button>
+</div>
+<!-- Quick Links / Blueprint Shortcut -->
+<div class="bg-white border border-border-subtle rounded-xl p-5">
+<h3 class="font-label-mono text-label-mono text-slate-500 mb-3 text-xs">QUICK ACTIONS</h3>
+<div class="flex flex-col gap-2">
+<button class="w-full flex items-center justify-between p-3 border border-border-subtle rounded hover:bg-slate-50 transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">edit_document</span>
+<span class="text-sm font-medium text-slate-700 group-hover:text-slate-900">Edit Business Blueprint</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary text-sm">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 border border-border-subtle rounded hover:bg-slate-50 transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">add_box</span>
+<span class="text-sm font-medium text-slate-700 group-hover:text-slate-900">Register New Product</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Recent Notifications -->
+<div class="bg-white border border-border-subtle rounded-xl flex-1 flex flex-col overflow-hidden">
+<div class="px-5 py-4 border-b border-border-subtle bg-slate-50/50">
+<h3 class="font-label-mono text-label-mono text-slate-500 text-xs">ACTIVITY FEED</h3>
+</div>
+<div class="p-5 flex flex-col gap-4 overflow-y-auto">
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low border border-border-subtle flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">inventory_2</span>
+</div>
+<div>
+<p class="text-sm text-slate-900"><span class="font-medium">Sarah Jenkins</span> updated Product Registry: "Enterprise Tier"</p>
+<p class="text-xs text-slate-500 mt-0.5">10 mins ago</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container border border-red-200 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-status-blocked">warning</span>
+</div>
+<div>
+<p class="text-sm text-slate-900">Campaign <span class="font-medium">EU Outreach</span> is blocked pending legal review.</p>
+<p class="text-xs text-slate-500 mt-0.5">1 hour ago</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low border border-border-subtle flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-slate-600">account_tree</span>
+</div>
+<div>
+<p class="text-sm text-slate-900"><span class="font-medium">System</span> auto-saved Business Blueprint draft.</p>
+<p class="text-xs text-slate-500 mt-0.5">3 hours ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

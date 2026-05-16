@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How It Works - Readi4Bizness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-primary": "#ffffff",
+                        "secondary": "#0058be",
+                        "on-surface": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "outline": "#76777d",
+                        "surface-container-low": "#eff4ff",
+                        "canvas-bg": "#F8FAFC",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary-fixed": "#d8e2ff",
+                        "border-subtle": "#E2E8F0",
+                        "inverse-primary": "#bec6e0",
+                        "primary-fixed": "#dae2fd",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-variant": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "status-shipped": "#10B981",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "status-planned": "#94A3B8",
+                        "on-primary-container": "#7c839b",
+                        "error-container": "#ffdad6",
+                        "status-in-progress": "#3B82F6",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary-fixed": "#6ffbbe",
+                        "tertiary-container": "#002113",
+                        "on-surface-variant": "#45464d",
+                        "primary": "#000000",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-fixed": "#001a42",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "inverse-surface": "#213145",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-container": "#2170e4",
+                        "status-blocked": "#EF4444",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-tint": "#565e74",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-tertiary-container": "#009668",
+                        "on-secondary-container": "#fefcff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-secondary": "#ffffff",
+                        "governance-gold": "#F59E0B",
+                        "primary-container": "#131b2e",
+                        "surface-container": "#e5eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "unit": "4px",
+                        "canvas-sidebar-right": "320px",
+                        "md": "16px",
+                        "canvas-sidebar-left": "260px",
+                        "xxl": "80px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "container-max": "1280px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "label-mono": ["Space Grotesk"],
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["60px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .canvas-recessed {
+            background-color: #F8FAFC;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- Top Navigation -->
+<nav class="bg-white/90 backdrop-blur-md dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800 docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center px-8 py-4 w-full max-w-7xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white font-display-xl">Readi4Bizness</div>
+<div class="hidden md:flex items-center gap-8 font-manrope text-sm font-semibold tracking-tight">
+<a class="text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Platform</a>
+<a class="text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Solutions</a>
+<a class="text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white pb-1" href="#">Case Studies</a>
+<a class="text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Pricing</a>
+<a class="text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Resources</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-manrope text-sm font-semibold hover:opacity-90 transition-opacity">
+                Get Started
+            </button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative py-xxl px-8 max-w-7xl mx-auto overflow-hidden">
+<div class="text-center max-w-3xl mx-auto mb-xxl">
+<span class="font-label-mono text-label-mono text-secondary uppercase mb-4 block">The Framework of Success</span>
+<h1 class="font-display-xl text-display-xl mb-6">How Readi4Bizness Powers Your Growth</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Our Architecture of Intent creates a seamless transition between telling your story, managing your operations, and building your future.</p>
+</div>
+<!-- Central Anchor: The Blueprint -->
+<div class="relative bg-white border border-border-subtle p-lg rounded-xl shadow-sm max-w-5xl mx-auto mb-xxl text-center">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-governance-gold text-white px-4 py-1 rounded-full font-label-mono text-xs uppercase tracking-widest">Single Source of Truth</div>
+<div class="flex flex-col items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-governance-gold" data-icon="architecture">architecture</span>
+<h2 class="font-headline-lg text-headline-lg">The Business Blueprint</h2>
+<p class="text-on-surface-variant max-w-2xl font-body-md">A systematic narrative guide that anchors the entire ecosystem. It evolves from a static vision into an active, data-driven map of your business's DNA.</p>
+</div>
+</div>
+</section>
+<!-- The Three Modes: Scroll-Based Timeline -->
+<div class="relative px-8 max-w-7xl mx-auto pb-xxl">
+<!-- Vertical Timeline Line -->
+<div class="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 hidden md:block"></div>
+<!-- Step 1: External (Exploration) -->
+<div class="relative flex flex-col md:flex-row items-center gap-xxl mb-xxl">
+<div class="flex-1 text-right md:pr-12">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-highest text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">External Mode</h3>
+<h4 class="font-label-mono text-label-mono text-secondary mb-4">The Narrative Layer</h4>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Engagement starts here. External mode focuses on narrative fluidity and trust-building through structured layouts. It's designed for stakeholders to explore your vision with maximum clarity and zero friction.</p>
+<ul class="mt-6 flex flex-col items-end gap-3 font-caption text-caption text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> Scroll-based storytelling</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> Professional, high-key aesthetics</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> Public-facing trust anchors</li>
+</ul>
+</div>
+<div class="relative z-10 w-10 h-10 rounded-full bg-white border-2 border-secondary hidden md:flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<div class="flex-1 md:pl-12">
+<div class="rounded-xl overflow-hidden shadow-lg border border-border-subtle group">
+<img alt="External Interface View" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A clean, minimalist website homepage displayed on a large high-resolution monitor. The UI features generous white space, bold black typography, and a structured grid layout. Soft morning sunlight streams across the desk, highlighting the premium, professional feel of the external narrative interface. The color palette is strictly light-mode with primary black accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaOq10s6Lnuwloe4-1ZlYwHhaTOUEdF4jbYFytH11UO5Fzxkx2OxqCucHvZV51cS2WFz8W6wZTM-KSbZdeQmx78o3mKbe6t1HN1px0Q3JRMo6aaJ9aCjcxV2L6TLjmLkUT4SoKNYu8006kVl-ZvqCEs12s6_6BrlpAiAB8hOj1IrLUGrYoiAaf95-Jb64yFSB8lm-B3mM5mRSkIgsVMBe6Rb8AyK0OzboEDlJT2lt20gmy2SgoamYYYWKhYuUZTrfyxzinR3WjzMc"/>
+</div>
+</div>
+</div>
+<!-- Step 2: Internal (Operation) -->
+<div class="relative flex flex-col md:flex-row-reverse items-center gap-xxl mb-xxl">
+<div class="flex-1 text-left md:pl-12">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-high text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Internal Mode</h3>
+<h4 class="font-label-mono text-label-mono text-secondary mb-4">The Operational Layer</h4>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Where management happens. Internal mode prioritizes efficiency with a strict 12-column grid and high information density. Status badges and real-time trackers provide total control over your business workflows.</p>
+<ul class="mt-6 flex flex-col items-start gap-3 font-caption text-caption text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> Status-aware dashboarding</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> High-density data tables</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> Operational oversight tools</li>
+</ul>
+</div>
+<div class="relative z-10 w-10 h-10 rounded-full bg-white border-2 border-secondary hidden md:flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<div class="flex-1 md:pr-12">
+<div class="rounded-xl overflow-hidden shadow-lg border border-border-subtle group">
+<img alt="Internal Dashboard View" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A sophisticated business dashboard with intricate charts, data tables, and colorful status indicators showing project progress. The interface is highly organized with a sidebar and top navigation, reflecting a systematic internal operation mode. The lighting is crisp and even, emphasizing clarity and control in a professional corporate environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Ro4Jy0dbhuMRkD4uFWyszWOJCNhM7w9iItg409Ba3hVDg4Tf-5n42Vclek8OHYypcFXE3kSZbtmpsLx4EOHGpB-Fkg13IvTxVFH-A8YpvjBcxKzuh_mHu1JcdcNpMea1dvQyLJnxRNPe2UVTJtLMcAf7LVXm-bBiYDE35w-zXKpjzBHmAkNg1buNzVpWYIF66x1o8QFGkYVdNzCQ5BjAdHJqQD4_hV8U4xzWG9EIhDw3hkIyqMKpT2Paxb7sXmZJIBx6bGgzrlU"/>
+</div>
+</div>
+</div>
+<!-- Step 3: Canvas (Creation) -->
+<div class="relative flex flex-col md:flex-row items-center gap-xxl">
+<div class="flex-1 text-right md:pr-12">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container mb-6">
+<span class="material-symbols-outlined" data-icon="draw" style="font-variation-settings: 'FILL' 1;">draw</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Canvas Mode</h3>
+<h4 class="font-label-mono text-label-mono text-secondary mb-4">The Creation Layer</h4>
+<p class="font-body-md text-on-surface-variant leading-relaxed">The high-fidelity workspace. Canvas uses a three-rail layout designed for deep work. Contextual tools appear only when needed, reducing cognitive load and allowing for pure focus on building and strategizing.</p>
+<ul class="mt-6 flex flex-col items-end gap-3 font-caption text-caption text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> Three-Rail workspace layout</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> Hover-to-reveal controls</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-shipped text-sm" data-icon="check_circle">check_circle</span> AI-driven reasoning panels</li>
+</ul>
+</div>
+<div class="relative z-10 w-10 h-10 rounded-full bg-white border-2 border-secondary hidden md:flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<div class="flex-1 md:pl-12">
+<div class="rounded-xl overflow-hidden shadow-lg border border-border-subtle group bg-canvas-bg p-4">
+<div class="canvas-recessed rounded-lg overflow-hidden border border-slate-200">
+<img alt="Canvas Creation View" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A workspace interface showing a central document being edited, flanked by two narrow sidebars containing contextual tools and AI-driven suggestions. The color scheme uses subtle light grays and blues to indicate depth, creating a recessed canvas feel. The aesthetic is clean and focused, symbolizing a high-flow creative environment for strategists." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmX3FANHtQ_rANeExPL2ouHPvzwZcZXSA8P-8XxR_SWjZI5zu9r5ePdq9GtEBFURENayF3hQ-qV7qi93yFOsEB5dPIzJh7LjC30xBtriiL52x8uDTWyAEMNav4MLeKN32xEFwoiA-CUiCtn_VRTyLlINgXVLwyZ2i-kcaB-Ed86imC6U2dfnGApeEoSViJt64dx3bxO8PfqLPHkV-emJP1zC262bYwfovAdXncMfGaJsOKEtPxFbRZN-hXJaIlPvpU6wN_xcZusk0"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Governance Section -->
+<section class="bg-surface-container-low py-xxl mt-xxl border-t border-border-subtle">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid md:grid-cols-2 gap-xl items-center">
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-governance-gold" data-icon="gavel">gavel</span>
+<span class="font-label-mono text-label-mono text-governance-gold uppercase">Governance &amp; Intelligence</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg mb-6">Intelligent Guardrails</h2>
+<p class="font-body-md text-on-surface-variant mb-8">Every action in the system is overseen by our AI Reasoning Panels. These specialized sidebar components highlight compliance notes, suggest optimizations, and ensure your operations stay aligned with your Business Blueprint.</p>
+<div class="p-6 bg-white border border-governance-gold/20 rounded-lg shadow-sm">
+<p class="font-label-mono text-xs text-governance-gold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-xs" data-icon="lightbulb">lightbulb</span>
+                                AI SUGGESTION
+                            </p>
+<p class="font-body-md italic text-slate-600">"Your current resource allocation in Internal Mode deviates 12% from the strategic goals defined in your Blueprint. Consider re-prioritizing the Canvas Phase."</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white p-6 rounded-xl border border-border-subtle shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-4" data-icon="verified">verified</span>
+<h4 class="font-headline-md text-sm mb-2">Automated Compliance</h4>
+<p class="font-caption text-caption text-on-surface-variant">Real-time monitoring of regulatory alignment.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-border-subtle shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-4" data-icon="query_stats">query_stats</span>
+<h4 class="font-headline-md text-sm mb-2">Smart Insights</h4>
+<p class="font-caption text-caption text-on-surface-variant">Data-driven suggestions for operational efficiency.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-border-subtle shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-4" data-icon="auto_awesome">auto_awesome</span>
+<h4 class="font-headline-md text-sm mb-2">AI Assistance</h4>
+<p class="font-caption text-caption text-on-surface-variant">Context-aware tools that simplify creation tasks.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-border-subtle shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-4" data-icon="security">security</span>
+<h4 class="font-headline-md text-sm mb-2">Secure Guardrails</h4>
+<p class="font-caption text-caption text-on-surface-variant">Built-in protections for sensitive data.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xxl text-center max-w-4xl mx-auto px-8">
+<h2 class="font-display-xl text-display-xl mb-8">Ready to Build Your Blueprint?</h2>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<button class="bg-primary text-on-primary px-xxl py-4 rounded-lg font-manrope font-bold hover:scale-[1.02] transition-all">
+                    Start Your Trial
+                </button>
+<button class="border-2 border-slate-200 text-slate-900 px-xxl py-4 rounded-lg font-manrope font-bold hover:bg-slate-50 transition-all">
+                    Contact Sales
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 full-width py-12">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-4">
+<div class="text-lg font-bold text-slate-900 dark:text-white">Readi4Bizness</div>
+<div class="font-manrope text-xs text-slate-500 dark:text-slate-400">© 2024 Readi4Bizness. All rights reserved.</div>
+</div>
+<div class="flex gap-8 font-manrope text-xs text-slate-500 dark:text-slate-400">
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Cookie Policy</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Security</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Legal</a>
+</div>
+</div>
+</footer>
+</body></html>

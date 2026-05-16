@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Business Blueprint - Readi4Bizness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Manrope:wght@500;600;700;800&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#131b2e",
+                        "on-error": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "governance-gold": "#F59E0B",
+                        "outline": "#76777d",
+                        "on-secondary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-tint": "#565e74",
+                        "error-container": "#ffdad6",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "status-blocked": "#EF4444",
+                        "inverse-primary": "#bec6e0",
+                        "on-tertiary-container": "#009668",
+                        "surface-variant": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "tertiary": "#000000",
+                        "primary-container": "#131b2e",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-surface": "#213145",
+                        "status-planned": "#94A3B8",
+                        "surface-container-high": "#dce9ff",
+                        "background": "#f8f9ff",
+                        "outline-variant": "#c6c6cd",
+                        "secondary-container": "#2170e4",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#0058be",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed": "#dae2fd",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-secondary-fixed": "#001a42",
+                        "border-subtle": "#E2E8F0",
+                        "on-secondary": "#ffffff",
+                        "canvas-bg": "#F8FAFC",
+                        "on-primary-container": "#7c839b",
+                        "primary": "#000000",
+                        "tertiary-container": "#002113",
+                        "status-in-progress": "#3B82F6",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#45464d",
+                        "status-shipped": "#10B981"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "80px",
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "canvas-sidebar-right": "320px",
+                        "canvas-sidebar-left": "260px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "xl": "40px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-mono": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "display-xl": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "display-xl": ["60px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 border-r border-border-subtle bg-surface-container-lowest z-50 flex flex-col overflow-y-auto">
+<div class="p-6 border-b border-border-subtle">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-bold">R</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Readi4Bizness</h1>
+<p class="font-caption text-caption text-on-surface-variant">Operational Center</p>
+</div>
+</div>
+</div>
+<div class="flex-1 py-4">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 bg-surface-container-highest text-primary font-semibold border-r-4 border-primary transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-body-md text-body-md">Business Blueprint</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md font-medium">Product Registry</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-body-md text-body-md font-medium">Campaign Management</span>
+</a>
+</div>
+<div class="p-4 border-t border-border-subtle">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 ease-in-out rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md font-medium">System Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 ease-in-out rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-body-md text-body-md font-medium">Support</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar & Main Content Wrapper -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-6 z-40 bg-surface-container-lowest/80 backdrop-blur-md border-b border-border-subtle">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-DEFAULT border-none focus:ring-1 focus:ring-primary text-body-md font-body-md w-64 placeholder-on-surface-variant" placeholder="Search blueprint..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">account_tree</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-DEFAULT font-body-md text-body-md font-medium hover:opacity-90 transition-opacity">
+                    Create New
+                </button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle overflow-hidden ml-2">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAiL13-EW6qy8jUQOY6rPGB_fuR3_Z1IhfwdRrCiYDPUmtKZaqDU_6w2of9i04mYC0Caf_C9oe3TUzVj23-pWba5-0ogc2rTEJTtGT823qn7JcBnWe4aQuT3a8VEx0V6tp8gV6uNHJO3WgxQvK4I8wtEskVDIgfoCT9c56DVMJWP6mHEtw8p3N3ocf0f_fDj2kueOVlIAA66_sEpHezRXpk6hZ04Azr3F-k8paMYwLa4kRm4lEC5zXYN-lUmDycWLzc1xIIMVi4nM"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas Area -->
+<main class="flex-1 mt-16 p-lg bg-background grid grid-cols-12 gap-md">
+<!-- Header Section (Spans 12 columns) -->
+<div class="col-span-12 mb-sm flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Strategic Blueprint Overview</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">High-level mapping of business architecture and current implementation status.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-2 px-4 py-2 border border-border-subtle rounded-DEFAULT bg-surface-container-lowest text-on-surface font-body-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-secondary-container text-on-secondary-container rounded-DEFAULT font-body-md hover:opacity-90 transition-opacity shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+<span class="material-symbols-outlined text-[20px]">edit_document</span>
+                        Open Canvas Editor
+                    </button>
+</div>
+</div>
+<!-- AI Insight Panel (Spans 12 columns) -->
+<div class="col-span-12 bg-surface-container-lowest border border-governance-gold rounded-lg p-md mb-sm flex items-start gap-md shadow-[0_4px_12px_rgba(245,158,11,0.05)]">
+<span class="material-symbols-outlined text-governance-gold text-[28px]">lightbulb</span>
+<div>
+<h3 class="font-label-mono text-label-mono text-governance-gold mb-1 uppercase tracking-wider">System Insight</h3>
+<p class="font-body-md text-body-md text-on-surface">Value Proposition section lacks alignment with recent Q3 Marketing Campaign objectives. Recommend reviewing the 'Customer Segments' matrix in the Canvas app.</p>
+</div>
+<button class="ml-auto text-primary font-body-md font-medium text-sm hover:underline">Review Now</button>
+</div>
+<!-- Bento Grid - Blueprint Sections -->
+<!-- Value Proposition Card (Large) -->
+<div class="col-span-12 md:col-span-8 bg-surface-container-lowest border border-border-subtle rounded-lg p-lg relative group">
+<div class="absolute top-4 right-4 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-status-shipped/10 text-status-shipped font-caption text-caption">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Approved
+                    </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">diamond</span> Value Proposition
+                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 w-3/4">Core offerings and key differentiators defining the market position.</p>
+<div class="grid grid-cols-2 gap-md">
+<div class="border border-border-subtle rounded p-sm">
+<h4 class="font-label-mono text-label-mono text-on-surface-variant mb-1">Target Segments</h4>
+<p class="font-body-md text-body-md text-on-surface font-medium">Enterprise SaaS, FinTech Startups</p>
+</div>
+<div class="border border-border-subtle rounded p-sm">
+<h4 class="font-label-mono text-label-mono text-on-surface-variant mb-1">Core Benefit</h4>
+<p class="font-body-md text-body-md text-on-surface font-medium">Operational efficiency at scale</p>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-border-subtle flex justify-between items-center">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-variant"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container flex items-center justify-center text-xs font-medium text-on-surface-variant">+2</div>
+</div>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-primary font-body-md text-sm font-medium flex items-center gap-1">
+                        Edit Section <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Marketing Strategy Card (Medium) -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest border border-border-subtle rounded-lg p-lg relative group">
+<div class="absolute top-4 right-4 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-status-in-progress/10 text-status-in-progress font-caption text-caption">
+<span class="material-symbols-outlined text-[14px]">sync</span> In Review
+                    </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">campaign</span> Marketing Strategy
+                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Go-to-market plan and channel distribution.</p>
+<div class="space-y-sm mb-6">
+<div class="flex justify-between items-center text-sm">
+<span class="font-body-md text-on-surface">Channel Setup</span>
+<span class="font-body-md font-medium text-on-surface">80%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[80%]"></div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-border-subtle flex justify-end">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-primary font-body-md text-sm font-medium flex items-center gap-1">
+                        Edit Section <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Operations Map Card (Wide) -->
+<div class="col-span-12 bg-surface-container-lowest border border-border-subtle rounded-lg p-lg relative group">
+<div class="absolute top-4 right-4 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-status-blocked/10 text-status-blocked font-caption text-caption">
+<span class="material-symbols-outlined text-[14px]">error</span> Attention Needed
+                    </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">settings_applications</span> Operations Map
+                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Internal processes, resource allocation, and technical infrastructure.</p>
+<div class="flex gap-md mb-4">
+<div class="flex-1 bg-surface rounded p-md border border-border-subtle">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-on-surface-variant">group</span>
+<h4 class="font-label-mono text-label-mono text-on-surface">Human Resources</h4>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">Capacity planning completed for Q3.</p>
+</div>
+<div class="flex-1 bg-error-container/20 border border-status-blocked/30 rounded p-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-status-blocked">dns</span>
+<h4 class="font-label-mono text-label-mono text-status-blocked">IT Infrastructure</h4>
+</div>
+<p class="font-caption text-caption text-status-blocked/80">Pending security audit approval.</p>
+</div>
+<div class="flex-1 bg-surface rounded p-md border border-border-subtle">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-on-surface-variant">local_shipping</span>
+<h4 class="font-label-mono text-label-mono text-on-surface">Supply Chain</h4>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">Vendor contracts finalized.</p>
+</div>
+</div>
+<div class="pt-4 border-t border-border-subtle flex justify-end">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-primary font-body-md text-sm font-medium flex items-center gap-1">
+                        Edit Section <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

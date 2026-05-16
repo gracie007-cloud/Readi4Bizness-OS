@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#45464d",
+                        "on-secondary": "#ffffff",
+                        "status-shipped": "#10B981",
+                        "background": "#f8f9ff",
+                        "border-subtle": "#E2E8F0",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-secondary-container": "#fefcff",
+                        "status-planned": "#94A3B8",
+                        "outline": "#76777d",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-background": "#0b1c30",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary-fixed": "#001a42",
+                        "inverse-primary": "#bec6e0",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#7c839b",
+                        "governance-gold": "#F59E0B",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-container": "#2170e4",
+                        "secondary": "#0058be",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#002113",
+                        "status-in-progress": "#3B82F6",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#000000",
+                        "secondary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "on-surface": "#0b1c30",
+                        "status-blocked": "#EF4444",
+                        "canvas-bg": "#F8FAFC",
+                        "on-tertiary-container": "#009668",
+                        "on-tertiary-fixed": "#002113",
+                        "tertiary": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "canvas-sidebar-left": "260px",
+                        "xxl": "80px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "canvas-sidebar-right": "320px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-mono": ["Space Grotesk"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "display-xl": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "display-xl": ["60px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .recessed-canvas {
+            background-color: #F8FAFC;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- Top Navigation Anchor -->
+<header class="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center w-full px-6 h-14 fixed top-0 left-0 right-0 z-50">
+<div class="flex items-center gap-md">
+<span class="text-xl font-extrabold text-slate-900 dark:text-slate-100 font-manrope tracking-tight">Readi4Bizness</span>
+<nav class="hidden md:flex ml-xl gap-lg">
+<a class="text-blue-600 dark:text-blue-400 font-bold border-b-2 border-blue-600 font-manrope tracking-tight text-sm" href="#">Drafts</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-manrope tracking-tight text-sm" href="#">Recent</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-manrope tracking-tight text-sm" href="#">Archived</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm mr-md">
+<button class="text-slate-600 dark:text-slate-400 hover:text-blue-500 p-1"><span class="material-symbols-outlined">help</span></button>
+<button class="text-slate-600 dark:text-slate-400 hover:text-blue-500 p-1"><span class="material-symbols-outlined">settings</span></button>
+</div>
+<button class="px-md h-8 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100 rounded text-sm font-semibold hover:bg-slate-300 transition-all">Save</button>
+<button class="px-md h-8 bg-primary text-white rounded text-sm font-semibold hover:opacity-90 transition-all">Publish</button>
+</div>
+</header>
+<div class="flex pt-14 h-screen overflow-hidden">
+<!-- Left Sidebar: Blueprint Structure -->
+<aside class="bg-slate-50 dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 fixed left-0 h-[calc(100vh-3.5rem)] w-64 flex flex-col p-4 overflow-y-auto">
+<div class="mb-lg">
+<div class="flex items-center gap-sm mb-xs">
+<img alt="Project Icon" class="w-8 h-8 rounded-lg" data-alt="A professional project logo featuring minimalist geometric forms in deep obsidian and slate gray. The logo is displayed against a clean, softly lit studio background with high-key lighting that emphasizes its premium, corporate aesthetic. The overall mood is architectural and structured, reflecting a sense of strategic precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOggBNlJy2_Gju3dgRymEMacVyBPmJh_ARMwYtUmHW9wFR0vnmX-9YXcmGaNdMwyuj-2Ifna_E0Pf9CeNHldVbebVU-tbKoY2iShuwJEmyvwlEvKtcJQTj5iDZCIODb0RNYGpg5g06KnRW6EuSk7x_NKi9NWPpw9CMyATLm4oV36RCNLDL16iXfQIr5yo8xyoEZKKoA4rvmYEiIFGib_t9BJHl_m5dL2VcEMk7PySSUK-2PHyHgiGHMWPKEJWTo--n-qMqF2a6ZPg"/>
+<div>
+<p class="text-lg font-bold text-slate-900 dark:text-white font-manrope">Project Workspace</p>
+<p class="text-xs font-medium text-slate-500 font-manrope">Strategic Blueprint</p>
+</div>
+</div>
+</div>
+<div class="space-y-sm flex-grow">
+<button class="w-full flex items-center gap-sm px-md py-sm text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all rounded-lg font-manrope text-sm font-medium">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">architecture</span>
+<span>Blueprint</span>
+</button>
+<button class="w-full flex items-center gap-sm px-md py-sm bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg font-manrope text-sm font-medium">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">layers</span>
+<span>Sections</span>
+</button>
+<button class="w-full flex items-center gap-sm px-md py-sm text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all rounded-lg font-manrope text-sm font-medium">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">database</span>
+<span>Assets</span>
+</button>
+<div class="mt-lg pt-lg border-t border-slate-200 dark:border-slate-800">
+<p class="px-md text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-sm">Hierarchy</p>
+<div class="space-y-1">
+<div class="flex items-center gap-sm px-md py-1 text-slate-500 text-sm hover:text-blue-600 cursor-pointer"><span class="material-symbols-outlined text-sm">visibility</span> Vision</div>
+<div class="flex items-center gap-sm px-md py-1 text-slate-500 text-sm hover:text-blue-600 cursor-pointer"><span class="material-symbols-outlined text-sm">rocket_launch</span> Mission</div>
+<div class="flex items-center gap-sm px-md py-1 text-blue-600 font-bold text-sm bg-blue-50 rounded-r-full -ml-4 pl-8">Value Proposition</div>
+<div class="flex items-center gap-sm px-md py-1 text-slate-500 text-sm hover:text-blue-600 cursor-pointer"><span class="material-symbols-outlined text-sm">account_tree</span> Pillars</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-lg border-t border-slate-200 dark:border-slate-800 space-y-sm">
+<button class="w-full flex items-center gap-sm px-md py-sm text-slate-600 dark:text-slate-400 hover:bg-slate-200 rounded-lg font-manrope text-sm font-medium">
+<span class="material-symbols-outlined">chat_bubble</span> Feedback
+                </button>
+<button class="w-full flex items-center gap-sm px-md py-sm text-slate-600 dark:text-slate-400 hover:bg-slate-200 rounded-lg font-manrope text-sm font-medium">
+<span class="material-symbols-outlined">logout</span> Logout
+                </button>
+</div>
+</aside>
+<!-- Main Canvas Content -->
+<main class="flex-grow ml-64 mr-72 recessed-canvas overflow-y-auto min-h-screen">
+<div class="max-w-[800px] mx-auto py-xxl px-lg">
+<header class="mb-xl">
+<div class="flex items-center gap-sm mb-xs">
+<span class="text-caption font-label-mono text-blue-600 uppercase">Module 03</span>
+<div class="h-[1px] flex-grow bg-border-subtle"></div>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-primary mb-sm">Value Proposition</h1>
+<p class="text-body-lg text-on-surface-variant max-w-prose">Define the unique core benefit your business provides to its customers and how it solves their primary pain points better than any competitor.</p>
+</header>
+<section class="space-y-lg">
+<!-- Canvas Section: Core Promise -->
+<div class="bg-white border border-border-subtle rounded-xl p-lg relative group">
+<div class="absolute -left-12 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-sm bg-white border border-border-subtle shadow-sm rounded-full flex flex-col gap-xs">
+<span class="material-symbols-outlined text-sm text-slate-400">drag_indicator</span>
+</button>
+</div>
+<label class="block text-caption font-label-mono text-slate-400 uppercase mb-md">Core Promise</label>
+<textarea class="w-full border-none focus:ring-0 p-0 text-headline-md font-headline-md text-primary resize-none placeholder-slate-200" placeholder="e.g. Empowering agile teams to deliver 2x faster..." rows="2"></textarea>
+<div class="mt-md flex gap-sm opacity-0 group-hover:opacity-100 transition-opacity border-t border-slate-50 pt-md">
+<button class="flex items-center gap-xs px-sm py-xs text-xs font-bold text-slate-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span> Improve with AI
+                            </button>
+<button class="flex items-center gap-xs px-sm py-xs text-xs font-bold text-slate-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-sm">history</span> Versions
+                            </button>
+</div>
+</div>
+<!-- Canvas Section: Customer Segment -->
+<div class="grid grid-cols-2 gap-lg">
+<div class="bg-white border border-border-subtle rounded-xl p-lg">
+<label class="block text-caption font-label-mono text-slate-400 uppercase mb-md">Primary Audience</label>
+<input class="w-full border-none focus:ring-0 p-0 text-body-lg font-headline-md text-primary placeholder-slate-200" placeholder="Who is this for?" type="text"/>
+</div>
+<div class="bg-white border border-border-subtle rounded-xl p-lg">
+<label class="block text-caption font-label-mono text-slate-400 uppercase mb-md">Key Differentiator</label>
+<input class="w-full border-none focus:ring-0 p-0 text-body-lg font-headline-md text-primary placeholder-slate-200" placeholder="Why you?" type="text"/>
+</div>
+</div>
+<!-- Bento-style Detailed Context -->
+<div class="bg-white border border-border-subtle rounded-xl p-lg">
+<label class="block text-caption font-label-mono text-slate-400 uppercase mb-md">Narrative Synthesis</label>
+<div class="prose max-w-none">
+<div class="min-h-[200px] outline-none text-body-md text-on-surface-variant leading-relaxed" contenteditable="true">
+                                Our platform bridges the gap between high-level strategic vision and daily operational execution. Unlike generic project management tools, Readi4Bizness uses a proprietary 'Blueprint' framework that automatically aligns task outcomes with predefined business pillars. This ensures that every hour spent by the team contributes directly to the core mission, reducing waste and increasing strategic velocity.
+                            </div>
+</div>
+</div>
+<button class="w-full py-md border-2 border-dashed border-slate-200 rounded-xl text-slate-400 hover:border-blue-300 hover:text-blue-500 transition-all font-medium flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">add</span> Add Evidence or Supporting Metric
+                    </button>
+</section>
+</div>
+</main>
+<!-- Right Sidebar: Intelligence & Compliance -->
+<aside class="bg-slate-50 dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 fixed right-0 h-[calc(100vh-3.5rem)] w-72 flex flex-col p-4 z-40">
+<div class="mb-lg">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-amber-600 dark:text-amber-400">psychology</span>
+<div>
+<p class="text-sm font-black text-amber-700 dark:text-amber-500 font-mono uppercase tracking-wider">Intelligence</p>
+<p class="text-[10px] text-slate-500 font-mono uppercase">Contextual Guardrails</p>
+</div>
+</div>
+</div>
+<!-- AI Insights Panel -->
+<div class="space-y-lg overflow-y-auto">
+<div class="bg-amber-50/50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-md">
+<h4 class="text-caption font-label-mono text-amber-900 dark:text-amber-100 uppercase mb-xs">AI Insights</h4>
+<p class="text-xs text-amber-800 dark:text-amber-200 leading-relaxed mb-sm">
+                        The current value prop is strong on "efficiency" but lacks "emotional urgency." Market trends show that CTOs are currently prioritizing "risk mitigation" over "speed."
+                    </p>
+<button class="text-xs font-bold text-amber-700 flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">bolt</span> Refactor for Urgency
+                    </button>
+</div>
+<!-- Compliance Section -->
+<div class="p-md">
+<h4 class="text-caption font-label-mono text-slate-400 uppercase mb-md">Compliance Check</h4>
+<div class="space-y-md">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-status-shipped text-sm mt-0.5">check_circle</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Tone Alignment</p>
+<p class="text-[11px] text-on-surface-variant">Matches "Modern Corporate" voice.</p>
+</div>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-status-blocked text-sm mt-0.5">error</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Banned Keywords</p>
+<p class="text-[11px] text-on-surface-variant">"Synergy" detected. Replace with "Integration".</p>
+</div>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-status-planned text-sm mt-0.5">info</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Character Count</p>
+<p class="text-[11px] text-on-surface-variant">Core Promise is 15% too long for ads.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Strategic Map Preview -->
+<div class="p-md border-t border-slate-200 dark:border-slate-800">
+<h4 class="text-caption font-label-mono text-slate-400 uppercase mb-md">Market Context</h4>
+<div class="aspect-square bg-slate-200 rounded-lg overflow-hidden relative">
+<img alt="Market Context Chart" class="w-full h-full object-cover opacity-80" data-alt="A sophisticated data visualization dashboard displaying abstract market trends through clean, minimalist line charts and density maps. The color palette is restricted to shades of cool slate blue and vibrant amber highlights. The lighting is diffused and professional, creating a high-fidelity operational view within a business software context. The overall mood is analytical and precise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dgUALTa8eBt1Q3Q7wyVM055F1QdMHeAiQvLNQ973_fm2wr_WtWsQvwi_tAxdbiIsKzHBgfALBxYsJfav_z_u4ak_h5wGb5_3QXoXd35wtMiKaoXx9RHqM7dcVD9E5o1CGK5mdCsj3tzmzynsuEpECuS_MUx8-2teL7BeL_ATj7m13RfDth7N1Ns5U7G4rfnuCT6iV3CrxGoMTtq7qkG5A7NU7qLUQgWEYOYF9sImF-mWVp_XAwA2RI_OvKScDZk-T8JL_tseRTU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
+<div class="absolute bottom-2 left-2 right-2">
+<p class="text-[10px] text-white font-bold">Competitive Density Map</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab Switchers for Rail -->
+<div class="mt-auto flex border-t border-slate-200 dark:border-slate-800 pt-md -mx-4 px-4 bg-slate-50 dark:bg-slate-950">
+<button class="flex-1 py-sm flex flex-col items-center gap-xs text-amber-900 border-t-2 border-amber-500">
+<span class="material-symbols-outlined text-sm">psychology</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">AI</span>
+</button>
+<button class="flex-1 py-sm flex flex-col items-center gap-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">gavel</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">Rules</span>
+</button>
+<button class="flex-1 py-sm flex flex-col items-center gap-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">Notes</span>
+</button>
+</div>
+</aside>
+</div>
+<!-- Contextual Toolbar (Floating) -->
+<div class="fixed bottom-lg left-1/2 -translate-x-1/2 bg-white border border-border-subtle shadow-xl rounded-full px-lg h-12 flex items-center gap-md z-50">
+<div class="flex items-center gap-sm pr-md border-r border-slate-100">
+<button class="p-xs hover:bg-slate-50 rounded text-slate-600"><span class="material-symbols-outlined">undo</span></button>
+<button class="p-xs hover:bg-slate-50 rounded text-slate-600"><span class="material-symbols-outlined">redo</span></button>
+</div>
+<div class="flex items-center gap-lg">
+<button class="flex items-center gap-xs text-caption font-bold text-slate-600 hover:text-blue-600">
+<span class="material-symbols-outlined text-md">comment</span> Comment
+            </button>
+<button class="flex items-center gap-xs text-caption font-bold text-slate-600 hover:text-blue-600">
+<span class="material-symbols-outlined text-md">share</span> Collaborate
+            </button>
+<div class="h-4 w-[1px] bg-slate-200"></div>
+<button class="flex items-center gap-xs text-caption font-bold text-blue-600">
+<span class="material-symbols-outlined text-md">check_circle</span> All Changes Saved
+            </button>
+</div>
+</div>
+</body></html>

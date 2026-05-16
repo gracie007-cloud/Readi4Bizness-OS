@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary": "#ffffff",
+                    "secondary": "#0058be",
+                    "on-surface": "#0b1c30",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#76777d",
+                    "surface-container-low": "#eff4ff",
+                    "canvas-bg": "#F8FAFC",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary-fixed": "#d8e2ff",
+                    "border-subtle": "#E2E8F0",
+                    "inverse-primary": "#bec6e0",
+                    "primary-fixed": "#dae2fd",
+                    "on-primary-fixed": "#131b2e",
+                    "surface-variant": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "status-shipped": "#10B981",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "status-planned": "#94A3B8",
+                    "on-primary-container": "#7c839b",
+                    "error-container": "#ffdad6",
+                    "status-in-progress": "#3B82F6",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-fixed": "#6ffbbe",
+                    "tertiary-container": "#002113",
+                    "on-surface-variant": "#45464d",
+                    "primary": "#000000",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-fixed": "#001a42",
+                    "on-secondary-fixed-variant": "#004395",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "inverse-surface": "#213145",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#cbdbf5",
+                    "secondary-container": "#2170e4",
+                    "status-blocked": "#EF4444",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "outline-variant": "#c6c6cd",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#000000",
+                    "surface-tint": "#565e74",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-tertiary-container": "#009668",
+                    "on-secondary-container": "#fefcff",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-secondary": "#ffffff",
+                    "governance-gold": "#F59E0B",
+                    "primary-container": "#131b2e",
+                    "surface-container": "#e5eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "unit": "4px",
+                    "canvas-sidebar-right": "320px",
+                    "md": "16px",
+                    "canvas-sidebar-left": "260px",
+                    "xxl": "80px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "container-max": "1280px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "display-xl": ["Manrope"],
+                    "body-lg": ["Inter"],
+                    "label-mono": ["Space Grotesk"],
+                    "headline-md": ["Manrope"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Manrope"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "display-xl": ["60px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background">
+<!-- TopNavBar -->
+<header class="bg-white/90 backdrop-blur-md dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800 docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center px-8 py-4 w-full max-w-7xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white font-display-xl">
+                Readi4Bizness
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-manrope text-sm font-semibold tracking-tight text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white pb-1 transition-colors duration-200" href="#">Platform</a>
+<a class="font-manrope text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Solutions</a>
+<a class="font-manrope text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Case Studies</a>
+<a class="font-manrope text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Pricing</a>
+<a class="font-manrope text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Resources</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-manrope text-sm font-semibold tracking-tight hover:opacity-90 transition-opacity">
+                Get Started
+            </button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-xxl pb-xxl px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
+<div class="mb-lg inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full border border-border-subtle">
+<span class="text-caption font-label-mono text-secondary uppercase tracking-widest">New Release v4.0</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+<span class="text-caption font-body-md text-on-surface-variant italic">Next-Gen Architecture</span>
+</div>
+<h1 class="font-display-xl text-display-xl text-on-surface mb-md max-w-4xl">
+                The Operating System for <span class="text-secondary">Digital Product</span> Businesses
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-xl">
+                A unified framework designed for teams to architect intent, orchestrate complex workflows, and create high-fidelity workspaces with systematic precision.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 mb-xxl">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline-md text-headline-md shadow-lg hover:translate-y-[-2px] transition-transform">
+                    Start Building Free
+                </button>
+<button class="bg-surface-container-lowest border border-border-subtle text-on-surface px-8 py-4 rounded-xl font-headline-md text-headline-md flex items-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">play_circle</span>
+                    Watch Platform Tour
+                </button>
+</div>
+<div class="w-full relative aspect-[16/9] bg-white rounded-2xl border border-border-subtle shadow-2xl overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A sophisticated dashboard interface for a digital product business operating system. The screen shows high-density data visualizations, task orchestration timelines, and a clean white minimalist aesthetic. The lighting is bright and airy with soft shadows, reflecting a professional light-mode UI. Strategic accents of Action Blue highlight key navigation elements and status indicators against a pristine light-grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuW-yx-GHPRJHG-mk0s6XKwT6JfOxJXdCkBvZjP2M5O-5ildobMd8FRQQxqPlLN8baiqV_U2gzNotPUqsvt-PrXX_RqoXJ6cuZ7960w8jZyNGIbj5tj6tO9ND539u29HhL4dSGqxH4JqVbMPT9zGrP3kks-SyVOaaJdD7LihosXF_rZj2UD9LCaxFVr4WuINhyl0sZXeDU2QFGlNkMvSUFaae_pVjvAWUJTy4Q4l8YcuDvQVxPD8IatCLi1z9ALkW8A3ZILipm87A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="py-xl bg-surface-container-lowest border-y border-border-subtle">
+<div class="max-w-7xl mx-auto px-8">
+<p class="font-label-mono text-caption text-on-surface-variant text-center mb-lg uppercase tracking-widest">Powering Architecture Teams At</p>
+<div class="flex flex-wrap justify-center items-center gap-12 grayscale opacity-60">
+<img class="h-8" data-alt="Minimalist corporate logo of a global technology firm, rendered in flat black on a white background. The design is sleek, professional, and reflects high-end corporate branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDDAm_XT_G1RUbmZkBSpfDDdP3_H0x0KdZ0acI1ovoL2quO30Nds7oqUqAIas9CbSMzRQkPYbn8O-Vukq4-IiwbQRMBLz7SIoMYRSNdmgIgPyaGG54I-PzeRtBuPu-YaLBEzBwJDgpWz1Lp6yoaaaJ1S8pS6oPAwjYWMHb2BZ0Uuo8MCbNuYUSttbZP22ZEry4CwJjOyQBAP_lQg5g9CZNT1eUDa21kuoDKUGt7iXK_6uTe1ZqjHjX5YNlBmFNJn6uPB6OAf8znHg"/>
+<img class="h-8" data-alt="Abstract geometric logo for a digital infrastructure company, featuring clean lines and a modern minimalist aesthetic. Rendered in monochromatic tones to fit a professional corporate UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBceCvFU8hLnAOa_KbDSx6sTMRyAr9S16BKvFrcHi2CF0EErsu5eE6q04zNgqWm6WtvH2_GEkOrv3ShRFjVa6OHEnavn4X87aOBrXtRGeZXEQQgw1ESf3hqWB6_pl9zqeFsWl1Xe8Akhboqc9u41z_OT2s0-r8rRngCu8kLgrByTxUgng4hNk_Eul5gpIdtCWmGCYuyeBx9kRmWPdLFZ44nytzy6FMXw9JmT6TRqF6xd7htRm6ek1OdfoxFi0keTK4c9KlDW_b4c5E"/>
+<img class="h-8" data-alt="Sophisticated typography-based logo for a strategy consulting firm, emphasizing clarity and systematic design principles. Professional black-on-white high-contrast style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAUNTZIlTnw6-_nl5aceJuR0G8aTDwYHlicAi0d_31vv0ISZJFnl442mLKrmvmuyarROVvf36tZ3SqjHXlG1faEmu0ITbSO1amcYfm2BKBLDecxwg_juiQGC4aX6dy4zXYdDfqRppS4cMAnlDTsEkuRAwvt3Wudmjy_LO9cu7eT06wDeHLfgEye2m7ewlXPQr7HrbdL009XNt5wB6mawMCQ19eepthsGCfJ2WjGIuy7SKwdCjro-UezqHUhtMMrMMcY7tzgAwNP2Q"/>
+<img class="h-8" data-alt="Modern tech startup logo with a bold, structured icon and sans-serif typeface. It represents innovation and control in a professional software environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR7aZXN-21xKfH_pWt7Ml69jw-KSinJWtREvC7Swx309PLWUu49_wSjvzEhIyRXW3H1OeHIo33baeArvItR1PDmLFP8JfdJaSv_GjWgapcgpv0y5P60MgFrqgqIWck9G7e1mwSEVSzpYocVpIAVLfIwiMsIyBNvZttievOw0Lt7On27y5L8gwIwITlVs5gGPUyUwlAZk6GREy6ISopoeSYgUxMq9Cid2qehx010VTxgRcmVfJfEySLpJ-oo2v0Zh6w4562YY4P8aI"/>
+<img class="h-8" data-alt="Elegant, minimalist brand mark for a digital product studio, using clean geometric forms and balanced proportions for a high-trust professional look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdhXHVV4dUxcfEeJnievkxThYXTVxLNw_6cjeQy73JRGznmfoGhYkfW3SCez2O8E6vp0NqhXosyUYhUd6FTmyPufiNlSugEZocqtlSqMQ5i00pcKWVRr2bAJiyE58Nsd6llpWJGb3yOtLvNaYbnlMY39iFMOmnt0N-FiZTWG58NCaWzZTxZUKKhOUEYqI_NLfNGuLp8nV6wpzufFOJoNdBJQyCttHh9VLTPgxYJpRXUtvDQx2xHXPgh_HaXrqwHY7UITY48gj057k"/>
+</div>
+</div>
+</section>
+<!-- Core Value Prop: Bento Grid Style -->
+<section class="py-xxl px-8 max-w-7xl mx-auto">
+<div class="text-center mb-xxl">
+<h2 class="font-display-xl text-headline-lg text-on-surface mb-sm">Built on the Architecture of Intent</h2>
+<p class="font-body-lg text-body-md text-on-surface-variant">Three distinct cognitive modes designed for maximum operational efficiency.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Explain (External) -->
+<div class="md:col-span-7 bg-white rounded-2xl border border-border-subtle p-lg flex flex-col justify-between overflow-hidden relative group">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-secondary">explore</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-sm">Explain</h3>
+<p class="font-body-md text-on-surface-variant max-w-md mb-lg">
+                            Master your narrative through rhythmic, structured layouts. Communicate complex strategies with external fluid clarity that instills immediate stakeholder trust.
+                        </p>
+<button class="text-secondary font-headline-md flex items-center gap-2 group">
+                            Explore Narrative Fluidity 
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="mt-lg -mb-lg -mr-lg ml-md border-t border-l border-border-subtle rounded-tl-xl overflow-hidden shadow-sm">
+<img class="w-full object-cover" data-alt="An elegant presentation of a strategic roadmap within a software interface. The design uses wide vertical spacing and high-quality typography to explain complex business concepts. The color palette is composed of soft greys and deep navies, illuminated by a bright, professional studio light aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Es0fYjNH6AAv2Xv2i-Cm3Kcq30pTZdnmrhjR897jJsy4cj1IT22wf6xXyd-M433C-8_lJmklqOjgDkmzZhETfWgJ_-5MrhYKB4mdjdqb9Ce8w7xIXVYrgMNl-bIkpdNTMm9PdNCEVEKWgu7KlO66f-xjwdS5Zq-8lV1roLL1l6TKxGVhiO02r3n33cFaRX_Q3KcMeGWHVNgoD8BHLW03KtK10SvYGqcP0TBksBENGq1XON2RYuFhHMQ3d32KOkmk1aY0Ftis58I"/>
+</div>
+</div>
+<!-- Orchestrate (Internal) -->
+<div class="md:col-span-5 bg-surface-container-low rounded-2xl border border-border-subtle p-lg flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mb-md border border-border-subtle">
+<span class="material-symbols-outlined text-status-in-progress">hub</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-sm">Orchestrate</h3>
+<p class="font-body-md text-on-surface-variant mb-lg">
+                            High-density, status-aware dashboards for operational control. Manage complex 12-column workflows with precision gutters and at-a-glance recognition.
+                        </p>
+</div>
+<div class="bg-white rounded-xl border border-border-subtle p-sm shadow-sm">
+<div class="space-y-sm">
+<div class="h-4 w-3/4 bg-surface-container rounded"></div>
+<div class="h-4 w-full bg-surface-container-low rounded"></div>
+<div class="h-4 w-1/2 bg-surface-container-high rounded"></div>
+</div>
+</div>
+</div>
+<!-- Create (Canvas) -->
+<div class="md:col-span-12 bg-on-background rounded-2xl p-xl flex flex-col md:flex-row items-center gap-xl overflow-hidden">
+<div class="flex-1 text-white">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full border border-white/20 mb-md">
+<span class="w-2 h-2 rounded-full bg-governance-gold"></span>
+<span class="text-caption font-label-mono uppercase tracking-widest text-white/80">Canvas Mode</span>
+</div>
+<h3 class="font-display-xl text-headline-lg mb-sm">Create Without Limits</h3>
+<p class="font-body-lg text-body-lg text-white/70 mb-xl max-w-lg">
+                            The "Chrome-less" workspace environment. A specialized three-rail layout designed for deep work, contextual tools, and AI-governed compliance.
+                        </p>
+<div class="flex gap-4">
+<div class="flex flex-col gap-1">
+<span class="font-label-mono text-caption text-governance-gold uppercase">Focus</span>
+<span class="font-body-md text-white/90">Zero distractions</span>
+</div>
+<div class="w-[1px] h-10 bg-white/20"></div>
+<div class="flex flex-col gap-1">
+<span class="font-label-mono text-caption text-governance-gold uppercase">Context</span>
+<span class="font-body-md text-white/90">Contextual rails</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full md:w-auto">
+<img class="rounded-xl shadow-2xl border border-white/10" data-alt="A dark-themed high-fidelity workspace interface showcasing a canvas-style design. The center work area is clean and focused, flanked by fixed sidebars containing contextual tools and AI reasoning panels. The UI utilizes tonal layering and subtle outlines instead of shadows, emphasizing a structured, architectural aesthetic for creative work." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACvKOunyg6GciXkO-AV0g68tPK28vOWcfWP4eVQPxuJ9zz5jEv4O1-TlaDbYJlxDV2lAMLhc0g55yQvLFF5jYqSR9wXWduDtbGcE1J9V0hFUGF7CG3I1HD8jG4gnwVdFqf7Y6Smwj-4W4V3tICXSJgNLzAghFUIbgf2KTbFWZjxVSY-QljPDRdF71RZLt8NBeXzVWWgn9PH3PneDAuArWfl_nVhxmjv2wdhXHQfHlBlhBO9VpE4TIFMow6-jGMJkCEfAvfZUKg6Vk"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Matrix Section -->
+<section class="py-xxl bg-white">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<div class="p-lg border-l border-border-subtle">
+<h4 class="font-headline-md text-headline-md mb-sm">Tonal Layers</h4>
+<p class="font-body-md text-on-surface-variant">Visual hierarchy communicated through subtle tonal shifts and low-contrast outlines for a professional, flat aesthetic.</p>
+</div>
+<div class="p-lg border-l border-border-subtle">
+<h4 class="font-headline-md text-headline-md mb-sm">AI Governance</h4>
+<p class="font-body-md text-on-surface-variant">Right-rail reasoning panels provide system-generated suggestions and compliance notes in real-time as you build.</p>
+</div>
+<div class="p-lg border-l border-border-subtle">
+<h4 class="font-headline-md text-headline-md mb-sm">Unified Schema</h4>
+<p class="font-body-md text-on-surface-variant">A single source of truth that manifests as a narrative guide, a status map, or a high-fidelity creative workspace.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="py-xxl px-8 text-center bg-surface-container-lowest border-t border-border-subtle">
+<div class="max-w-3xl mx-auto">
+<h2 class="font-display-xl text-display-xl text-on-surface mb-md">Ready to architect your next chapter?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl">
+                    Join over 500+ digital businesses scaling their operations with Readi4Bizness. Start for free, upgrade as you grow.
+                </p>
+<div class="flex justify-center gap-4">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-xl font-headline-md text-headline-md hover:scale-[1.02] transition-all">Get Started Now</button>
+<button class="bg-transparent border border-border-subtle text-on-surface px-10 py-5 rounded-xl font-headline-md text-headline-md hover:bg-surface-container-low transition-colors">Contact Sales</button>
+</div>
+<p class="mt-lg font-caption text-caption text-on-surface-variant italic">No credit card required • 14-day free trial</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 full-width py-12">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2">
+<span class="text-lg font-bold text-slate-900 dark:text-white font-display-xl">Readi4Bizness</span>
+<p class="font-manrope text-xs text-slate-500 dark:text-slate-400">© 2024 Readi4Bizness. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-manrope text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors underline" href="#">Privacy Policy</a>
+<a class="font-manrope text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="font-manrope text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Cookie Policy</a>
+<a class="font-manrope text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Security</a>
+<a class="font-manrope text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Legal</a>
+</div>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Readi4Bizness - Product Registry</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Manrope:wght@500;600;700;800&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#131b2e",
+                        "on-error": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "governance-gold": "#F59E0B",
+                        "outline": "#76777d",
+                        "on-secondary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-tint": "#565e74",
+                        "error-container": "#ffdad6",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "status-blocked": "#EF4444",
+                        "inverse-primary": "#bec6e0",
+                        "on-tertiary-container": "#009668",
+                        "surface-variant": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "tertiary": "#000000",
+                        "primary-container": "#131b2e",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-surface": "#213145",
+                        "status-planned": "#94A3B8",
+                        "surface-container-high": "#dce9ff",
+                        "background": "#f8f9ff",
+                        "outline-variant": "#c6c6cd",
+                        "secondary-container": "#2170e4",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#0058be",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed": "#dae2fd",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-secondary-fixed": "#001a42",
+                        "border-subtle": "#E2E8F0",
+                        "on-secondary": "#ffffff",
+                        "canvas-bg": "#F8FAFC",
+                        "on-primary-container": "#7c839b",
+                        "primary": "#000000",
+                        "tertiary-container": "#002113",
+                        "status-in-progress": "#3B82F6",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#45464d",
+                        "status-shipped": "#10B981"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "80px",
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "canvas-sidebar-right": "320px",
+                        "canvas-sidebar-left": "260px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "xl": "40px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-mono": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "display-xl": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "display-xl": ["60px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-full w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col h-screen overflow-y-auto w-64 z-50 transition-all duration-200 ease-in-out hidden md:flex">
+<!-- Header -->
+<div class="p-6 flex items-center gap-3 border-b border-slate-200 dark:border-slate-800">
+<div class="h-8 w-8 bg-primary rounded flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined icon-fill text-[20px]">architecture</span>
+</div>
+<div>
+<h1 class="text-xl font-black text-slate-900 dark:text-white leading-none tracking-tight">Readi4Bizness</h1>
+<p class="font-manrope text-[13px] tracking-wide text-slate-500 dark:text-slate-400 mt-1">Operational Center</p>
+</div>
+</div>
+<!-- Main Nav -->
+<div class="flex-1 py-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 font-manrope text-[13px] tracking-wide transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 font-manrope text-[13px] tracking-wide transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+                Business Blueprint
+            </a>
+<!-- ACTIVE TAB -->
+<a class="flex items-center gap-3 px-4 py-3 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white font-semibold border-r-4 border-slate-900 dark:border-slate-100 font-manrope text-[13px] tracking-wide opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined icon-fill">inventory_2</span>
+                Product Registry
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 font-manrope text-[13px] tracking-wide transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">campaign</span>
+                Campaign Management
+            </a>
+</div>
+<!-- Footer Nav -->
+<div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 font-manrope text-[13px] tracking-wide transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+                System Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 font-manrope text-[13px] tracking-wide transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+                Support
+            </a>
+</div>
+</nav>
+<!-- Content Area Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 relative w-full h-full">
+<!-- TopAppBar (Shared Component) -->
+<header class="fixed top-0 right-0 left-0 md:left-64 h-16 flex items-center justify-between px-6 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<!-- Left: Search (JSON dictates on_left) -->
+<div class="flex-1 flex items-center">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-manrope text-sm font-medium rounded-full py-2 pl-10 pr-4 border-transparent focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-slate-500" placeholder="Search Readi4Bizness..." type="text"/>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">
+<span class="material-symbols-outlined">account_tree</span>
+</button>
+</div>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
+<button class="bg-primary hover:bg-primary/90 text-on-primary font-manrope text-sm font-medium px-4 py-2 rounded-lg transition-colors shadow-sm">
+                    Create New
+                </button>
+<img alt="User avatar" class="w-9 h-9 rounded-full border border-slate-200 dark:border-slate-700 object-cover cursor-pointer" data-alt="A professional headshot of a young female executive with dark hair, wearing a navy blazer over a white shirt, against a soft, bright studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ0tyYn6byzwwT2LYyXgV6Uuo_EoV2hlH_6GZaCPUhwnv4nGSVohai0XlG4Z3PZt2qa7E7SJlE_Sl0qmGLqnMtcd8QDqxu-pBdwoOmYWDq2-qEIPn2XvloMZvrl-nceHHFR_hJTC2ogegKi3F3-LeHU2iRD63BHPIjelG9rADRzlonqfEFgI_PeCjTlfFO3KXDxF1zHjw0geB89PDiyY0KoEuj-0JubBbK9p3Z1XnGi9b1xZ7y0tIOmbgCrprNEl9JxiDU4xFnkFk"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 pt-16 overflow-y-auto bg-surface p-lg">
+<div class="max-w-container-max mx-auto space-y-lg">
+<!-- Page Header -->
+<div class="flex items-end justify-between pt-sm pb-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Product Registry</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                            Comprehensive directory of all managed digital products, their operational status, and compliance adherence.
+                        </p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant text-on-surface font-label-mono text-label-mono rounded-lg hover:bg-surface-container transition-colors bg-surface-container-lowest">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<!-- Metrics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Metric Card 1 -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">Total Active</span>
+<span class="material-symbols-outlined text-outline">inventory_2</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-xl text-display-xl text-on-surface">142</span>
+<span class="font-caption text-caption text-status-shipped flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%</span>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">Needs Attention</span>
+<span class="material-symbols-outlined text-governance-gold">warning</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-xl text-display-xl text-on-surface">8</span>
+<span class="font-caption text-caption text-on-surface-variant">Flagged for compliance</span>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">Pending Launch</span>
+<span class="material-symbols-outlined text-status-in-progress">schedule</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-xl text-display-xl text-on-surface">24</span>
+<span class="font-caption text-caption text-on-surface-variant">In Q3 Pipeline</span>
+</div>
+</div>
+</div>
+<!-- Table Controls Area -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-t-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<!-- Contextual Search -->
+<div class="relative w-full sm:max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full bg-surface text-on-surface font-body-md text-body-md rounded-lg py-2 pl-10 pr-4 border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" placeholder="Filter by Product Name or ID..." type="text"/>
+</div>
+<!-- Filters -->
+<div class="flex items-center gap-3 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded-lg font-label-mono text-label-mono text-on-surface hover:bg-surface transition-colors whitespace-nowrap">
+                            Status <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded-lg font-label-mono text-label-mono text-on-surface hover:bg-surface transition-colors whitespace-nowrap">
+                            Owner <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-governance-gold/50 bg-governance-gold/5 rounded-lg font-label-mono text-label-mono text-governance-gold hover:bg-governance-gold/10 transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">gavel</span> Compliance
+                        </button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-container-lowest border-x border-b border-border-subtle rounded-b-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-border-subtle">
+<th class="py-3 px-4 font-label-mono text-label-mono text-on-surface-variant font-medium w-1/3">Product Identity</th>
+<th class="py-3 px-4 font-label-mono text-label-mono text-on-surface-variant font-medium">Status</th>
+<th class="py-3 px-4 font-label-mono text-label-mono text-on-surface-variant font-medium">Primary Owner</th>
+<th class="py-3 px-4 font-label-mono text-label-mono text-on-surface-variant font-medium text-center">Campaigns</th>
+<th class="py-3 px-4 font-label-mono text-label-mono text-on-surface-variant font-medium">Compliance Risk</th>
+<th class="py-3 px-4 w-12"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-[16px] font-semibold text-on-surface leading-tight">Nexus Core API Gateway</span>
+<span class="font-caption text-caption text-on-surface-variant mt-1">PRD-2023-081A</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-status-shipped/10 border border-status-shipped/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-shipped"></div>
+<span class="font-caption text-caption text-status-shipped font-semibold">Live</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<img alt="Avatar" class="w-7 h-7 rounded-full object-cover" data-alt="A portrait of a male professional with short curly hair, wearing glasses and a grey sweater, set against a neutral grey office background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk7i9mA2jfqTQtFJmWvkWqQxeJrgVhakivvAcEYEcMlJSxUi1xlOD6HjwNi7teA5HO0BEaYMbfkWwkO46Okt0vB3simm5rQdAVy-IzKENgCx37-0S5ARgi9HrmbGgAay49TwLjhowaJnc0gIfEg4SYd-JkGD9mzUN0FY5Sgga6YOux3UFVGmx-7RAFcY60DM9JioAFrnnDP--JKDM9xv_7eIVxOM0eXWODBFgBNEhAfNiuLMVdcbrjgnsOf8o4lzL3jV7O3yj3dRQ"/>
+<span class="font-body-md text-[14px] text-on-surface">Alex Mercer</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-surface text-on-surface font-label-mono text-[13px] border border-outline-variant">12</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-status-shipped text-[18px]">verified_user</span>
+<span class="font-body-md text-[14px]">Clear</span>
+</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 (Flagged) -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer bg-governance-gold/5">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-[16px] font-semibold text-on-surface leading-tight">Customer Data Platform (V2)</span>
+<span class="font-caption text-caption text-on-surface-variant mt-1">PRD-2023-112B</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-status-in-progress/10 border border-status-in-progress/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-in-progress"></div>
+<span class="font-caption text-caption text-status-in-progress font-semibold">Beta</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<img alt="Avatar" class="w-7 h-7 rounded-full object-cover" data-alt="A portrait of a smiling female product manager with blonde hair tied back, wearing a black top, illuminated by natural daylight in a modern glass office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFTaPTPHssxlMlPXNwr_nh_Hx_tnngoKeSKIiSVLyl7q96vMFwp2I8ibHqHK90qC0Z-glI8cPabHmLM6EpRlRNoyosa87XGMUd-SnmsY-QPuzaHumg62KQVl0rbSE41knef3SdAGZryXe7sF4dr3ECgAmj1ZtM8GJgc-cEpaKKuclc-P7rNV5j2NfVn1lRaprPjlZsZ9ZkMqQXKeOIBq1VD_Q0IYYriEn1WunTpimllSIlmfswE4WiHoyZbnKY63zAmldbenaSoEM"/>
+<span class="font-body-md text-[14px] text-on-surface">Sarah Jenkins</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-surface text-on-surface font-label-mono text-[13px] border border-outline-variant">3</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2 text-governance-gold">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="font-body-md text-[14px] font-medium">Data Privacy Review</span>
+</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-[16px] font-semibold text-on-surface leading-tight">Mobile App - Android Client</span>
+<span class="font-caption text-caption text-on-surface-variant mt-1">PRD-2024-001X</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-status-planned/10 border border-status-planned/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-planned"></div>
+<span class="font-caption text-caption text-status-planned font-semibold">Planned</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<img alt="Avatar" class="w-7 h-7 rounded-full object-cover" data-alt="A headshot of a male developer with a beard, wearing a casual grey t-shirt, looking directly at the camera in a warmly lit startup environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGGOppBBcDAns2rVU_uzn9JugpQKfDT4sii9beUBN0Tlu8LQ7QVOVulZB_PvrLdADCUHRwUPzZiYO8ISnHWrWKc4H29rOTWc0y7BOqswZYqpTTX_YMA6dwd7PWozo52_zp56rI1ttUj-LNZE80uGDglHR0U7PQjyW1vTZCBDQHc4AjdSOZJxMfVyQeVyxRTQ7A3BGBYI3tcGoYwE12qXa6uu1UCRC6lI_CBjGLOsqMDy8BX3ftdJaMoye-LagLAcugUAxEIfxZf2s"/>
+<span class="font-body-md text-[14px] text-on-surface">David Chen</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-surface text-on-surface font-label-mono text-[13px] border border-outline-variant">0</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">pending</span>
+<span class="font-body-md text-[14px]">Pending Audit</span>
+</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-[16px] font-semibold text-on-surface leading-tight">Merchant Billing Portal</span>
+<span class="font-caption text-caption text-on-surface-variant mt-1">PRD-2022-459Z</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-status-shipped/10 border border-status-shipped/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-shipped"></div>
+<span class="font-caption text-caption text-status-shipped font-semibold">Live</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-variant flex items-center justify-center text-on-surface font-label-mono text-xs">MK</div>
+<span class="font-body-md text-[14px] text-on-surface">Maria K.</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-surface text-on-surface font-label-mono text-[13px] border border-outline-variant">8</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-status-shipped text-[18px]">verified_user</span>
+<span class="font-body-md text-[14px]">Clear</span>
+</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 (Blocked) -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer bg-error-container/20">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-[16px] font-semibold text-on-surface leading-tight">Legacy Auth Migration</span>
+<span class="font-caption text-caption text-on-surface-variant mt-1">PRD-2023-011F</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-status-blocked/10 border border-status-blocked/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-blocked"></div>
+<span class="font-caption text-caption text-status-blocked font-semibold">Blocked</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<img alt="Avatar" class="w-7 h-7 rounded-full object-cover" data-alt="A portrait of an older male engineer with short grey hair and a light beard, wearing a dark blue button-down shirt, sitting in a dimly lit, high-tech server room." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ_Ya5e_ou5r1MusGv0pilDvoLd6aMK93KB5CxYlnl8igA_670BJ7d0OZNVgjFZsY8zxBrsGHgHafITA0gVxgFv_CCkfbsHiGi5Evvz0Ae5SdiZTfYqRHsNLgaaIIgA8Y21854UuJuk6iRewXlnec5wmxSU0bi_J0ESPbQkmoqI9bw-Tzal4mKAjfrfgJ1X7n16GWmuQ-lbmlv31AzRhCoNcVrahg1J2tU8fAv8kdN2CVT6QOCOGUpsJLBcF1DSH8oiBsQokTCQH8"/>
+<span class="font-body-md text-[14px] text-on-surface">Robert Vance</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-surface text-on-surface font-label-mono text-[13px] border border-outline-variant">1</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2 text-status-blocked">
+<span class="material-symbols-outlined text-[18px]">error</span>
+<span class="font-body-md text-[14px] font-medium">Security Policy Violation</span>
+</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="text-outline hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination/Footer -->
+<div class="bg-surface border-t border-border-subtle p-4 flex items-center justify-between text-on-surface-variant font-caption text-caption">
+<span>Showing 1 to 5 of 142 entries</span>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

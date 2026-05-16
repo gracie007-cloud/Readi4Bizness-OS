@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary": "#ffffff",
+                    "secondary": "#0058be",
+                    "on-surface": "#0b1c30",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#76777d",
+                    "surface-container-low": "#eff4ff",
+                    "canvas-bg": "#F8FAFC",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary-fixed": "#d8e2ff",
+                    "border-subtle": "#E2E8F0",
+                    "inverse-primary": "#bec6e0",
+                    "primary-fixed": "#dae2fd",
+                    "on-primary-fixed": "#131b2e",
+                    "surface-variant": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "status-shipped": "#10B981",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "status-planned": "#94A3B8",
+                    "on-primary-container": "#7c839b",
+                    "error-container": "#ffdad6",
+                    "status-in-progress": "#3B82F6",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-fixed": "#6ffbbe",
+                    "tertiary-container": "#002113",
+                    "on-surface-variant": "#45464d",
+                    "primary": "#000000",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-fixed": "#001a42",
+                    "on-secondary-fixed-variant": "#004395",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "inverse-surface": "#213145",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#cbdbf5",
+                    "secondary-container": "#2170e4",
+                    "status-blocked": "#EF4444",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "outline-variant": "#c6c6cd",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#000000",
+                    "surface-tint": "#565e74",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-tertiary-container": "#009668",
+                    "on-secondary-container": "#fefcff",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-secondary": "#ffffff",
+                    "governance-gold": "#F59E0B",
+                    "primary-container": "#131b2e",
+                    "surface-container": "#e5eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "unit": "4px",
+                    "canvas-sidebar-right": "320px",
+                    "md": "16px",
+                    "canvas-sidebar-left": "260px",
+                    "xxl": "80px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "container-max": "1280px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "display-xl": ["Manrope"],
+                    "body-lg": ["Inter"],
+                    "label-mono": ["Space Grotesk"],
+                    "headline-md": ["Manrope"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Manrope"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "display-xl": ["60px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .canvas-recessed {
+            background-color: #F8FAFC;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary/30">
+<nav class="bg-white/90 backdrop-blur-md dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+<div class="flex justify-between items-center px-8 py-4 w-full max-w-7xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white font-display-xl">Readi4Bizness</div>
+<div class="hidden md:flex items-center gap-8 font-manrope text-sm font-semibold tracking-tight">
+<a class="text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Platform</a>
+<a class="text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Solutions</a>
+<a class="text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Case Studies</a>
+<a class="text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white pb-1 transition-colors duration-200" href="#">Pricing</a>
+<a class="text-slate-500 dark:text-slate-400 pb-1 hover:text-slate-900 dark:hover:text-white transition-colors duration-200" href="#">Resources</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity">
+                Get Started
+            </button>
+</div>
+</nav>
+<main class="min-h-screen">
+<section class="py-xxl px-8 max-w-7xl mx-auto text-center">
+<h1 class="font-display-xl text-display-xl text-on-surface mb-md">Architect Your Success</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-xl">
+                Choose the structural foundation that fits your scale. From solo visionaries to global regulated enterprises, Readi4Bizness provides the blueprint for growth.
+            </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+<div class="bg-white border border-border-subtle p-lg rounded-xl flex flex-col text-left transition-all hover:border-outline">
+<div class="mb-lg">
+<span class="font-label-mono text-label-mono text-secondary uppercase tracking-widest">Starter</span>
+<h3 class="font-headline-lg text-headline-lg mt-2">Solo Creators</h3>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="text-4xl font-bold tracking-tight text-on-surface">$49</span>
+<span class="text-on-surface-variant text-sm">/month</span>
+</div>
+</div>
+<ul class="space-y-4 mb-xl flex-grow">
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span>Standard Exploration Context access</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span>Single-seat Creation Canvas</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span>Basic AI Governance nudges</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span>Up to 5 Business Blueprints</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-outline">
+<span class="material-symbols-outlined text-lg">block</span>
+<span>Advanced Operational Dashboards</span>
+</li>
+</ul>
+<button class="w-full border-2 border-primary text-primary font-bold py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
+                        Start for Free
+                    </button>
+</div>
+<div class="bg-primary text-white p-lg rounded-xl flex flex-col text-left relative transform md:-translate-y-4 shadow-xl ring-4 ring-secondary/10">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                        Most Popular
+                    </div>
+<div class="mb-lg">
+<span class="font-label-mono text-label-mono text-secondary-fixed uppercase tracking-widest">Professional</span>
+<h3 class="font-headline-lg text-headline-lg mt-2">Agencies</h3>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="text-4xl font-bold tracking-tight">$149</span>
+<span class="text-on-primary-container text-sm">/month</span>
+</div>
+</div>
+<ul class="space-y-4 mb-xl flex-grow">
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">check_circle</span>
+<span>Full Internal Operational Mode</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">check_circle</span>
+<span>Collaborative Creation Canvas</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">check_circle</span>
+<span>Unlimited Blueprint Versioning</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">check_circle</span>
+<span>Shared Team Assets &amp; Library</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">check_circle</span>
+<span>Priority API access</span>
+</li>
+</ul>
+<button class="w-full bg-secondary text-white font-bold py-3 rounded-lg hover:bg-secondary/90 transition-colors">
+                        Unlock Scale
+                    </button>
+</div>
+<div class="bg-white border border-border-subtle p-lg rounded-xl flex flex-col text-left transition-all hover:border-outline">
+<div class="mb-lg">
+<span class="font-label-mono text-label-mono text-governance-gold uppercase tracking-widest">Enterprise</span>
+<h3 class="font-headline-lg text-headline-lg mt-2">Regulated Industries</h3>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="text-4xl font-bold tracking-tight text-on-surface">Custom</span>
+</div>
+</div>
+<ul class="space-y-4 mb-xl flex-grow">
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-governance-gold text-lg">verified_user</span>
+<span>Dedicated AI Governance Panel</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-governance-gold text-lg">verified_user</span>
+<span>Full Compliance Audit Trails</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-governance-gold text-lg">verified_user</span>
+<span>SSO &amp; Custom Security Protocols</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-governance-gold text-lg">verified_user</span>
+<span>On-premise Canvas deployments</span>
+</li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-governance-gold text-lg">verified_user</span>
+<span>Dedicated Success Architect</span>
+</li>
+</ul>
+<button class="w-full border-2 border-primary text-primary font-bold py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
+                        Contact Sales
+                    </button>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest py-xxl border-y border-border-subtle">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row gap-xl items-start">
+<div class="md:w-1/3">
+<h2 class="font-display-xl text-headline-lg text-on-surface">Compliance &amp; Governance</h2>
+<p class="mt-4 text-on-surface-variant font-body-md">
+                            We don't just build software; we build systems of record. Every tier includes our core governance engine to ensure your intent aligns with your execution.
+                        </p>
+<div class="mt-lg p-lg bg-surface-container-low rounded-xl border border-border-subtle">
+<div class="flex items-center gap-2 text-governance-gold mb-2">
+<span class="material-symbols-outlined">security</span>
+<span class="font-label-mono text-xs uppercase font-bold tracking-tighter">System Status</span>
+</div>
+<div class="text-sm font-semibold text-on-surface">ISO 27001 Certified Environment</div>
+<div class="mt-2 text-xs text-on-surface-variant">SOC2 Type II compliant reporting available for Professional and Enterprise plans.</div>
+</div>
+</div>
+<div class="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="bg-white p-lg rounded-xl border border-border-subtle group hover:border-secondary transition-all">
+<div class="h-12 w-12 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<h4 class="font-headline-md text-on-surface mb-2">Exploration Mode</h4>
+<p class="text-sm text-on-surface-variant">Surface insights through rhythmic, structured layouts designed for deep narrative research.</p>
+</div>
+<div class="bg-white p-lg rounded-xl border border-border-subtle group hover:border-secondary transition-all">
+<div class="h-12 w-12 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard_customize</span>
+</div>
+<h4 class="font-headline-md text-on-surface mb-2">Operational Density</h4>
+<p class="text-sm text-on-surface-variant">High-density dashboards with 12-column grids for maximum situational awareness.</p>
+</div>
+<div class="bg-white p-lg rounded-xl border border-border-subtle group hover:border-secondary transition-all">
+<div class="h-12 w-12 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+</div>
+<h4 class="font-headline-md text-on-surface mb-2">Creation Canvas</h4>
+<p class="text-sm text-on-surface-variant">A chrome-less "Three-Rail" workspace optimized for cognitive flow and precise editing.</p>
+</div>
+<div class="bg-white p-lg rounded-xl border border-border-subtle group hover:border-secondary transition-all">
+<div class="h-12 w-12 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<h4 class="font-headline-md text-on-surface mb-2">AI Reasoning</h4>
+<p class="text-sm text-on-surface-variant">Embedded logic panels that highlight system-generated suggestions and compliance notes.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-xxl max-w-4xl mx-auto px-8">
+<h2 class="font-display-xl text-headline-lg text-center mb-xl">Frequently Asked Questions</h2>
+<div class="space-y-md">
+<div class="border border-border-subtle rounded-xl p-lg bg-white">
+<h4 class="font-headline-md text-on-surface flex justify-between items-center cursor-pointer">
+<span>Can I upgrade or downgrade my plan?</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</h4>
+<p class="mt-4 text-on-surface-variant text-body-md">
+                        Yes, you can adjust your architectural tier at any time. Upgrades take effect immediately with pro-rated billing, while downgrades occur at the end of your current billing cycle to ensure continuity of your blueprints.
+                    </p>
+</div>
+<div class="border border-border-subtle rounded-xl p-lg bg-white">
+<h4 class="font-headline-md text-on-surface flex justify-between items-center cursor-pointer">
+<span>What defines a "Regulated Industry" for Enterprise?</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</h4>
+<p class="mt-4 text-on-surface-variant text-body-md">
+                        We define regulated industries as those requiring specific data residency (GDPR, CCPA), financial audit trails (SOX), or healthcare-grade privacy (HIPAA). Our Enterprise tier includes the Governance Gold standard for these specific requirements.
+                    </p>
+</div>
+<div class="border border-border-subtle rounded-xl p-lg bg-white">
+<h4 class="font-headline-md text-on-surface flex justify-between items-center cursor-pointer">
+<span>Do you offer volume discounts for large agencies?</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</h4>
+<p class="mt-4 text-on-surface-variant text-body-md">
+                        Absolutely. Agencies with more than 50 active seats qualify for custom pricing structures within the Professional and Enterprise contexts. Please contact our solutions team for a custom quote.
+                    </p>
+</div>
+<div class="border border-border-subtle rounded-xl p-lg bg-white">
+<h4 class="font-headline-md text-on-surface flex justify-between items-center cursor-pointer">
+<span>What is the "Creation Canvas"?</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</h4>
+<p class="mt-4 text-on-surface-variant text-body-md">
+                        The Creation Canvas is our high-fidelity workspace. It uses a specialized three-rail layout designed to minimize distractions and maximize flow, allowing you to build complex business models with contextual AI support.
+                    </p>
+</div>
+</div>
+</section>
+<section class="py-xxl px-8">
+<div class="max-w-7xl mx-auto rounded-3xl overflow-hidden relative min-h-[400px] flex items-center">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale opacity-20" data-alt="A panoramic view of a high-end corporate office interior at dusk, featuring floor-to-ceiling windows overlooking a modern city skyline. The lighting is sophisticated and low-key, with warm interior accents contrasting against the cool blue of the evening sky. Minimalist furniture and structured architectural lines reinforce a sense of trust, control, and professional systematic design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB02QuZJC0_no4fzSI6-9_WDO570ID51y8zrv5GBEogQAqK5Tdx1kdK6MLMyEDPv2dOQlneDV8j6i_iaAuU_kzQgcUQuNeJg_6Ne7j9G4i4pB6DleC9PpisdYVmy6ffTZAqPFtL3pZp0BjTZ2WXi_-9aGdDSPeVKDztfcUFJWfduWi5RmtYS5SUldg6xt1lC-nNSzK-kGHq5rUAHzJDRR-sgN_VNHraSoRu-soZRoN5qaFe13dJqu5bOV0UilqVJX12e3q5dfTyWO4"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-transparent"></div>
+</div>
+<div class="relative z-10 px-xl max-w-2xl text-white">
+<h2 class="font-display-xl text-display-xl mb-md">Ready to Blueprint Your Growth?</h2>
+<p class="font-body-lg text-body-lg opacity-80 mb-xl">Join over 1,500 agencies and enterprises who have standardized their operations on the Readi4Bizness framework.</p>
+<div class="flex gap-4">
+<button class="bg-white text-primary font-bold px-8 py-4 rounded-xl hover:bg-white/90 transition-all">Get Started Now</button>
+<button class="bg-transparent border border-white/30 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all">Book a Demo</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-slate-50 dark:bg-slate-900 py-12 border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-lg font-bold text-slate-900 dark:text-white font-display-xl">Readi4Bizness</div>
+<div class="flex flex-wrap justify-center gap-8 font-manrope text-xs text-slate-500 dark:text-slate-400">
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Cookie Policy</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Security</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Legal</a>
+</div>
+<div class="font-manrope text-xs text-slate-500 dark:text-slate-400">
+                © 2024 Readi4Bizness. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

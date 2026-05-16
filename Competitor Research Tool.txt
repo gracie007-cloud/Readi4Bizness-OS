@@ -1,0 +1,9 @@
+Integrate a "Competitor Research Tool" into the application.
+
+The tool will perform competition deep dive by analyzing any website's traffic, revenue, and product catalog.
+the user will enter a competitor's website and the tool will return the following:
+- Traffic estimates
+- Revenue estimates
+- Product catalog
+
+

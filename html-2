@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Readi4Bizness OS</title>
+    <!-- Font Awesome -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Google Fonts: Inter -->
+    <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+    rel="stylesheet"
+    />
+    <style>
+        /* ─── RESET & BASE ─── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f4f6fb;
+            --surface: #ffffff;
+            --surface2: #eef1f8;
+            --text: #1a1d29;
+            --text2: #5a5f73;
+            --accent: #4f6ef7;
+            --accent2: #3a56d4;
+            --accent-light: #e8ecff;
+            --border: #d9dfeb;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            --radius: 14px;
+            --radius-sm: 8px;
+            --transition: 0.25s ease;
+            --green: #22c55e;
+            --green-bg: #e6f9ed;
+            --orange: #f59e0b;
+            --orange-bg: #fef3e0;
+            --red: #ef4444;
+            --red-bg: #fde8e8;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ─── LOGIN MODAL ─── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+        .modal-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .modal-card {
+            background: var(--surface);
+            padding: 44px 40px 38px;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.35s ease;
+        }
+        .modal-overlay.hidden .modal-card {
+            transform: scale(0.95);
+        }
+
+        .modal-card .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .modal-card .logo-sub {
+            font-size: 0.85rem;
+            color: var(--text2);
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+        .modal-card h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .modal-card p {
+            color: var(--text2);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: left;
+        }
+        .login-form label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text2);
+        }
+        .login-form input {
+            padding: 12px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-family: var(--font);
+            background: var(--bg);
+            transition: border 0.2s;
+            outline: none;
+        }
+        .login-form input:focus {
+            border-color: var(--accent);
+            background: #fff;
+        }
+        .login-form .btn {
+            margin-top: 6px;
+            padding: 14px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .login-form .btn:hover {
+            background: var(--accent2);
+        }
+        .login-error {
+            color: var(--red);
+            font-size: 0.85rem;
+            text-align: center;
+            min-height: 24px;
+        }
+
+        /* ─── APP LAYOUT ─── */
+        .app {
+            display: none;
+            width: 100%;
+            max-width: 1440px;
+            min-height: 100vh;
+            background: var(--bg);
+        }
+        .app.active {
+            display: flex;
+        }
+
+        /* ─── SIDEBAR ─── */
+        .sidebar {
+            width: 250px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 28px 18px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+        }
+        .sidebar .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--accent);
+            margin-bottom: 4px;
+            padding-left: 8px;
+        }
+        .sidebar .logo-sub {
+            font-size: 0.75rem;
+            color: var(--text2);
+            margin-bottom: 28px;
+            padding-left: 8px;
+            letter-spacing: 0.2px;
+        }
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+        .sidebar nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text2);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .sidebar nav a i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .sidebar nav a:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+        .sidebar nav a.active {
+            background: var(--accent);
+            color: #fff;
+        }
+        .sidebar .logout-wrap {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+        }
+        .sidebar .logout-wrap button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: var(--font);
+            cursor: pointer;
+            background: var(--surface2);
+            color: var(--text2);
+            transition: background 0.2s;
+        }
+        .sidebar .logout-wrap button:hover {
+            background: var(--red-bg);
+            color: var(--red);
+        }
+
+        /* ─── MAIN CONTENT ─── */
+        .main {
+            flex: 1;
+            padding: 36px 40px 40px 40px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 4px;
+        }
+        .page .page-desc {
+            color: var(--text2);
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+        }
+
+        /* ─── CARDS ─── */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+        }
+        .card .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .card .card-header h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+        .card .card-header i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+
+        /* status badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .status-badge.green {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+        .status-badge.orange {
+            background: var(--orange-bg);
+            color: var(--orange);
+        }
+        .status-badge.red {
+            background: var(--red-bg);
+            color: var(--red);
+        }
+        .status-badge i {
+            font-size: 0.65rem;
+        }
+
+        /* grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* forms & inputs inside cards */
+        .card label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text2);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .card input,
+        .card textarea,
+        .card select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-family: var(--font);
+            background: var(--bg);
+            transition: border 0.2s;
+            outline: none;
+            margin-bottom: 12px;
+        }
+        .card input:focus,
+        .card textarea:focus,
+        .card select:focus {
+            border-color: var(--accent);
+            background: #fff;
+        }
+        .card textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        .card .btn {
+            padding: 10px 22px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .card .btn:hover {
+            background: var(--accent2);
+        }
+        .card .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1.5px solid var(--accent);
+        }
+        .card .btn-outline:hover {
+            background: var(--accent-light);
+        }
+        .card .btn-sm {
+            padding: 6px 16px;
+            font-size: 0.8rem;
+        }
+        .card .btn-danger {
+            background: var(--red);
+        }
+        .card .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .output-box {
+            background: var(--surface2);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            max-height: 260px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border: 1px solid var(--border);
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+        .stat-row .stat-label {
+            color: var(--text2);
+        }
+        .stat-row .stat-value {
+            font-weight: 600;
+        }
+
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .badge-list .badge {
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .canvas-tools {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                width: 200px;
+                padding: 20px 12px;
+            }
+            .main {
+                padding: 24px 20px;
+            }
+        }
+        @media (max-width: 650px) {
+            .app.active {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 12px 16px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .sidebar .logo,
+            .sidebar .logo-sub {
+                display: none;
+            }
+            .sidebar nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 2px;
+            }
+            .sidebar nav a {
+                font-size: 0.75rem;
+                padding: 8px 10px;
+                gap: 6px;
+            }
+            .sidebar .logout-wrap {
+                margin-top: 0;
+                padding-top: 0;
+                border-top: none;
+                margin-left: auto;
+            }
+            .main {
+                max-height: none;
+                padding: 20px 16px;
+            }
+            .modal-card {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ─── LOGIN MODAL ─── -->
+    <div class="modal-overlay" id="loginOverlay">
+        <div class="modal-card">
+            <div class="logo">⚡ R4B</div>
+            <div class="logo-sub">Readi4Bizness OS</div>
+            <h2>Welcome back</h2>
+            <p>Sign in to your business operating system</p>
+            <form class="login-form" id="loginForm" autocomplete="off">
+                <label for="email">Email</label>
+                <input
+                type="email"
+                id="email"
+                value="demo@readi4bizness.com"
+                placeholder="demo@readi4bizness.com"
+                />
+                <label for="password">Password</label>
+                <input
+                type="password"
+                id="password"
+                value="readi-demo-2026"
+                placeholder="••••••••••"
+                />
+                <div class="login-error" id="loginError"></div>
+                <button type="submit" class="btn">Sign in</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ─── APP ─── -->
+    <div class="app" id="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">⚡ R4B</div>
+            <div class="logo-sub">Readi4Bizness OS</div>
+            <nav id="nav">
+                <a class="active" data-page="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a data-page="blueprint"><i class="fas fa-cubes"></i> Blueprint</a>
+                <a data-page="research"><i class="fas fa-microscope"></i> Research</a>
+                <a data-page="productmaker"><i class="fas fa-box-open"></i> Product Maker</a>
+                <a data-page="content"><i class="fas fa-pen-fancy"></i> Content Planner</a>
+                <a data-page="promotion"><i class="fas fa-bullhorn"></i> Promotion</a>
+                <a data-page="canvas"><i class="fas fa-file-alt"></i> Canvas Export</a>
+            </nav>
+            <div class="logout-wrap">
+                <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main" id="mainContent">
+            <!-- Each page is a div.page, toggled via JS -->
+            <!-- Will be rendered by JavaScript -->
+        </main>
+    </div>
+
+    <script>
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  STATE (localStorage)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        const STORAGE_KEY = 'readi4bizness_os_state';
+
+        function defaultState() {
+            return {
+                // Dashboard stats (some computed)
+                dashboard: {
+                    projectsActive: 3,
+                    tasksPending: 12,
+                    revenue: '$4,280',
+                    health: 'good', // 'good' | 'warning' | 'critical'
+                    lastLogin: new Date().toLocaleDateString(),
+                },
+                // Blueprint
+                blueprint: {
+                    businessName: '',
+                    vision: '',
+                    mission: '',
+                    targetAudience: '',
+                    valueProposition: '',
+                    revenueModel: '',
+                    output: '',
+                },
+                // Research
+                research: {
+                    productIdea: '',
+                    marketSize: 'small',
+                    competition: 'medium',
+                    demand: 'medium',
+                    readiness: 'medium',
+                    score: null,
+                    result: '',
+                },
+                // Product Maker
+                productmaker: {
+                    productName: '',
+                    productType: 'ebook',
+                    features: '',
+                    targetUser: '',
+                    packaging: '',
+                    output: '',
+                },
+                // Content Planner
+                content: {
+                    topic: '',
+                    contentType: 'blog',
+                    audience: '',
+                    goals: '',
+                    outline: '',
+                    generated: '',
+                },
+                // Promotion
+                promotion: {
+                    product: '',
+                    channel: 'facebook',
+                    budget: '100',
+                    audience: '',
+                    message: '',
+                    plan: '',
+                },
+                // Canvas
+                canvas: {
+                    content: '',
+                },
+            };
+        }
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    // Merge with defaults to handle new fields
+                    const def = defaultState();
+                    for (const key of Object.keys(def)) {
+                        if (!parsed[key]) parsed[key] = def[key];
+                        else {
+                            for (const sub of Object.keys(def[key])) {
+                                if (parsed[key][sub] === undefined) parsed[key][sub] = def[key][sub];
+                            }
+                        }
+                    }
+                    return parsed;
+                }
+            } catch (e) { /* ignore */ }
+            return defaultState();
+        }
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        let state = loadState();
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  LOGIN
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        const loginOverlay = document.getElementById('loginOverlay');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const app = document.getElementById('app');
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            if (
+                email === 'demo@readi4bizness.com' &&
+                password === 'readi-demo-2026'
+            ) {
+                loginOverlay.classList.add('hidden');
+                app.classList.add('active');
+                loginError.textContent = '';
+                renderAll();
+            } else {
+                loginError.textContent = '❌ Invalid credentials. Please use the demo account.';
+            }
+        }
+
+        loginForm.addEventListener('submit', handleLogin);
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            app.classList.remove('active');
+            loginOverlay.classList.remove('hidden');
+            document.getElementById('email').value = 'demo@readi4bizness.com';
+            document.getElementById('password').value = 'readi-demo-2026';
+            loginError.textContent = '';
+            // reset state
+            state = defaultState();
+            saveState();
+        });
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  NAVIGATION
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        let currentPage = 'dashboard';
+
+        function navigateTo(pageId) {
+            currentPage = pageId;
+            document.querySelectorAll('#nav a').forEach(el => el.classList.remove('active'));
+            const navLink = document.querySelector(`#nav a[data-page="${pageId}"]`);
+            if (navLink) navLink.classList.add('active');
+            renderAll();
+        }
+
+        document.querySelectorAll('#nav a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateTo(el.dataset.page);
+            });
+        });
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  RENDER ENGINE
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        const mainEl = document.getElementById('mainContent');
+
+        function renderAll() {
+            // Build all pages, show only current
+            const pages = {
+                dashboard: renderDashboard(),
+                blueprint: renderBlueprint(),
+                research: renderResearch(),
+                productmaker: renderProductMaker(),
+                content: renderContent(),
+                promotion: renderPromotion(),
+                canvas: renderCanvas(),
+            };
+
+            let html = '';
+            for (const [key, content] of Object.entries(pages)) {
+                const active = key === currentPage ? 'active' : '';
+                html += `<div class="page ${active}" data-page="${key}">${content}</div>`;
+            }
+            mainEl.innerHTML = html;
+
+            // Re-bind events per page
+            bindDashboard();
+            bindBlueprint();
+            bindResearch();
+            bindProductMaker();
+            bindContent();
+            bindPromotion();
+            bindCanvas();
+
+            // Save state after any render (values are read from state)
+            saveState();
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  DASHBOARD
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        function renderDashboard() {
+            const d = state.dashboard;
+            const healthIcon = d.health === 'good' ? '✅' : d.health === 'warning' ? '⚠️' : '🔴';
+            const healthLabel = d.health === 'good' ? 'All Systems Go' : d.health === 'warning' ? 'Needs Attention' :
+            'Critical';
+            const healthClass = d.health === 'good' ? 'green' : d.health === 'warning' ? 'orange' : 'red';
+
+            return `
+            <h1>📊 Dashboard</h1>
+            <p class="page-desc">Real-time operating status of your digital product business.</p>
+
+            <div class="grid-2">
+              <div class="card">
+                <div class="card-header">
+                  <h2><i class="fas fa-heartbeat" style="color:var(--accent);margin-right:8px;"></i> System Health</h2>
+                  <span class="status-badge ${healthClass}">${healthIcon} ${healthLabel}</span>
+                </div>
+                <div class="stat-row"><span class="stat-label">Last Login</span><span class="stat-value">${d.lastLogin}</span></div>
+                <div class="stat-row"><span class="stat-label">Active Projects</span><span class="stat-value">${d.projectsActive}</span></div>
+                <div class="stat-row"><span class="stat-label">Pending Tasks</span><span class="stat-value">${d.tasksPending}</span></div>
+                <div class="stat-row"><span class="stat-label">Current Revenue</span><span class="stat-value">${d.revenue}</span></div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h2><i class="fas fa-sliders-h" style="color:var(--accent);margin-right:8px;"></i> Quick Controls</h2>
+                  <i class="fas fa-cog"></i>
+                </div>
+                <label for="healthSelect">Override System Health</label>
+                <select id="healthSelect">
+                  <option value="good" ${d.health === 'good' ? 'selected' : ''}>✅ Good</option>
+                  <option value="warning" ${d.health === 'warning' ? 'selected' : ''}>⚠️ Warning</option>
+                  <option value="critical" ${d.health === 'critical' ? 'selected' : ''}>🔴 Critical</option>
+                </select>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <button class="btn btn-sm" id="updateHealthBtn">Update Status</button>
+                  <button class="btn btn-sm btn-outline" id="resetDashboardBtn">Reset Defaults</button>
+                </div>
+                <p style="font-size:0.8rem;color:var(--text2);margin-top:12px;">
+                  <i class="fas fa-sync-alt"></i> State is saved in localStorage.
+                </p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2><i class="fas fa-tasks" style="color:var(--accent);margin-right:8px;"></i> Recent Activity</h2>
+                <i class="fas fa-ellipsis-h"></i>
+              </div>
+              <div class="stat-row"><span class="stat-label">📄 Blueprint</span><span class="stat-value">${state.blueprint.businessName || 'Not set'}</span></div>
+              <div class="stat-row"><span class="stat-label">🔬 Research</span><span class="stat-value">${state.research.productIdea || 'Not set'}</span></div>
+              <div class="stat-row"><span class="stat-label">📦 Product</span><span class="stat-value">${state.productmaker.productName || 'Not set'}</span></div>
+              <div class="stat-row"><span class="stat-label">✍️ Content</span><span class="stat-value">${state.content.topic || 'Not set'}</span></div>
+              <div class="stat-row"><span class="stat-label">📢 Promotion</span><span class="stat-value">${state.promotion.product || 'Not set'}</span></div>
+            </div>
+          `;
+        }
+
+        function bindDashboard() {
+            const healthSelect = document.getElementById('healthSelect');
+            const updateBtn = document.getElementById('updateHealthBtn');
+            const resetBtn = document.getElementById('resetDashboardBtn');
+
+            if (updateBtn) {
+                updateBtn.addEventListener('click', () => {
+                    if (healthSelect) {
+                        state.dashboard.health = healthSelect.value;
+                        saveState();
+                        renderAll();
+                    }
+                });
+            }
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    const def = defaultState();
+                    state.dashboard = def.dashboard;
+                    saveState();
+                    renderAll();
+                });
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  BLUEPRINT
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        function renderBlueprint() {
+            const b = state.blueprint;
+            return `
+            <h1>🧩 Business Blueprint</h1>
+            <p class="page-desc">Define your business model and generate a strategic blueprint.</p>
+            <div class="grid-2">
+              <div class="card">
+                <div class="card-header"><h2>Details</h2><i class="fas fa-cubes"></i></div>
+                <label>Business Name</label>
+                <input id="bp_name" value="${b.businessName}" placeholder="e.g. Readi4Bizness" />
+                <label>Vision</label>
+                <textarea id="bp_vision" placeholder="Your long-term vision">${b.vision}</textarea>
+                <label>Mission</label>
+                <textarea id="bp_mission" placeholder="Your mission statement">${b.mission}</textarea>
+                <label>Target Audience</label>
+                <input id="bp_audience" value="${b.targetAudience}" placeholder="e.g. Solopreneurs" />
+                <label>Value Proposition</label>
+                <textarea id="bp_value" placeholder="What makes you unique?">${b.valueProposition}</textarea>
+                <label>Revenue Model</label>
+                <input id="bp_revenue" value="${b.revenueModel}" placeholder="e.g. Subscription, One-time" />
+                <button class="btn" id="bp_generate">Generate Blueprint</button>
+              </div>
+              <div class="card">
+                <div class="card-header"><h2>Blueprint Output</h2><i class="fas fa-file-export"></i></div>
+                <div class="output-box" id="bp_output">${b.output || 'Click "Generate Blueprint" to see your strategic overview.'}</div>
+                <button class="btn btn-sm btn-outline" id="bp_clear" style="margin-top:10px;">Clear</button>
+              </div>
+            </div>
+          `;
+        }
+
+        function bindBlueprint() {
+            const genBtn = document.getElementById('bp_generate');
+            const clearBtn = document.getElementById('bp_clear');
+            const output = document.getElementById('bp_output');
+
+            if (genBtn) {
+                genBtn.addEventListener('click', () => {
+                    const b = state.blueprint;
+                    b.businessName = document.getElementById('bp_name').value;
+                    b.vision = document.getElementById('bp_vision').value;
+                    b.mission = document.getElementById('bp_mission').value;
+                    b.targetAudience = document.getElementById('bp_audience').value;
+                    b.valueProposition = document.getElementById('bp_value').value;
+                    b.revenueModel = document.getElementById('bp_revenue').value;
+
+                    const out = `
+        ═══════════════════════════════════
+           BUSINESS BLUEPRINT
+        ═══════════════════════════════════
+        Name:        ${b.businessName || '(not set)'}
+        Vision:      ${b.vision || '(not set)'}
+        Mission:     ${b.mission || '(not set)'}
+        Audience:    ${b.targetAudience || '(not set)'}
+        Value Prop:  ${b.valueProposition || '(not set)'}
+        Revenue:     ${b.revenueModel || '(not set)'}
+        ═══════════════════════════════════
+        Generated:   ${new Date().toLocaleString()}
+                    `.trim();
+                    b.output = out;
+                    saveState();
+                    renderAll();
+                });
+            }
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    state.blueprint.output = '';
+                    saveState();
+                    renderAll();
+                });
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  RESEARCH (Viability Scan)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        function renderResearch() {
+            const r = state.research;
+            const scoreDisplay = r.score !== null ? `${r.score}/100` : '—';
+            return `
+            <h1>🔬 Digital Product Research</h1>
+            <p class="page-desc">Viability scan for your product idea.</p>
+            <div class="grid-2">
+              <div class="card">
+                <div class="card-header"><h2>Idea Details</h2><i class="fas fa-microscope"></i></div>
+                <label>Product Idea</label>
+                <input id="rs_idea" value="${r.productIdea}" placeholder="e.g. AI-powered journaling app" />
+                <label>Market Size</label>
+                <select id="rs_market">
+                  <option value="small" ${r.marketSize === 'small' ? 'selected' : ''}>Small (niche)</option>
+                  <option value="medium" ${r.marketSize === 'medium' ? 'selected' : ''}>Medium</option>
+                  <option value="large" ${r.marketSize === 'large' ? 'selected' : ''}>Large (mass)</option>
+                </select>
+                <label>Competition Level</label>
+                <select id="rs_competition">
+                  <option value="low" ${r.competition === 'low' ? 'selected' : ''}>Low</option>
+                  <option value="medium" ${r.competition === 'medium' ? 'selected' : ''}>Medium</option>
+                  <option value="high" ${r.competition === 'high' ? 'selected' : ''}>High</option>
+                </select>
+                <label>Demand</label>
+                <select id="rs_demand">
+                  <option value="low" ${r.demand === 'low' ? 'selected' : ''}>Low</option>
+                  <option value="medium" ${r.demand === 'medium' ? 'selected' : ''}>Medium</option>
+                  <option value="high" ${r.demand === 'high' ? 'selected' : ''}>High</option>
+                </select>
+                <label>Readiness (your ability to execute)</label>
+                <select id="rs_readiness">
+                  <option value="low" ${r.readiness === 'low' ? 'selected' : ''}>Low</option>
+                  <option value="medium" ${r.readiness === 'medium' ? 'selected' : ''}>Medium</option>
+                  <option value="high" ${r.readiness === 'high' ? 'selected' : ''}>High</option>
+                </select>
+                <button class="btn" id="rs_scan">Run Viability Scan</button>
+              </div>
+              <div class="card">
+                <div class="card-header"><h2>Viability Score</h2><i class="fas fa-tachometer-alt"></i></div>
+                <div style="font-size:3rem;font-weight:700;color:var(--accent);text-align:center;padding:16px 0;">${scoreDisplay}</div>
+                <div class="output-box" id="rs_output">${r.result || 'Run a scan to evaluate your idea.'}</div>
+                <button class="btn btn-sm btn-outline" id="rs_clear" style="margin-top:10px;">Clear Results</button>
+              </div>
+            </div>
+          `;
+        }
+
+        function bindResearch() {
+            const scanBtn = document.getElementById('rs_scan');
+            const clearBtn = document.getElementById('rs_clear');
+            if (scanBtn) {
+                scanBtn.addEventListener('click', () => {
+                    const r = state.research;
+                    r.productIdea = document.getElementById('rs_idea').value;
+                    r.marketSize = document.getElementById('rs_market').value;
+                    r.competition = document.getElementById('rs_competition').value;
+                    r.demand = document.getElementById('rs_demand').value;
+                    r.readiness = document.getElementById('rs_readiness').value;
+
+                    // Simple scoring
+                    const marketScore = { small: 30, medium: 60, large: 90 } [r.marketSize] || 50;
+                    const compScore = { low: 80, medium: 50, high: 20 } [r.competition] || 50;
+                    const demandScore = { low: 25, medium: 55, high: 85 } [r.demand] || 50;
+                    const readinessScore = { low: 30, medium: 60, high: 95 } [r.readiness] || 50;
+                    const total = Math.round((marketScore + compScore + demandScore + readinessScore) / 4);
+                    r.score = total;
+
+                    let verdict = '';
+                    if (total >= 75) verdict = '✅ Strong viability – proceed with confidence!';
+                    else if (total >= 50) verdict = '⚠️ Moderate viability – refine your approach.';
+                    else verdict = '🔴 Low viability – consider pivoting or gathering more data.';
+
+                    r.result = `
+        Idea:        ${r.productIdea || '(not set)'}
+        Market:      ${r.marketSize}
+        Competition: ${r.competition}
+        Demand:      ${r.demand}
+        Readiness:   ${r.readiness}
+        ─────────────────────────────
+        Score:       ${total}/100
+        Verdict:     ${verdict}
+        Date:        ${new Date().toLocaleString()}
+                    `.trim();
+                    saveState();
+                    renderAll();
+                });
+            }
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    state.research.score = null;
+                    state.research.result = '';
+                    saveState();
+                    renderAll();
+                });
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  PRODUCT MAKER
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        function renderProductMaker() {
+            const p = state.productmaker;
+            return `
+            <h1>📦 Product Maker</h1>
+            <p class="page-desc">Package your digital product with a clear output.</p>
+            <div class="grid-2">
+              <div class="card">
+                <div class="card-header"><h2>Product Details</h2><i class="fas fa-box-open"></i></div>
+                <label>Product Name</label>
+                <input id="pm_name" value="${p.productName}" placeholder="e.g. The Ultimate Planner" />
+                <label>Product Type</label>
+                <select id="pm_type">
+                  <option value="ebook" ${p.productType === 'ebook' ? 'selected' : ''}>Ebook</option>
+                  <option value="course" ${p.productType === 'course' ? 'selected' : ''}>Online Course</option>
+                  <option value="template" ${p.productType === 'template' ? 'selected' : ''}>Template</option>
+                  <option value="software" ${p.productType === 'software' ? 'selected' : ''}>Software / App</option>
+                  <option value="other" ${p.productType === 'other' ? 'selected' : ''}>Other</option>
+                </select>
+                <label>Key Features (comma separated)</label>
+                <textarea id="pm_features" placeholder="e.g. 20 chapters, worksheets, video">${p.features}</textarea>
+                <label>Target User</label>
+                <input id="pm_user" value="${p.targetUser}" placeholder="e.g. Busy entrepreneurs" />
+                <label>Packaging / Format</label>
+                <input id="pm_packaging" value="${p.packaging}" placeholder="e.g. PDF + MP4 bundle" />
+                <button class="btn" id="pm_generate">Generate Product Sheet</button>
+              </div>
+              <div class="card">
+                <div class="card-header"><h2>Product Sheet</h2><i class="fas fa-file-invoice"></i></div>
+                <div class="output-box" id="pm_output">${p.output || 'Generate your product packaging output.'}</div>
+                <button class="btn btn-sm btn-outline" id="pm_clear" style="margin-top:10px;">Clear</button>
+              </div>
+            </div>
+          `;
+        }
+
+        function bindProductMaker() {
+            const genBtn = document.getElementById('pm_generate');
+            const clearBtn = document.getElementById('pm_clear');
+            if (genBtn) {
+                genBtn.addEventListener('click', () => {
+                    const p = state.productmaker;
+                    p.productName = document.getElementById('pm_name').value;
+                    p.productType = document.getElementById('pm_type').value;
+                    p.features = document.getElementById('pm_features').value;
+                    p.targetUser = document.getElementById('pm_user').value;
+                    p.packaging = document.getElementById('pm_packaging').value;
+
+                    const featuresList = p.features ? p.features.split(',').map(f => `  • ${f.trim()}`).join('\n') :
+                        '  (none specified)';
+                    const out = `
+        ═══════════════════════════════════
+           PRODUCT PACKAGING SHEET
+        ═══════════════════════════════════
+        Name:     ${p.productName || '(not set)'}
+        Type:     ${p.productType}
+        Target:   ${p.targetUser || '(not set)'}
+        Format:   ${p.packaging || '(not set)'}
+        ─────────────────────────────
+        Features:
+        ${featuresList}
+        ─────────────────────────────
+        Generated: ${new Date().toLocaleString()}
+                    `.trim();
+                    p.output = out;
+                    saveState();
+                    renderAll();
+                });
+            }
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    state.productmaker.output = '';
+                    saveState();
+                    renderAll();
+                });
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  CONTENT PLANNER
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        function renderContent() {
+            const c = state.content;
+            return `
+            <h1>✍️ Blog / Course Content Planner</h1>
+            <p class="page-desc">Plan your content strategy and generate outlines.</p>
+            <div class="grid-2">
+              <div class="card">
+                <div class="card-header"><h2>Content Brief</h2><i class="fas fa-pen-fancy"></i></div>
+                <label>Topic / Title</label>
+                <input id="ct_topic" value="${c.topic}" placeholder="e.g. How to build a digital product" />
+                <label>Content Type</label>
+                <select id="ct_type">
+                  <option value="blog" ${c.contentType === 'blog' ? 'selected' : ''}>Blog Post</option>
+                  <option value="course" ${c.contentType === 'course' ? 'selected' : ''}>Course Module</option>
+                  <option value="video" ${c.contentType === 'video' ? 'selected' : ''}>Video Script</option>
+                  <option value="email" ${c.contentType === 'email' ? 'selected' : ''}>Email Sequence</option>
+                </select>
+                <label>Target Audience</label>
+                <input id="ct_audience" value="${c.audience}" placeholder="e.g. Beginner solopreneurs" />
+                <label>Goals (comma separated)</label>
+                <textarea id="ct_goals" placeholder="e.g. educate, convert, build trust">${c.goals}</textarea>
+                <label>Custom Notes / Outline (optional)</label>
+                <textarea id="ct_outline" placeholder="Any specific points to include?">${c.outline}</textarea>
+                <button class="btn" id="ct_generate">Generate Outline</button>
+              </div>
+              <div class="card">
+                <div class="card-header"><h2>Content Outline</h2><i class="fas fa-list"></i></div>
+                <div class="output-box" id="ct_output">${c.generated || 'Generate a structured outline for your content.'}</div>
+                <button class="btn btn-sm btn-outline" id="ct_clear" style="margin-top:10px;">Clear</button>
+              </div>
+            </div>
+          `;
+        }
+
+        function bindContent() {
+            const genBtn = document.getElementById('ct_generate');
+            const clearBtn = document.getElementById('ct_clear');
+            if (genBtn) {
+                genBtn.addEventListener('click', () => {
+                    const c = state.content;
+                    c.topic = document.getElementById('ct_topic').value;
+                    c.contentType = document.getElementById('ct_type').value;
+                    c.audience = document.getElementById('ct_audience').value;
+                    c.goals = document.getElementById('ct_goals').value;
+                    c.outline = document.getElementById('ct_outline').value;
+
+                    const goalsList = c.goals ? c.goals.split(',').map(g => `  • ${g.trim()}`).join('\n') : '  (none)';
+                    const out = `
+        ═══════════════════════════════════
+           CONTENT OUTLINE
+        ═══════════════════════════════════
+        Topic:    ${c.topic || '(not set)'}
+        Type:     ${c.contentType}
+        Audience: ${c.audience || '(not set)'}
+        ─────────────────────────────
+        Goals:
+        ${goalsList}
+        ─────────────────────────────
+        Structure:
+        1. Introduction / Hook
+        2. Key Point 1
+        3. Key Point 2
+        4. Key Point 3
+        5. Conclusion / CTA
+        ${c.outline ? `\nCustom Notes:\n${c.outline}` : ''}
+        ─────────────────────────────
+        Generated: ${new Date().toLocaleString()}
+                    `.trim();
+                    c.generated = out;
+                    saveState();
+                    renderAll();
+                });
+            }
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    state.content.generated = '';
+                    saveState();
+                    renderAll();
+                });
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  PROMOTION
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        function renderPromotion() {
+            const p = state.promotion;
+            return `
+            <h1>📢 Ads &amp; Affiliate Promotion Planner</h1>
+            <p class="page-desc">Plan your promotional campaigns.</p>
+            <div class="grid-2">
+              <div class="card">
+                <div class="card-header"><h2>Campaign Details</h2><i class="fas fa-bullhorn"></i></div>
+                <label>Product / Offer</label>
+                <input id="pr_product" value="${p.product}" placeholder="e.g. The Ultimate Planner" />
+                <label>Primary Channel</label>
+                <select id="pr_channel">
+                  <option value="facebook" ${p.channel === 'facebook' ? 'selected' : ''}>Facebook Ads</option>
+                  <option value="instagram" ${p.channel === 'instagram' ? 'selected' : ''}>Instagram</option>
+                  <option value="google" ${p.channel === 'google' ? 'selected' : ''}>Google Ads</option>
+                  <option value="affiliate" ${p.channel === 'affiliate' ? 'selected' : ''}>Affiliate Network</option>
+                  <option value="email" ${p.channel === 'email' ? 'selected' : ''}>Email Marketing</option>
+                  <option value="tiktok" ${p.channel === 'tiktok' ? 'selected' : ''}>TikTok</option>
+                </select>
+                <label>Budget ($)</label>
+                <input id="pr_budget" type="number" value="${p.budget}" placeholder="100" />
+                <label>Target Audience</label>
+                <input id="pr_audience" value="${p.audience}" placeholder="e.g. Entrepreneurs 25-45" />
+                <label>Key Message</label>
+                <textarea id="pr_message" placeholder="Your main ad copy / message">${p.message}</textarea>
+                <button class="btn" id="pr_generate">Generate Promotion Plan</button>
+              </div>
+              <div class="card">
+                <div class="card-header"><h2>Promotion Plan</h2><i class="fas fa-calendar-check"></i></div>
+                <div class="output-box" id="pr_output">${p.plan || 'Generate your promotion plan.'}</div>
+                <button class="btn btn-sm btn-outline" id="pr_clear" style="margin-top:10px;">Clear</button>
+              </div>
+            </div>
+          `;
+        }
+
+        function bindPromotion() {
+            const genBtn = document.getElementById('pr_generate');
+            const clearBtn = document.getElementById('pr_clear');
+            if (genBtn) {
+                genBtn.addEventListener('click', () => {
+                    const p = state.promotion;
+                    p.product = document.getElementById('pr_product').value;
+                    p.channel = document.getElementById('pr_channel').value;
+                    p.budget = document.getElementById('pr_budget').value;
+                    p.audience = document.getElementById('pr_audience').value;
+                    p.message = document.getElementById('pr_message').value;
+
+                    const out = `
+        ═══════════════════════════════════
+           PROMOTION PLAN
+        ═══════════════════════════════════
+        Product:  ${p.product || '(not set)'}
+        Channel:  ${p.channel}
+        Budget:   $${p.budget || '0'}
+        Audience: ${p.audience || '(not set)'}
+        ─────────────────────────────
+        Message:
+        ${p.message || '(not set)'}
+        ─────────────────────────────
+        Recommendations:
+        • Start with a small test campaign ($${Math.max(20, Math.floor(Number(p.budget) * 0.2)) || '20'})
+        • Use A/B testing on creative
+        • Track conversions with UTM links
+        • Scale winning ad sets
+        ─────────────────────────────
+        Generated: ${new Date().toLocaleString()}
+                    `.trim();
+                    p.plan = out;
+                    saveState();
+                    renderAll();
+                });
+            }
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    state.promotion.plan = '';
+                    saveState();
+                    renderAll();
+                });
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  CANVAS EXPORT
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        function renderCanvas() {
+            const c = state.canvas;
+            // Build a composite from all other modules
+            const b = state.blueprint;
+            const r = state.research;
+            const p = state.productmaker;
+            const ct = state.content;
+            const pr = state.promotion;
+
+            const composite = `
+        ═══════════════════════════════════════════
+           Readi4Bizness OS — CANVAS OUTPUT
+        ═══════════════════════════════════════════
+        Generated: ${new Date().toLocaleString()}
+        ─────────────────────────────────────────
+        🧩 BLUEPRINT
+        Name:      ${b.businessName || '—'}
+        Vision:    ${b.vision || '—'}
+        Mission:   ${b.mission || '—'}
+        Audience:  ${b.targetAudience || '—'}
+        Value:     ${b.valueProposition || '—'}
+        Revenue:   ${b.revenueModel || '—'}
+        ─────────────────────────────────────────
+        🔬 RESEARCH
+        Idea:      ${r.productIdea || '—'}
+        Score:     ${r.score !== null ? r.score + '/100' : '—'}
+        ─────────────────────────────────────────
+        📦 PRODUCT
+        Name:      ${p.productName || '—'}
+        Type:      ${p.productType || '—'}
+        Target:    ${p.targetUser || '—'}
+        Format:    ${p.packaging || '—'}
+        ─────────────────────────────────────────
+        ✍️ CONTENT
+        Topic:     ${ct.topic || '—'}
+        Type:      ${ct.contentType || '—'}
+        Audience:  ${ct.audience || '—'}
+        ─────────────────────────────────────────
+        📢 PROMOTION
+        Product:   ${pr.product || '—'}
+        Channel:   ${pr.channel || '—'}
+        Budget:    ${pr.budget || '—'}
+        ─────────────────────────────────────────
+        End of Report
+        ═══════════════════════════════════════════
+            `.trim();
+
+            return `
+            <h1>📄 Canvas Export</h1>
+            <p class="page-desc">Composite document with all your business data. Export as text.</p>
+            <div class="card">
+              <div class="card-header">
+                <h2><i class="fas fa-file-alt" style="color:var(--accent);margin-right:8px;"></i> Master Canvas</h2>
+                <i class="fas fa-print"></i>
+              </div>
+              <div class="canvas-tools">
+                <button class="btn btn-sm" id="cv_refresh"><i class="fas fa-sync-alt"></i> Refresh from State</button>
+                <button class="btn btn-sm btn-outline" id="cv_export"><i class="fas fa-download"></i> Export .txt</button>
+                <button class="btn btn-sm btn-outline" id="cv_copy"><i class="fas fa-copy"></i> Copy to Clipboard</button>
+                <button class="btn btn-sm btn-danger" id="cv_clear"><i class="fas fa-trash"></i> Clear Canvas</button>
+              </div>
+              <div class="output-box" id="cv_output" style="max-height:500px;font-size:0.85rem;">${c.content || composite}</div>
+              <p style="font-size:0.8rem;color:var(--text2);margin-top:10px;">
+                <i class="fas fa-info-circle"></i> The canvas auto-populates from your Blueprint, Research, Product, Content, and Promotion modules.
+              </p>
+            </div>
+          `;
+        }
+
+        function buildCompositeCanvas() {
+            const b = state.blueprint;
+            const r = state.research;
+            const p = state.productmaker;
+            const ct = state.content;
+            const pr = state.promotion;
+
+            return `
+        ═══════════════════════════════════════════
+           Readi4Bizness OS — CANVAS OUTPUT
+        ═══════════════════════════════════════════
+        Generated: ${new Date().toLocaleString()}
+        ─────────────────────────────────────────
+        🧩 BLUEPRINT
+        Name:      ${b.businessName || '—'}
+        Vision:    ${b.vision || '—'}
+        Mission:   ${b.mission || '—'}
+        Audience:  ${b.targetAudience || '—'}
+        Value:     ${b.valueProposition || '—'}
+        Revenue:   ${b.revenueModel || '—'}
+        ─────────────────────────────────────────
+        🔬 RESEARCH
+        Idea:      ${r.productIdea || '—'}
+        Score:     ${r.score !== null ? r.score + '/100' : '—'}
+        ─────────────────────────────────────────
+        📦 PRODUCT
+        Name:      ${p.productName || '—'}
+        Type:      ${p.productType || '—'}
+        Target:    ${p.targetUser || '—'}
+        Format:    ${p.packaging || '—'}
+        ─────────────────────────────────────────
+        ✍️ CONTENT
+        Topic:     ${ct.topic || '—'}
+        Type:      ${ct.contentType || '—'}
+        Audience:  ${ct.audience || '—'}
+        ─────────────────────────────────────────
+        📢 PROMOTION
+        Product:   ${pr.product || '—'}
+        Channel:   ${pr.channel || '—'}
+        Budget:    ${pr.budget || '—'}
+        ─────────────────────────────────────────
+        End of Report
+        ═══════════════════════════════════════════
+            `.trim();
+        }
+
+        function bindCanvas() {
+            const refreshBtn = document.getElementById('cv_refresh');
+            const exportBtn = document.getElementById('cv_export');
+            const copyBtn = document.getElementById('cv_copy');
+            const clearBtn = document.getElementById('cv_clear');
+            const output = document.getElementById('cv_output');
+
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', () => {
+                    const composite = buildCompositeCanvas();
+                    state.canvas.content = composite;
+                    saveState();
+                    renderAll();
+                });
+            }
+
+            if (exportBtn) {
+                exportBtn.addEventListener('click', () => {
+                    const text = output ? output.textContent : state.canvas.content || buildCompositeCanvas();
+                    const blob = new Blob([text], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `Readi4Bizness_Canvas_${new Date().toISOString().slice(0,10)}.txt`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            }
+
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    const text = output ? output.textContent : state.canvas.content || buildCompositeCanvas();
+                    navigator.clipboard.writeText(text).then(() => {
+                        const orig = copyBtn.innerHTML;
+                        copyBtn.innerHTML = '✅ Copied!';
+                        setTimeout(() => { copyBtn.innerHTML = orig; }, 1500);
+                    }).catch(() => {
+                        alert('Could not copy. Please select and copy manually.');
+                    });
+                });
+            }
+
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    state.canvas.content = '';
+                    saveState();
+                    renderAll();
+                });
+            }
+
+            // If canvas content is empty, populate it on first view
+            if (state.canvas.content === '') {
+                state.canvas.content = buildCompositeCanvas();
+                saveState();
+                // We need to re-render the canvas page specifically
+                // renderAll will handle it since we call it after bind
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        //  INIT
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        // On load, if not logged in, show modal
+        // We'll start with modal visible
+        loginOverlay.classList.remove('hidden');
+        app.classList.remove('active');
+
+        // If already logged in somehow (e.g. session) – but we start clean.
+
+        // Pre-populate canvas content if empty
+        if (state.canvas.content === '') {
+            state.canvas.content = buildCompositeCanvas();
+            saveState();
+        }
+
+        console.log('⚡ Readi4Bizness OS loaded. State:', state);
+    </script>
+</body>
+</html>

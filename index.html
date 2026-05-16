@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Readi4Bizness OS helps solo creators plan, validate, package, publish, and promote digital products from one interactive workspace.">
+    <title>Readi4Bizness OS</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#dashboard" aria-label="Readi4Bizness OS home">
+          <span class="brand-mark">R4B</span>
+          <span>
+            <strong>Readi4Bizness</strong>
+            <small>Digital Product Business OS</small>
+          </span>
+        </a>
+
+        <nav class="mode-tabs" aria-label="Workspace context">
+          <button class="mode-tab is-active" type="button" data-mode="internal">Internal</button>
+          <button class="mode-tab" type="button" data-mode="canvas">Canvas</button>
+          <button class="mode-tab" type="button" data-mode="external">External</button>
+        </nav>
+
+        <div class="top-actions">
+          <button class="ghost-button" type="button" id="openLogin">Demo Login</button>
+          <button class="primary-button" type="button" id="exportPlan">Export Blueprint</button>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar" aria-label="OS tools">
+          <div class="workspace-title">
+            <span class="icon-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4Zm0 2.2L17.7 8 12 10.8 6.3 8 12 5.2ZM6 9.7l5 2.5v6.3l-5-2.5V9.7Zm7 8.8v-6.3l5-2.5V16l-5 2.5Z"/></svg>
+            </span>
+            <span>
+              <strong>Project Workspace</strong>
+              <small id="workspaceModeLabel">Operational control</small>
+            </span>
+          </div>
+
+          <button class="nav-item is-active" type="button" data-section="dashboard">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h7V4H4v9Zm2-7h3v5H6V6Zm7 14h7v-7h-7v7Zm2-5h3v3h-3v-3ZM4 20h7v-5H4v5Zm2-3h3v1H6v-1Zm7-6h7V4h-7v7Zm2-5h3v3h-3V6Z"/></svg>
+            Dashboard
+          </button>
+          <button class="nav-item" type="button" data-section="blueprint">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v4H4V4Zm2 2v.5h12V6H6Zm-2 5h16v9H4v-9Zm2 2v5h12v-5H6Zm2 1h8v1.5H8V14Zm0 2.3h5v1.5H8v-1.5Z"/></svg>
+            Business Blueprint
+          </button>
+          <button class="nav-item" type="button" data-section="research">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 0 1 5.16 10.45l4.44 4.44-1.41 1.41-4.44-4.44A6.5 6.5 0 1 1 10.5 4Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z"/></svg>
+            Research
+          </button>
+          <button class="nav-item" type="button" data-section="product">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 4.5v11L12 22l-9-4.5v-11L12 2Zm0 2.24L5.48 7.5 12 10.76l6.52-3.26L12 4.24ZM5 9.12v7.14l6 3v-7.14l-6-3Zm8 10.14 6-3V9.12l-6 3v7.14Z"/></svg>
+            Product Maker
+          </button>
+          <button class="nav-item" type="button" data-section="content">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5V4Zm2 2v12h10V6H7Zm2 2h6v2H9V8Zm0 4h6v2H9v-2Z"/></svg>
+            Blog and Course
+          </button>
+          <button class="nav-item" type="button" data-section="promotion">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11V7l14-3v16L5 17v-4H3v-2h2Zm2-2.38v6.76l10 2.14V6.48L7 8.62Zm2 9.66 2 .43V22H9v-3.72Z"/></svg>
+            Ads and Affiliates
+          </button>
+          <button class="nav-item" type="button" data-section="canvas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4V4Zm2 2v12h12V6H6Zm2 2h8v2H8V8Zm0 4h4v2H8v-2Z"/></svg>
+            Creation Canvas
+          </button>
+
+          <div class="sidebar-card">
+            <span>Blueprint readiness</span>
+            <strong id="readinessMini">42%</strong>
+            <div class="mini-meter"><span id="readinessMiniBar"></span></div>
+          </div>
+        </aside>
+
+        <main class="main-panel">
+          <section class="screen is-active" id="dashboard" aria-labelledby="dashboardTitle">
+            <div class="hero-grid">
+              <div class="hero-copy">
+                <p class="section-kicker">Business OS v1</p>
+                <h1 id="dashboardTitle">Build one digital product business loop from idea to launch.</h1>
+                <p>
+                  Readi4Bizness turns scattered creator decisions into a governed workflow:
+                  choose a product, validate the gap, package the offer, plan content, and prepare promotion.
+                </p>
+                <div class="hero-actions">
+                  <button class="primary-button" type="button" data-jump="blueprint">Start Blueprint</button>
+                  <button class="ghost-button" type="button" data-jump="canvas">Open Canvas</button>
+                </div>
+              </div>
+
+              <div class="command-card">
+                <div class="command-header">
+                  <span>Operating Snapshot</span>
+                  <strong id="snapshotStatus">Needs source material</strong>
+                </div>
+                <div class="chart-bars" aria-label="Business readiness chart">
+                  <span style="--h: 52%"></span>
+                  <span style="--h: 68%"></span>
+                  <span style="--h: 44%"></span>
+                  <span style="--h: 76%"></span>
+                  <span style="--h: 58%"></span>
+                  <span style="--h: 84%"></span>
+                  <span style="--h: 62%"></span>
+                </div>
+                <div class="command-list">
+                  <div><span>Product stage</span><strong id="stageLabel">Discovery</strong></div>
+                  <div><span>Primary channel</span><strong id="channelLabel">YouTube</strong></div>
+                  <div><span>Best next move</span><strong id="nextMoveLabel">Define the offer</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="context-grid">
+              <article class="context-card">
+                <span class="blue-dot"></span>
+                <h2>External Explains</h2>
+                <p>Landing pages, pricing, lead magnets, blog posts, and affiliate pages convert visitors into subscribers and buyers.</p>
+              </article>
+              <article class="context-card">
+                <span class="amber-dot"></span>
+                <h2>Internal Operates</h2>
+                <p>Dashboards, product registry, content pipeline, campaign status, compliance notes, and publishing checkpoints keep the business moving.</p>
+              </article>
+              <article class="context-card dark">
+                <span class="green-dot"></span>
+                <h2>Canvas Creates</h2>
+                <p>Deep-focus workspaces generate product briefs, course outlines, ads, blog plans, affiliate kits, and launch copy.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="screen" id="blueprint" aria-labelledby="blueprintTitle">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">Business Blueprint</p>
+                <h1 id="blueprintTitle">Architect the product business.</h1>
+              </div>
+              <button class="primary-button" type="button" id="generateBlueprint">Generate Blueprint</button>
+            </div>
+
+            <div class="form-grid">
+              <label>
+                Objective
+                <input id="objective" type="text" value="Create a practical digital product toolkit for creators">
+              </label>
+              <label>
+                Skill level
+                <select id="skillLevel">
+                  <option>Beginner</option>
+                  <option selected>Intermediate</option>
+                  <option>Advanced</option>
+                </select>
+              </label>
+              <label>
+                Knowledge domain
+                <select id="domain">
+                  <option>Artificial Intelligence and Automation</option>
+                  <option selected>Digital Marketing and Content Creation</option>
+                  <option>Teaching, Training and Instructing</option>
+                  <option>Consulting and Entrepreneurship</option>
+                  <option>Personal Development and Self-Improvement</option>
+                  <option>Education and Academia</option>
+                  <option>Literary Arts and Professional Writing</option>
+                </select>
+              </label>
+              <label>
+                Revenue intent
+                <select id="revenueIntent">
+                  <option selected>Generate income</option>
+                  <option>Lead magnet</option>
+                  <option>Upsell another digital product</option>
+                  <option>Cross-sell another digital product</option>
+                </select>
+              </label>
+              <label>
+                Sales channel
+                <select id="salesChannel">
+                  <option>Affiliate marketing platforms</option>
+                  <option>Digital products marketplace</option>
+                  <option selected>Landing page</option>
+                  <option>Own website</option>
+                  <option>E-commerce store front</option>
+                </select>
+              </label>
+              <label>
+                Promotion mix
+                <select id="promotionMix">
+                  <option selected>YouTube channel</option>
+                  <option>SEO and blogging</option>
+                  <option>Email marketing/newsletter</option>
+                  <option>Social media organic</option>
+                  <option>Affiliate program</option>
+                  <option>Webinars</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="screen" id="research" aria-labelledby="researchTitle">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">Digital Product Research</p>
+                <h1 id="researchTitle">Decide if this product is worth building.</h1>
+              </div>
+              <button class="primary-button" type="button" id="runResearch">Assess Viability</button>
+            </div>
+
+            <div class="split-layout">
+              <div class="panel">
+                <label>
+                  Product URL or research notes
+                  <textarea id="researchNotes" rows="8">A template pack that helps solo creators turn one YouTube idea into a mini course, workbook, and lead magnet.</textarea>
+                </label>
+                <div class="choice-row">
+                  <label><input type="checkbox" class="research-factor" value="psychographics" checked> Psychographics</label>
+                  <label><input type="checkbox" class="research-factor" value="journey" checked> Customer journey</label>
+                  <label><input type="checkbox" class="research-factor" value="trust" checked> Trust and privacy</label>
+                  <label><input type="checkbox" class="research-factor" value="roi" checked> ROI metrics</label>
+                </div>
+              </div>
+              <div class="score-panel">
+                <span>Build Viability</span>
+                <strong id="viabilityScore">78</strong>
+                <p id="viabilityVerdict">Promising if the offer is positioned around immediate creator output.</p>
+                <div class="meter"><span id="viabilityBar"></span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" id="product" aria-labelledby="productTitle">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">Product Maker</p>
+                <h1 id="productTitle">Package the offer into a sellable asset.</h1>
+              </div>
+              <button class="primary-button" type="button" id="generateProduct">Build Product Kit</button>
+            </div>
+
+            <div class="product-builder">
+              <label>
+                Product format
+                <select id="productFormat">
+                  <option selected>Mini digital course</option>
+                  <option>Notion or dashboard template</option>
+                  <option>Canva template pack</option>
+                  <option>Fillable PDF workbook</option>
+                  <option>Prompt pack</option>
+                  <option>Interactive ebook</option>
+                </select>
+              </label>
+              <label>
+                Buyer pain point
+                <textarea id="buyerPain" rows="4">I have content ideas, but I do not know how to package them into a product people will pay for.</textarea>
+              </label>
+              <label>
+                Transformation promise
+                <textarea id="transformation" rows="4">Go from scattered content ideas to a clear product, lesson plan, and launch asset bundle in one afternoon.</textarea>
+              </label>
+            </div>
+          </section>
+
+          <section class="screen" id="content" aria-labelledby="contentTitle">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">Blog and Course</p>
+                <h1 id="contentTitle">Turn the product into publishable education.</h1>
+              </div>
+              <button class="primary-button" type="button" id="generateContent">Create Content Plan</button>
+            </div>
+
+            <div class="timeline">
+              <div>
+                <span>01</span>
+                <strong>Buyer-intent blog post</strong>
+                <p id="blogIdea">How to turn YouTube content into a digital product without starting over.</p>
+              </div>
+              <div>
+                <span>02</span>
+                <strong>Course lesson structure</strong>
+                <p id="courseIdea">Offer audit, product map, lesson outline, workbook, launch assets.</p>
+              </div>
+              <div>
+                <span>03</span>
+                <strong>Lead magnet</strong>
+                <p id="leadMagnetIdea">One-page creator product validation checklist.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" id="promotion" aria-labelledby="promotionTitle">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">Ads and Affiliates</p>
+                <h1 id="promotionTitle">Choose the right channels for the product.</h1>
+              </div>
+              <button class="primary-button" type="button" id="generatePromotion">Plan Promotion</button>
+            </div>
+
+            <div class="platform-grid">
+              <article class="platform-card is-selected" data-platform="YouTube">
+                <strong>YouTube</strong>
+                <span>Educational demos, long-form trust, Shorts extracts</span>
+              </article>
+              <article class="platform-card" data-platform="Gumroad">
+                <strong>Gumroad</strong>
+                <span>Simple checkout and creator-first product delivery</span>
+              </article>
+              <article class="platform-card" data-platform="TikTok">
+                <strong>TikTok</strong>
+                <span>Native UGC hooks and short proof clips</span>
+              </article>
+              <article class="platform-card" data-platform="Pinterest">
+                <strong>Pinterest</strong>
+                <span>Visual template discovery and evergreen search</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="screen" id="canvas" aria-labelledby="canvasTitle">
+            <div class="canvas-shell">
+              <div class="canvas-main">
+                <p class="section-kicker">Creation Canvas</p>
+                <h1 id="canvasTitle">Generated business blueprint</h1>
+                <div class="output-document" id="outputDocument" tabindex="0">
+                  <h2>Executive Summary</h2>
+                  <p>Complete the Business Blueprint and run the generators to create your first Readi4Bizness plan.</p>
+                </div>
+              </div>
+              <aside class="canvas-tools">
+                <h2>AI guardrails</h2>
+                <div class="guardrail-card">
+                  <span>Promise Match</span>
+                  <strong id="promiseMatch">Needs product promise</strong>
+                </div>
+                <div class="guardrail-card">
+                  <span>Monetization Fit</span>
+                  <strong id="monetizationFit">Landing page ready</strong>
+                </div>
+                <div class="guardrail-card">
+                  <span>Compliance Note</span>
+                  <strong>Disclose AI-assisted outputs and affiliate links.</strong>
+                </div>
+              </aside>
+            </div>
+          </section>
+        </main>
+
+        <aside class="right-rail" aria-label="AI co-pilot">
+          <div class="copilot-head">
+            <span class="icon-badge amber">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-4 12.74V18h8v-3.26A7 7 0 0 0 12 2Zm0 2a5 5 0 0 1 2.5 9.33l-.5.29V16h-4v-2.38l-.5-.29A5 5 0 0 1 12 4Zm-3 16h6v2H9v-2Z"/></svg>
+            </span>
+            <span>
+              <strong>Intelligence</strong>
+              <small>Contextual guardrails</small>
+            </span>
+          </div>
+
+          <div class="rail-card">
+            <span>Readiness</span>
+            <strong id="readinessScore">42%</strong>
+            <div class="meter"><span id="readinessBar"></span></div>
+          </div>
+
+          <div class="rail-card">
+            <span>Recommended next action</span>
+            <p id="nextAction">Define the product objective and generate the first blueprint.</p>
+          </div>
+
+          <div class="rail-card">
+            <span>Tool stack</span>
+            <ul>
+              <li>Blueprint: strategy map</li>
+              <li>Research: viability scan</li>
+              <li>Product: offer kit</li>
+              <li>Content: blog and course plan</li>
+              <li>Promotion: ads and affiliates</li>
+            </ul>
+          </div>
+
+          <button class="dark-button" type="button" id="resetWorkspace">Reset Workspace</button>
+        </aside>
+      </div>
+    </div>
+
+    <dialog class="login-modal" id="loginModal">
+      <form method="dialog" class="login-card">
+        <button class="close-button" value="cancel" aria-label="Close login">x</button>
+        <h2>Demo workspace login</h2>
+        <p>Use the built-in demo credentials to unlock the onboarding panel.</p>
+        <label>
+          Email
+          <input type="email" value="demo@readi4bizness.com">
+        </label>
+        <label>
+          Password
+          <input type="text" value="readi-demo-2026">
+        </label>
+        <button class="primary-button" value="default" type="submit">Enter Workspace</button>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>

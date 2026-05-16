@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readi4Bizness OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: -2px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2a4b8c;
+            --secondary: #4a6fa5;
+            --accent: #ff6b35;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding:プロンプトの続き:
+.header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px sensory
+. 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .login-btn, .logout-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover, .logout-btn:hover {
+            background-color: #e55a2b;
+        }
+        
+        /* Main Layout */
+        .container {
+            display: flex;
+            flex: 1;
+            min-height: calc(100vh - 70px);
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            padding: 1.5rem 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-item {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap:室s:
+/* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            padding: 1.5rem 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-item {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            border-left: 4px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .nav-item.active {
+            background-color: rgba(42, 75, 140, 0.1);
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .section-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-icon {
+            font-size: 1.5rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-title {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary {
+            background-color: var(--gray);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #e55a2b;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Canvas Output */
+        .canvas-container {
+            background-color: #f9f9f9;
+            border: 2px dashed var(--light-gray);
+            border-radius: 8px;
+            padding: 2rem;
+            min-height: \renewcommand{\arraystretch}{1.5}
+   300px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .export-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 generative
+px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-header {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .modal-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .demo-credentials {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Status Indicators */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-good {
+            background-color: rgba(40, 167, 69, 0.15);
+            color: var(--success);
+        }
+        
+        .status-warning {
+            background-color: rgba(255, 193, 7, 0.15);
+            color: #b38b00;
+        }
+        
+        .status-critical {
+            background-color: rgba(220, 53, 69, 0.15);
+            color: var(--danger);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 0;
+            }
+            
+            .nav-item {
+                flex-direction: column;
+                padding: 0.75rem;
+                font-size: 0.9rem;
+                min-width: 80px;
+            }
+            
+            .nav-icon {
+                font-size: 1.2rem;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .export-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-rocket logo-icon"></i>
+            <span>Readi4Bizness OS</span>
+        </div>
+        <div class="user-info">
+            <span id="user-email">Not logged in</span>
+            <button class="login-btn" id="show-login-btn">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button class="logout-btn" id="logout-btn" style="display: none;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </header>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="nav-item active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt nav-icon"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" data-section="blueprint">
+                <i class="fas fa-project-diagram nav-icon"></i>
+                <span>Business Blueprint</span>
+            </div>
+            <div class="nav-item" data-section="research">
+                <i class="fas fa-search nav-icon"></i>
+                <span>Product Research</span>
+            </div>
+            <div class="nav-item" data-section="product">
+                <i class="fas fa-box-open nav-icon"></i>
+                <span>Product Maker</span>
+            </div>
+            <div class="nav-item" data-section="content">
+                <i class="fas fa-edit nav-icon"></i>
+                <span>Content Planner</span>
+            </div>
+            <div class="nav-item" data-section="ads">
+                <i class="fas fa-bullhorn nav-icon"></i>
+                <span>Ads & Promotion</span>
+            </div>
+            <div class="nav-item" data-section="canvas">
+                <i class="fas fa-file-export nav-icon"></i>
+                <span>Canvas Output</span>
+            </div>
+        </nav>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="section-content">
+                <h2 class="section-title">
+                    <i class="fas fa-tachometer-alt section-icon"></i>
+                    Internal Dashboard
+                </h2>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line fa-2x" style="color: var(--primary);"></i>
+                        <div class="stat-value" id="revenue-stat">$0</div>
+                        <div class="stat-label">Monthly Revenue</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users fa-2x" style="color: var(--success);"></i>
+                        <div class="stat-value" id="customers-stat">0</div>
+                        <div class="stat-label">Active Customers</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-box fa-2x" style="color: var(--accent);"></i>
+                        <div class="stat-value" id="products-stat">0</div>
+                        <div class="stat-label">Digital Products</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-tasks fa-2x" style="color: var(--secondary);"></i>
+                        <div class="stat-value" id="tasks-stat">0/0</div>
+                        <div class="stat-label">Tasks Completed</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Operating Status</h3>
+                    <div class="form-group">
+                        <label for="business-health">Business Health</label>
+                        <select id="business-health">
+                            <option value="good">Good - All systems operational</option>
+                            <option value="warning">Warning - Needs attention</option>
+                            <option value="critical">Critical - Immediate action required</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cash-flow">Cash Flow Status</label>
+                        <select id="cash-flow">
+                            <option value="positive">Positive - More income than expenses</option>
+                            <option value="neutral">Neutral - Balanced</option>
+                            <option value="negative">Negative - More expenses than income</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="monthly-goals">Monthly Goals Progress</label>
+                        <input type="range" id="monthly-goals" min="0" max="100" value="0">
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                            <span>0%</span>
+                            <span id="goals-percentage">0%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+                    <button class="btn" id="save-dashboard">
+                        <i class="fas fa-save"></i> Save Dashboard Status
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Recent Activity</h3>
+                    <div id="activity-list">
+                        <p>No recent activity. Start using the tools to see activity here.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Business Blueprint Section -->
+            <section id="blueprint-section" class="section-content" style="display: none;">
+                <h2 class="section-title">
+                    <i class="fas fa-project-diagram section-icon"></i>
+                    Business Blueprint Generator
+                </h2>
+                
+                <div class="card">
+                    <h3 class="card-title">Define Your Business Model</h3>
+                    <div class="form-group">
+                        <label for="business-name">Business Name</label>
+                        <input type="text" id="business-name" placeholder="Enter your business name">
+                    </div>
+                    <div class="form-group">
+                        <label for="business-niche">Primary Niche</label>
+                        <input type="text" id="business-niche" placeholder="e.g., Digital Marketing, Health & Wellness">
+                    </div>
+                    <div class="form-group">
+                        <label for="target-audience">Target Audience</label>
+                        <textarea id="target-audience" placeholder="Describe your ideal customer"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="value-proposition">Value Proposition</label>
+                        <textarea id="value-proposition" placeholder="What unique value do you offer?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="revenue-streams">Revenue Streams</label>
+                        <textarea id="revenue-streams" placeholder="List your main sources of income"></textarea>
+                    </div>
+                    <button class="btn" id="save-blueprint">
+                        <i class="fas fa-save"></i> Save Blueprint
+                    </button>
+                    <button class="btn btn-secondary" id="generate-blueprint">
+                        <i class="fas fa-magic"></i> Generate Sample Blueprint
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Your Business Blueprint</h3>
+                    <div id="blueprint-preview" class="canvas-container">
+                        <p>Your business blueprint will appear here after you save.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Product Research Section -->
+            <section id="research-section" class="section-content" style="display: none;">
+                <h2 class="section-title">
+                    <i class="fas fa-search section-icon"></i>
+                    Digital Product Research
+                </h2>
+                
+                <div class="card">
+                    <h3 class="card-title">Viability Scan</h3>
+                    <div class="form-group">
+                        <label for="product-idea">Product Idea</label>
+                        <input type="text" id="product-idea" placeholder="Enter your digital product idea">
+                    </div>
+                    <div class="form-group">
+                        <label for="market-size">Estimated Market Size</label>
+                        <select id="market-size">
+                            <option value="small">Small (Under 10,000 people)</option>
+                            <option value="medium" selected>Medium (10,000 - count: auto;
+   100,000 people)</option>
+                            <option value="large">Large (Over 100,000 people)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="competition-level">Competition Level</label>
+                        <select id="competition-level">
+                            <option value="low">Low - Few competitors</option>
+                            <option value="medium" selected>Medium - Some competition</option>
+                            <option value="high">High - Many competitors</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="problem-solved">Problem Solved (1 - 10)</label>
+                        <input type="range" id="problem-solved" min="1" max="10" value="5">
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                            <span>Minor</span>
+                            <span id="problem-value">5</span>
+                            <span>Major</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="research-notes">Research Notes</label>
+                        <textarea id="research-notes" placeholder="Add notes from your research"></textarea>
+                    </div>
+                    <button class="btn" id="save-research">
+                        <i class="fas fa-save"></i> Save Research
+                    </button>
+                    <button class="btn btn-accent" id="scan-viability">
+                        <i class="fas fa-search"></i> Scan Viability
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Viability Results</h3>
+                    <div id="viability-results">
+                        <p>Run a viability scan to see results here.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Product Maker Section -->
+            <section id="product-section" class="section-content" style="display: none;">
+                <h2 class="section-title">
+                    <i class="fas fa-box-open section-icon"></i>
+                    Product Maker
+                </h2>
+                
+                <div class="card">
+                    <h3 class="card-title">Package Your Digital Product</h3>
+                    <div class="form-group">
+                        <label for="product-title">Product Title</label>
+                        <input type="text" id="product-title" placeholder="Enter product title">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-type">Product Type</label>
+                        <select id="product-type">
+                            <option value="ebook">Ebook</option>
+                            <option value="course">Online Course</option>
+                            <option value="template">Templates</option>
+                            <option value="software">Software/Tool</option>
+                            <option value="membership">Membership</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Price ($)</label>
+                        <input type="number" id="product-price" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-features">Key Features (one per line)</label>
+                        <textarea id="product-features" placeholder="Feature 1&#10;Feature 2&#10;Feature 3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-bonuses">Bonuses (one per line)</label>
+                        <textarea id="product-bonuses" placeholder="Bonus 1&#10;Bonus 2"></textarea>
+                    </div>
+                    <button class="btn" id="save-product">
+                        <i class="fas fa-save"></i> Save Product
+                    </button>
+                    <button class="btn btn-success" id="package-product">
+                        <i class="fas fa-box"></i> Generate Package
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Product Package Output</h3>
+                    <div id="product-output" class="canvas-container">
+                        <p>Your product package will appear here after generation.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Content Planner Section -->
+            <section id="content-section" class="section-content" style="display: none;">
+                <h2 class="section-title">
+                    <i class="fas fa-edit section-icon"></i>
+                    Blog/Course Content Planner
+                </h2>
+                
+                <div class="card">
+                    <h3 class="card-title">Plan Your Content</h3>
+                    <div class="form-group">
+                        <label for="content-title">Content Title</label>
+                        <input type="text" id="content-title" placeholder="Enter content title">
+                    </div>
+                    <div class="form-group">
+                        <label for="content-type">Content Type</label>
+                        <select id="content-type">
+                            <option value="blog">Blog Post</option>
+                            <option value="course">Course Module</option>
+                            <option value="video">Video Script</option>
+                            <option value="podcast">Podcast Episode</option>
+                            <option value="social">Social Media Post</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="content-outline">Outline/Key Points (one per line)</label>
+                        <textarea id="content-outline" placeholder="Introduction&#10;Main Point 1&#10;Main Point 2&#10;Conclusion"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="content-keywords">Target Keywords (comma separated)</label>
+                        <input type="text" id="content-keywords" placeholder="keyword1, keyword2, keyword3">
+                    </div>
+                    <div class="form-group">
+                        <label for="content-notes">Additional Notes</label>
+                        <textarea id="content-notes" placeholder="Any additional notes or ideas"></textarea>
+                    </div>
+                    <button class="btn" id="save-content">
+                        <i class="fas fa-save"></i> Save Content Plan
+                    </button>
+                    <button class="btn btn-secondary" id="generate-outline">
+                        <i class="fas fa-list"></i> Generate Outline
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Your Content Plans</h3>
+                    <div id="content-plans-list">
+                        <p>No content plans saved yet. Create one above.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Ads & Promotion Section -->
+            <section id="ads-section" class="section-content" style="display: none;">
+                <h2 class="section-title">
+                    <i class="fas fa-bullhorn section-icon"></i>
+                    Ads & Affiliate Promotion Planner
+                </h2>
+                
+                <div class="card">
+                    <h3 class="card-title">Plan Your Campaign</h3>
+                    <div class="form-group">
+                        <label for="campaign-name">Campaign Name</label>
+                        <input type="text" id="campaign-name" placeholder="Enter campaign name">
+                    </div>
+                    <div class="form-group">
+                        <label for="campaign-platform">Primary Platform</label>
+                        <select id="campaign-platform">
+                            <option value="facebook">Facebook/Instagram</option>
+                            <option value="google">Google Ads</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="affiliate">Affiliate Network</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="campaign-budget">Budget ($)</label>
+                        <input type="number" id="campaign-budget" min="0" step="1" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="campaign-duration">Duration (days)</label>
+                        <input type="number" id="campaign-duration" min="1" step="1" placeholder="7">
+                    </div>
+                    <div class="form-group">
+                        <label for="campaign-message">Key Message/Value Proposition</label>
+                        <textarea id="campaign-message" placeholder="What is the core message of your campaign?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="campaign-targeting">Targeting Details</label>
+                        <textarea id="campaign-targeting" placeholder="Describe your target audience for this campaign"></textarea>
+                    </div>
+                    <button class="btn" id="save-campaign">
+                        <i class="fas fa-save"></i> Save Campaign
+                    </button>
+                    <button class="btn btn-accent" id="generate-ad-copy">
+                        <i class="fas fa-bullhorn"></i> Generate Ad Copy
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Campaign Ideas & Copy</h3>
+                    <div id="ad-copy-output" class="canvas-container">
+                        <p>Your ad copy will appear here after generation.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Canvas Output Section -->
+            <section id="canvas-section" class="section-content" style="display: none;">
+                <h2 class="section-title">
+                    <i class="fas fa-file-export section-icon"></i>
+                    Canvas Output Document
+                </h2>
+                
+                <div class="card">
+                    <h3 class="card-title">Export Your Business Data</h3>
+                    <p>This section combines all your business data into a single document that you can export or print.</p>
+                    
+                    <div class="export-options">
+                        <button class="btn" id="refresh-canvas">
+                            <i class="fas fa-sync-alt"></i> Refresh Canvas
+                        </button>
+                        <button class="btn btn-success" id="export-text">
+                            <i class="fas fa-download"></i> Export as Text
+                        </button>
+                        <button class="btn btn-secondary" id="print-canvas">
+                            <i class="fas fa-print"></i> Print Canvas
+                        </button>
+                        <button class="btn btn-accent" id="clear-all-data">
+                            <i class="fas fa-trash-alt"></i> Clear All Data
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Business Canvas</h3>
+                    <div id="canvas-output" class="canvas-container">
+                        <p>Your consolidated business data will appear here. Click "Refresh Canvas" to update.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-rocket"></i> Readi4Bizness OS Login
+                </h2>
+                <p>Enter demo credentials to access the system</p>
+            </div>
+            
+            <div class="demo-credentials">
+                <p><strong>Demo Credentials:</strong></p>
+                <p>Email: <code>demo@readi4bizness.com</code></p>
+                <p>Password: <code>readi-demo-2026</code></p>
+            </div>
+            
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter your password">
+            </div>
+            
+            <div id="login-error" style="color: var(--danger); margin-bottom: 1rem; display: none;">
+                <i class="fas fa-exclamation-triangle"></i> Invalid credentials. Use the demo credentials above.
+            </div>
+            
+            <button class="btn" id="login-submit" style="width: 100%;">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>Readi4Bizness OS v1.0 &copy; 2023 | A static, interactive business operating system | All data stored locally in your browser</p>
+    </footer>
+
+    <script>
+        // App State
+        const state = {
+            loggedIn: false,
+            currentSection: 'dashboard',
+            data: {
+                dashboard: {},
+                blueprint: {},
+                research: {},
+                product: {},
+                content: [],
+                ads: [],
+                activity: []
+            }
+        };
+        
+        // DOM Elements
+        const loginModal = document.getElementById('login-modal');
+        const showLoginBtn = document.getElementById('show-login-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const loginSubmitBtn = document.getElementById('login-submit');
+        const loginEmail = document.getElementById('login-email');
+        const loginPassword = document.getElementById('login-password');
+        const loginError = document.getElementById('login-error');
+        const userEmailSpan = document.getElementById('user-email');
+        const navItems = document.querySelectorAll('.nav-item');
+        const sectionContents = document.querySelectorAll('.section-content');
+        
+        // Demo credentials
+        const DEMO_EMAIL = 'demo@readi4bizness.com';
+        const DEMO_PASSWORD = 'readi-demo-2026';
+        
+        // Initialize the app
+        function initApp() {
+            // Load saved data from localStorage
+            loadState();
+            
+            // Check if user is logged in
+            const savedLogin = localStorage.getItem('readi4bizness_loggedIn');
+            if (savedLogin === 'true') {
+                state.loggedIn = true;
+                updateUIForLogin();
+            } else {
+                loginModal.classList.add('active');
+            }
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Initialize dashboard stats
+            updateDashboardStats();
+        }
+        
+        // Load state from localStorage
+        function loadState() {
+            for (const key in state.data) {
+                const saved = localStorage.getItem(`readi4bizness_${key}`);
+                if (saved) {
+                    try {
+                        state.data[key] = JSON.parse(saved);
+                    } catch (e) {
+                        console.error(`Error parsing ${key} from localStorage:`, e);
+                    }
+                }
+            }
+            
+            // Load dashboard values if they exist
+            if (state.data.dashboard.businessHealth) {
+                document.getElementById('business-health').value = state.data.dashboard.businessHealth;
+            }
+            if (state.data.dashboard.cashFlow) {
+                document.getElementById('cash-flow').value = state.data.dashboard.cashFlow;
+            }
+            if (state.data.dashboard.monthlyGoals) {
+                document.getElementById('monthly-goals').value = state.data.dashboard.monthlyGoals;
+                document.getElementById('goals-percentage').textContent = `${state.data.dashboard.monthlyGoals}%`;
+            }
+            
+            // Update activity list
+            updateActivityList();
+        }
+        
+        // Save state to localStorage
+        function saveState() {
+            for (const key in state.data) {
+                localStorage.setItem(`readi4bizness_${key}`, JSON.stringify(state.data[key]));
+            }
+        }
+        
+        // Update dashboard statistics
+        function updateDashboardStats() {
+            // Revenue - sum of product prices
+            let revenue = 0;
+            if (state.data.product && state.data.product.price) {
+                revenue = parseFloat(state.data.product.price) || 0;
+            }
+            document.getElementById('revenue-stat').textContent = `$${revenue.toFixed(2)}`;
+            
+            // Customers - random for demo
+            const customers = Math.floor(Math.random() * 100) + 20;
+            document.getElementById('customers-stat').textContent = customers;
+            
+            // Products - count from content plans
+            const products = state.data.content ? state.data.content.length : 0;
+            document.getElementById('products-stat').textContent = products;
+            
+            // Tasks - from activity
+            const totalTasks = 10;
+            const completedTasks = Math.min(state.data.activity ? state.data.activity.length : 0, totalTasks);
+            document.getElementById('tasks-stat').textContent = `${completedTasks}/${totalTasks}`;
+        }
+        
+        // Update activity list
+        function updateActivityList() {
+            const activityList = document.getElementById('activity-list');
+            if (!state.data.activity || state.data.activity.length === 0) {
+                activityList.innerHTML = '<p>No recent activity. Start using the tools to see activity here.</p>';
+                return;
+            }
+            
+            let html = '<ul style="list-style-type: none; padding-left: 0;">';
+            state.data.activity.slice(-5).reverse().forEach(activity => {
+                const time = new Date(activity.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                html += `
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--light-gray);">
+                        <div style="display: flex; align-items: center; gap: ANIME:
+   10px;">
+                            <i class="fas fa-${activity.icon}" style="color: var(--${activity.color});"></i>
+                            <div>
+                                <strong>${activity.action}</strong>
+                                <div style="font-size: 0.9rem; color: var(--gray);">
+                                    ${time} - ${activity.details}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                `;
+            });
+            html += '</ul>';
+            activityList.innerHTML = html;
+        }
+        
+        // Add activity
+        function addActivity(action, details, icon = 'check-circle', color = 'primary') {
+            if (!state.data.activity) state.data.activity = [];
+            
+            state.data.activity.push({
+                timestamp: new Date().toISOString(),
+                action,
+                details,
+                icon,
+                color
+            });
+            
+            // Keep only last 20 activities
+            if (state.data.activity.length > 20) {
+                state.data.activity = state.data.activity.slice(-20);
+            }
+            
+            localStorage.setItem('readi4bizness_activity', JSON.stringify(state.data.activity));
+            updateActivityList();
+            updateDashboardStats();
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Navigation
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const section = item.dataset.section;
+                    switchSection(section);
+                });
+            });
+            
+            // Login/Logout
+            showLoginBtn.addEventListener('click', () => {
+                loginModal.classList.add('active');
+            });
+            
+            logoutBtn.addEventListener('click', () => {
+                state.loggedIn = false;
+                localStorage.setItem('readi4bizness_loggedIn', 'false');
+                updateUIForLogin();
+                loginModal.classList.add('active');
+            });
+            
+            loginSubmitBtn.addEventListener('click', () => {
+                const email = loginEmail.value.trim();
+                const password = loginPassword.value.trim();
+                
+                if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+                    state.loggedIn = true;
+                    localStorage.setItem('readi4bizness_loggedIn', 'true');
+                    updateUIForLogin();
+                    loginModal.classList.remove('active');
+                    loginError.style.display = 'none';
+                    addActivity('User logged in', 'Demo user accessed the system', 'sign-in-alt', 'success');
+                } else {
+                    loginError.style.display = 'block';
+                }
+            });
+            
+            // Dashboard
+            document.getElementById('save-dashboard').addEventListener('click', saveDashboard);
+            document.getElementById('monthly-goals').addEventListener('input', function() {
+                document.getElementById('goals-percentage').textContent = `${this.value}%`;
+            });
+            
+            // Blueprint
+            document.getElementById('save-blueprint').addEventListener('click', saveBlueprint);
+            document.getElementById('generate-blueprint').addEventListener('click', generateBlueprint);
+            
+            // Research
+            document.getElementById('save-research').addEventListener('click', saveResearch);
+            document.getElementById('scan-viability').addEventListener('click', scanViability);
+            document.getElementById('problem-solved').addEventListener('input', function() {
+                document.getElementById('problem-value').textContent = this.value;
+            });
+            
+            // Product
+            document.getElementById('save-product').addEventListener('click', saveProduct);
+            document.getElementById('package-product').addEventListener('click', packageProduct);
+            
+            // Content
+            document.getElementById('save-content').addEventListener('click', saveContent);
+            document.getElementById('generate-outline').addEventListener('click', generateOutline);
+            
+            // Ads
+            document.getElementById('save-campaign').addEventListener('click', saveCampaign);
+            document.getElementById('generate-ad-copy').addEventListener('click', generateAdCopy);
+            
+            // Canvas
+            document.getElementById('refresh-canvas').addEventListener('click', refreshCanvas);
+            document.getElementById('export-text').addEventListener('click', exportText);
+            document.getElementById('print-canvas').addEventListener('click', printCanvas);
+            document.getElementById('clear-all-data').addEventListener('click', clearAllData);
+        }
+        
+        // Switch between sections
+        function switchSection(sectionId) {
+            // Update navigation
+            navItems.forEach(item => {
+                if (item.dataset.section === sectionId) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Update content visibility
+            sectionContents.forEach(section => {
+                if (section.id === `${sectionId}-section`) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+            
+            state.currentSection = sectionId;
+            
+            // Refresh canvas if on canvas section
+            if (sectionId === 'canvas') {
+                refreshCanvas();
+            }
+        }
+        
+        // Update UI for login state
+        function updateUIForLogin() {
+            if (state.loggedIn) {
+                userEmailSpan.textContent = DEMO_EMAIL;
+                showLoginBtn.style.display = 'none';
+                logoutBtn.style.display = 'block';
+            } else {
+                userEmailSpan.textContent = 'Not logged in';
+                showLoginBtn.style.display = 'block';
+                logoutBtn.style.display = 'none';
+            }
+        }
+        
+        // Dashboard functions
+        function saveDashboard() {
+            state.data.dashboard = {
+                businessHealth: document.getElementById('business-health').value,
+                cashFlow: document.getElementById('cash-flow').value,
+                monthlyGoals: document.getElementById('monthly-goals').value
+            };
+            
+            localStorage.setItem('readi4bizness_dashboard', JSON.stringify(state.data.dashboard));
+            addActivity('Dashboard updated', 'Operating status saved', 'tachometer-alt', 'primary');
+            
+            // Show status indicator
+            let statusText, statusClass;
+            switch(state.data.dashboard.businessHealth) {
+                case 'good': statusText = 'Good'; statusClass = 'status-good'; break;
+                case 'warning': statusText = 'Warning'; statusClass = 'status-warning'; break;
+                case 'critical': statusText = 'Critical'; statusClass = 'status-critical'; break;
+            }
+            
+            alert(`Dashboard saved with status: ${statusText}`);
+        }
+        
+        // Blueprint functions
+        function saveBlueprint() {
+            state.data.blueprint = {
+                businessName: document.getElementById('business-name').value,
+                niche: document.getElementById('business-niche').value,
+                audience: document.getElementById('target-audience').value,
+                valueProposition: document.getElementById('value-proposition').value,
+                revenueStreams: document.getElementById('revenue-streams').value
+            };
+            
+            localStorage.setItem('readi4bizness_blueprint', JSON.stringify(state.data.blueprint));
+            
+            // Update preview
+            const preview = document.getElementById('blueprint-preview');
+            preview.innerHTML = `
+                <h3>${state.data.blueprint.businessName || 'Your Business'}</h3>
+                <p><strong>Niche:</strong> ${state.data.blueprint.niche || 'Not specified'}</p>
+                <p><strong>Target Audience:</strong> ${state.data.blueprint.audience || 'Not specified'}</p>
+                <p><strong>Value Proposition:</strong> ${state.data.blueprint.valueProposition || 'Not specified'}</p>
+                <p><strong>Revenue Streams:</strong> ${state.data.blueprint.revenueStreams || 'Not specified'}</p>
+            `;
+            
+            addActivity('Business blueprint saved', 'Business model updated', 'project-diagram', 'secondary');
+            alert('Business blueprint saved successfully!');
+        }
+        
+        function generateBlueprint() {
+            document.getElementById('business-name').value = 'Digital Success Academy';
+            document.getElementById('business-niche').value = 'Online Education & Digital Skills';
+            document.getElementById('target-audience').value = 'Aspiring entrepreneurs, freelancers, and career changers looking to build digital businesses';
+            document.getElementById('value-proposition').value = 'Step-by-step system for creating and selling digital products without technical expertise';
+            document.getElementById('revenue-streams').value = 'Digital product sales, affiliate commissions, coaching programs, membership site';
+            
+            addActivity('Sample blueprint generated', 'Demo business model created', 'magic', 'accent');
+            alert('Sample business blueprint generated! Click "Save Blueprint" to store it.');
+        }
+        
+        // Research functions
+        function saveResearch() {
+            state.data.research = {
+                productIdea: document.getElementById('product-idea').value,
+                marketSize: document.getElementById('market-size').value,
+                competition: document.getElementById('competition-level').value,
+                problemSolved: document.getElementById('problem-solved').value,
+                notes: document.getElementById('research-notes').value
+            };
+            
+            localStorage.setItem('readi4bizness_research', JSON.stringify(state.data.research));
+            addActivity('Product research saved', 'Viability scan data stored', 'search', 'primary');
+            alert('Product research saved!');
+        }
+        
+        function scanViability() {
+            const idea = document.getElementById('product-idea').value;
+            const market = document.getElementById('market-size').value;
+            const competition = document.getElementById('competition-level').value;
+            const problem = parseInt(document.getElementById('problem-solved').value);
+            
+            if (!idea) {
+                alert('Please enter a product idea first');
+                return;
+            }
+            
+            // Calculate viability score (simplified)
+            let marketScore = 0;
+            if (market === 'small') marketScore =}\);
+   3;
+            else if (market === 'medium') marketScore = 6;
+            else if (market === 'large') marketScore = 10;
+            
+            let competitionScore = 0;
+            if (competition === 'low') competitionScore = 10;
+            else if (competition === 'medium') competitionScore = 6;
+            else if (competition === 'high') competitionScore = 3;
+            
+            const viabilityScore = Math.round((marketScore + competitionScore + problem) / 3);
+            
+            // Generate recommendation
+            let recommendation = '';
+            if (viabilityScore >= 7) {
+                recommendation = '<span class="status-good">HIGH VIABILITY</span> - This product idea has strong potential. Consider moving forward with development.';
+            } else if (viabilityScore >= 4) {
+                recommendation = '<span class="status-warning">MEDIUM VIABILITY</span> - This product idea has potential but may require differentiation or niche targeting.';
+            } else {
+                recommendation = '<span class="status-critical">LOW VIABILITY</span> - This product idea may not be worth pursuing without significant changes to the approach.';
+            }
+            
+            const results = document.getElementById('viability-results');
+            results.innerHTML = `
+                <h4>Viability Scan Results for: "${idea}"</h4>
+                <p><strong>Viability Score:</strong> ${viabilityScore}/10</p>
+                <p><strong>Market Size:</strong> ${market}</p>
+                <p><strong>Competition Level:</strong> ${competition}</p>
+                <p><strong>Problem Solved Rating:</strong> ${problem}/10</p>
+                <p><strong>Recommendation:</strong> ${recommendation}</p>
+                <p><strong>Next Steps:</strong> ${viabilityScore >= 7 ? 'Proceed to Product Maker to package your idea.' : 'Consider refining your idea or targeting a more specific niche.'}</p>
+            `;
+            
+            addActivity('Viability scan completed', `Score: ${viabilityScore}/10 for "${idea.substring(0, 30)}..."`, 'search', viabilityScore >= 7 ? 'success' : viabilityScore >= 4 ? 'warning' : 'danger');
+            alert(`Viability scan completed! Score: ${viabilityScore}/10`);
+        }
+        
+        // Product functions
+        function saveProduct() {
+            state.data.product = {
+                title: document.getElementById('product-title').value,
+                type: document.getElementById('product-type').value,
+                price: document.getElementById('product-price').value,
+                features: document.getElementById('product-features').value,
+                bonuses: document.getElementById('product-bonuses').value
+            };
+            
+            localStorage.setItem('readi4bizness_product', JSON.stringify(state.data.product));
+            addActivity('Product saved', 'Digital product details stored', 'box-open', 'primary');
+            alert('Product details saved!');
+        }
+        
+        function packageProduct() {
+            const title = document.getElementById('product-title').value;
+            const type = document.getElementById('product-type').value;
+            const price = document.getElementById('product-price').value;
+            const features = document.getElementById('product-features').value;
+            const bonuses = document.getElementById('product-bonuses').value;
+            
+            if (!title || !price) {
+                alert('Please enter product title and price first');
+                return;
+            }
+            
+            const output = document.getElementById('product-output');
+            output.innerHTML = `
+                <h3>${title}</h3>
+                <p><strong>Product Type:</strong> ${type}</p>
+                <p><strong>Price:</strong> $${parseFloat(price).toFixed(2)}</p>
+                
+                <h4>Key Features:</h4>
+                <ul>${features.split('\n').filter(f => f.trim()).map(f => `<li>${f}</li>`).join('')}</ul>
+                
+                ${bonuses.trim() ? `
+                <h4>Bonuses:</h4>
+                <ul>${bonuses.split('\n').filter(b => b.trim()).map(b => `<li>${b}</li>`).join('')}</ul>
+                ` : ''}
+                
+                <h4>Sales Page Outline:</h4>
+                <ol>
+                    <li>Headline: Solve [problem] with ${title}</li>
+                    <li>Problem Agitation: Describe the pain points</li>
+                    <li>Solution Introduction: Present ${title} as the solution</li>
+                    <li>Features & Benefits: List what's included</li>
+                    <li>Social Proof: Customer testimonials</li>
+                    <li>Offer & Price: $${parseFloat(price).toFixed(2)}</li>
+                    <li>Bonuses: Limited-time extras</li>
+                    <li>Guarantee: Risk-free promise</li>
+                    <li>Call to Action: Buy now button</li>
+                </ol>
+            `;
+            
+            addActivity('Product packaged', `"${title}" ready for launch`, 'box', 'success');
+            alert('Product packaged successfully! Ready for launch.');
+        }
+        
+        // Content functions
+        function saveContent() {
+            const content = {
+                title: document.getElementById('content-title').value,
+                type: document.getElementById('content-type').value,
+                outline: document.getElementById('content-outline').value,
+                keywords: document.getElementById('content-keywords').value,
+                notes: document.getElementById('content-notes').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            if (!state.data.content) state.data.content = [];
+            state.data.content.push(content);
+            localStorage.setItem('readi4bizness_content', JSON.stringify(state.data.content));
+            
+            // Update content plans list
+            updateContentPlansList();
+            
+            addActivity('Content plan saved', `"${content.title}" added to planner`, 'edit', 'primary');
+            alert('Content plan saved!');
+        }
+        
+        function updateContentPlansList() {
+            const list = document.getElementById('content-plans-list');
+            if (!state.data.content || state.data.content.length === 0) {
+                list.innerHTML = '<p>No content plans saved yet. Create one above.</p>';
+                return;
+            }
+            
+            let html = '<ul style="list-style-type: none; padding-left: 0;">';
+            state.data.content.slice(-5).reverse().forEach((plan, index) => {
+                const date = new Date(plan.timestamp).toLocaleDateString();
+                html += `
+                    <li style="padding: 1rem; border-bottom: 1px solid var(--light-gray); margin-bottom: 0.5rem; background-color: ${index % 2 === 0 ? 'var(--light-gray)' : 'white'}; border-radius: 4px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>${plan.title}</strong>
+                                <div style="font-size: 0.9rem; color: var(--gray);">
+                                    ${plan.type} | ${date}
+                                </div>
+                            </div>
+                            <span class="status-indicator status-good">Planned</span>
+                        </div>
+                        <div style="margin-top: 0.5rem;">
+                            <strong>Keywords:</strong> ${plan.keywords}
+                        </div>
+                    </li>
+                `;
+            });
+            html += '</ul>';
+            list.innerHTML = html;
+        }
+        
+        function generateOutline() {
+            const title = document.getElementById('content-title').value || 'Digital Product Creation';
+            const type = document.getElementById('content-type').value;
+            
+            let outline = '';
+            if (type === 'blog') {
+                outline = 'Introduction: Hook the reader\nProblem: Identify the pain point\nSolution: Present your main idea\nStep 1: First actionable step\nStep 2: Second actionable step\nStep 3: Third actionable step\nExamples: Real-world applications\nConclusion: Recap and call to action';
+            } else if (type === 'course') {
+                outline = 'Module 1: Introduction and overview\nModule 2: Foundation concepts\nModule 3: Step-by-step process\nModule 4: Advanced techniques\nModule 5: Implementation guide\nModule 6: Troubleshooting and FAQ\nModule 7: Next steps and resources';
+            } else if (type === 'video') {
+                outline = 'Hook: Grab attention in first 10 seconds\nIntroduction: What the video covers\nProblem: What the viewer is struggling with\nSolution: How to solve it\nDemonstration: Show how it works\nExamples: Real applications\nConclusion: Recap and call to action';
+            }
+            
+            document.getElementById('content-outline').value = outline;
+            addActivity('Content outline generated', `Template for ${type} created`, 'list', 'secondary');
+            alert(`Outline generated for ${type} content!`);
+        }
+        
+        // Ads functions
+        function saveCampaign() {
+            const campaign = {
+                name: document.getElementById('campaign-name').value,
+                platform: document.getElementById('campaign-platform').value,
+                budget: document.getElementById('campaign-budget').value,
+                duration: document.getElementById('campaign-duration').value,
+                message: document.getElementById('campaign-message').value,
+                targeting: document.getElementById('campaign-targeting').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            if (!state.data.ads) state.data.ads = [];
+            state.data.ads.push(campaign);
+            localStorage.setItem('readi4bizness_ads', JSON.stringify(state.data.ads));
+            
+            addActivity('Campaign saved', `"${campaign.name}" promotion plan stored`, 'bullhorn', 'primary');
+            alert('Campaign saved successfully!');
+        }
+        
+        function generateAdCopy() {
+            const campaignName = document.getElementById('campaign-name').value || 'Product Launch';
+            const platform = document.getElementById('campaign-platform').value;
+            const message = document.getElementById('campaign-message').value || 'Solve your problem with our solution';
+            
+            let adCopy = '';
+            
+            if (platform === 'facebook') {
+                adCopy = `
+                    <h4>Facebook/Instagram Ad Copy</h4>
+                    <p><strong>Headline:</strong> Tired of struggling with [problem]?</p>
+                    <p><strong>Primary Text:</strong> ${message} Discover how [solution] can help you achieve [result] in just [timeframe]. Join thousands of satisfied customers who have already transformed their results.</p>
+                    <p><strong>Call to Action:</strong> Learn More</p>
+                    <p><strong>Description:</strong> Limited time offer. Get started today!</p>
+                `;
+            } else if (platform === 'google') {
+                adCopy = `
+                    <h4>Google Ads Copy</h4>
+                    <p><strong>Headline 1:</strong> [Problem] Solution</p>
+                    <p><strong>Headline 2:</strong> Get Results Fast</p>
+                    <p><strong>Headline 3:</strong> Expert Approved Method</p>
+                    <p><strong>Description:</strong> ${message} Proven system that works. Easy to implement. See real results in days.</p>
+                    <p><strong>Display Path:</strong> example.com/solution</p>
+                `;
+            } else if (platform === 'affiliate') {
+                adCopy = `
+                    <h4>Affiliate Promotion Email</h4>
+                    <p><strong>Subject:</strong> Exclusive offer for your audience: [Product Name]</p>
+                    <p><strong>Body:</strong> Hi [Affiliate Name],</p>
+                    <p>I wanted to share an exclusive opportunity with you and your audience. ${message}</p>
+                    <p>Your audience will love this because [reason]. You'll earn [commission] on every sale.</p>
+                    <p>Use this special link: [affiliate-link]</p>
+                    <p>Let me know if you have any questions!</p>
+                    <p>Best,<br>[Your Name]</p>
+                `;
+            }
+            
+            document.getElementById('ad-copy-output').innerHTML = adCopy;
+            addActivity('Ad copy generated', `${platform} advertising content created`, 'bullhorn', 'accent');
+            alert(`Ad copy generated for ${platform}!`);
+        }
+        
+        // Canvas functions
+        function refreshCanvas() {
+            const canvas = document.getElementById('canvas-output');
+            
+            let content = '<h3>Readi4Bizness OS - Business Canvas</h3>';
+            content += `<p><em>Generated on ${new Date().toLocaleString()}</em></p>`;
+            content += `<p><strong>User:</strong> ${state.loggedIn ? DEMO_EMAIL : 'Not logged in'}</p>`;
+            content += '<hr>';
+            
+            // Dashboard
+            if (state.data.dashboard && Object.keys(state.data.dashboard).length > 0) {
+                content += '<h4>Operating Status</h4>';
+                content += `<p><strong>Business Health:</strong> ${state.data.dashboard.businessHealth || 'Not set'}</p>`;
+                content += `<p><strong>Cash Flow:</strong> ${state.data.dashboard.cashFlow || 'Not set'}</p>`;
+                content += `<p><strong>Monthly Goals:</strong> ${state.data.dashboard.monthlyGoals || 0}%</p>`;
+            }
+            
+            // Blueprint
+            if (state.data.blueprint && state.data.blueprint.businessName) {
+                content += '<h4>Business Blueprint</h4>';
+                content += `<p><strong>Business Name:</strong> ${state.data.blueprint.businessName}</p>`;
+                content += `<p><strong>Niche:</strong> ${state.data.blueprint.niche}</p>`;
+                content += `<p><strong>Value Proposition:</strong> ${state.data.blueprint.valueProposition}</p>`;
+            }
+            
+            // Product
+            if (state.data.product && state.data.product.title) {
+                content += '<h4>Digital Product</h4>';
+                content += `<p><strong>Product:</strong> ${state.data.product.title}</p>`;
+                content += `<p><strong>Type:</strong> ${state.data.product.type}</p>`;
+                content += `<p><strong>Price:</strong> $${parseFloat(state.data.product.price || 0).toFixed(2)}</p>`;
+            }
+            
+            // Content Plans
+            if (state.data.content && state.data.content.length > 0) {
+                content += '<h4>Content Plans</h4>';
+                content += `<p><strong>Total Plans:</strong> ${state.data.content.length}</p>`;
+                state.data.content.slice(-3).forEach(plan => {
+                    content += `<p>• ${plan.title} (${plan.type})</p>`;
+                });
+            }
+            
+            // Campaigns
+            if (state.data.ads && state.data.ads.length > 0) {
+                content += '<h4>Promotion Campaigns</h4>';
+                content += `<p><strong>Total Campaigns:</strong> ${state.data.ads.length}</p>`;
+                state.data.ads.slice(-2).forEach(campaign => {
+                    content += `<p>• ${campaign.name} (${campaign.platform}) - $${campaign.budget}</p>`;
+                });
+            }
+            
+            // Activity
+            if (state.data.activity && state.data.activity.length > 0) {
+                content += '<h4>Recent Activity</h4>';
+                state.data.activity.slice(-3).forEach(activity => {
+                    const time = new Date(activity.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                    content += `<p>• ${time}: ${activity.action} - ${activity.details}</p>`;
+                });
+            }
+            
+            content += '<hr>';
+            content += '<p><strong>Summary:</strong> Your business system contains data across ' + 
+                [state.data.dashboard, state.data.blueprint, state.data.research, state.data.product, state.data.content, state.data.ads]
+                .filter(item => item && Object.keys(item).length > 0).length + ' different areas.</p>';
+            
+            canvas.innerHTML = content;
+            addActivity('Canvas refreshed', 'Business data compiled for export', 'sync-alt', 'primary');
+        }
+        
+        function exportText() {
+            refreshCanvas();
+            const canvasContent = document.getElementById('canvas-output').textContent;
+            
+            const blob = new Blob([canvasContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `readi4bizness-canvas-${new Date().toISOString().slice(0, 10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            addActivity('Canvas exported', 'Business data downloaded as text file', 'download', 'success');
+            alert('Canvas exported as text file!');
+        }
+        
+        function printCanvas() {
+            refreshCanvas();
+            window.print();
+            addActivity('Canvas printed', 'Business data sent to printer', 'print', 'secondary');
+        }
+        
+        function clearAllData() {
+            if (confirm('Are you sure you want to clear ALL data? This cannot be undone.')) {
+                // Clear all localStorage keys
+                for (const key in state.data) {
+                    localStorage.removeItem(`readi4bizness_${key}`);
+                    state.data[key] = key === 'activity' ? [] : {};
+                }
+                
+                // Clear form fields
+                document.querySelectorAll('input, textarea, select').forEach(element => {
+                    if (element.type !== 'range') {
+                        element.value = '';
+                    }
+                });
+                
+                // Reset dashboard slider
+                document.getElementById('monthly-goals').value = 0;
+                document.getElementById('goals-percentage').textContent = '0%';
+                
+                // Update UI
+                updateDashboardStats();
+                updateActivityList();
+                updateContentPlansList();
+                
+                // Refresh canvas
+                refreshCanvas();
+                
+                addActivity('All data cleared', 'Local storage reset to default', 'trash-alt', 'danger');
+                alert('All data has been cleared!');
+            }
+        }
+        
+        // Initialize the app when page loads
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

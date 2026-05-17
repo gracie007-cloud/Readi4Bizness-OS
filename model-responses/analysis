@@ -1,0 +1,38 @@
+## Analysis
+
+### Agreement
+- All models create a static, single-file HTML web app with embedded CSS and JavaScript.
+- All models implement a login system using the demo credentials (demo@readi4bizness.com / readi-demo-2026).
+- All models use localStorage for data persistence across browser sessions.
+- All models include the seven core modules: Dashboard, Blueprint, Research, Product Maker, Content Planner, Ads/Promotions, and Canvas Export.
+- All models provide text export functionality for generated outputs.
+
+### Key Differences
+- UI Design and Layout Approach
+  - Hy3 preview: Traditional top navigation header with modal login and tabbed content sections
+  - DeepSeek V4 Flash: Modern sidebar navigation with card-based UI, gradient colors, and Inter font
+  - DeepSeek V3.2: Left sidebar navigation with a gradient header and traditional card layout
+  - GLM 5.1: Dark theme with animated background orbs, futuristic design, and fixed sidebar
+- Research Module Viability Scoring Algorithm
+  - Hy3 preview: Simple additive algorithm: (demand + (11-competition)) / 20 * 100
+  - DeepSeek V4 Flash: Weighted multi-factor algorithm: market size, competition, demand, readiness
+  - GLM 5.1: Complex weighted formula: demand*0.25 + (10-competition)*0.15 + severity*0.20 + expertise*0.15 + monetize*0.25
+
+### Partial Coverage
+- Implement a composite Canvas module that automatically aggregates data from all other modules (raised by: DeepSeek V4 Flash, GLM 5.1)
+- Include activity logging/tracking with timestamps and action descriptions (raised by: DeepSeek V3.2, GLM 5.1)
+- Provide rich text editing capabilities in the Canvas module with formatting tools (raised by: Hy3 preview, GLM 5.1)
+- Include reset/clear functionality for individual modules and overall data (raised by: DeepSeek V4 Flash, DeepSeek V3.2)
+
+### Unique Insights
+- Implements animated background orbs with floating animations and a dark futuristic aesthetic with box-drawing characters for canvas export formatting (from: GLM 5.1)
+- Uses a sophisticated state management system with default state merging and a render engine that rebuilds all pages dynamically on navigation (from: DeepSeek V4 Flash)
+- Implements a detailed contenteditable canvas with auto-save interval configuration and toolbar formatting buttons (bold, italic, underline) (from: Hy3 preview)
+- Includes detailed sales page outline generation in the product maker module with specific conversion elements like testimonials and guarantees (from: DeepSeek V3.2)
+
+### Blind Spots
+- No model addresses mobile-first responsive design comprehensively (only basic media queries)
+- No model implements data validation or error handling beyond basic alerts
+- No model considers accessibility features (ARIA labels, keyboard navigation, screen reader support)
+- No model provides collaborative features or multi-user support despite the business context
+- No model includes data backup/restore functionality beyond localStorage
